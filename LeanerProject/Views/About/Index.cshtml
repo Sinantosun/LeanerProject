@@ -1,0 +1,141 @@
+﻿@model List<LearnerProject.Models.Entities.About>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script>
+    $(function () {
+        var _btnId = 0;
+        $(".deleteAboutButton").click(function () {
+            var btnId = $(this).data("id");
+            _btnId = btnId;
+
+            var modal = new bootstrap.Modal(document.getElementById('backDropModal'));
+            modal.show();
+        });
+        $(".deleteAboutConfirmButton").click(function () {
+            $.ajax({
+                url: "/About/DeleteAbout/",
+                type: 'post',
+                data: { id: _btnId },
+                success: function () {
+                    window.location.href = "/About/Index";
+                }
+
+            })
+        });
+    })
+
+</script>
+<br />
+
+
+
+<div class="col-lg-4 col-md-3">
+    <small class="text-light fw-semibold">Hakkımızda Alanı</small>
+    <div class="mt-3">
+
+        <div class="modal fade" id="backDropModal" data-bs-backdrop="static" tabindex="-1">
+            <div class="modal-dialog">
+                <form class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="backDropModalTitle">Uyarı</h5>
+                        <button type="button"
+                                class="btn-close"
+                                data-bs-dismiss="modal"
+                                aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label class="form-label">Bu kaydı silmek istediğinze emin misiniz?</label><br />
+                                <small>Bu işlem geri alınamaz.</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                            Kapat
+                        </button>
+                        <button type="button" class="btn btn-outline-danger deleteAboutConfirmButton">
+                            Sil
+                        </button>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="card">
+
+    <span class="card-header">
+        Hakkımızda alanı ile ilgili işlemleri aşağıdan gerçekleştirebilirsiniz.
+        <br />
+        <small><strong>Not:</strong>Tema bütünlüğü için bu alanda tek kayıt bulunmalıdır.</small>
+    </span>
+
+
+
+    <div class="table-responsive text-nowrap">
+   
+        <a href="/About/AddAbout/" style="margin-left:23px; position:relative" class="btn btn-outline-primary">Yeni Hakkımda Alanı Ekle</a>
+        <br />
+        <br />
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th><strong>#</strong></th>
+                    <td>Başlık</td>
+                    <td>Açıklama</td>
+                    <td>Görsel</td>
+                    <td>Öğe 1 </td>
+                    <td>Öğe 2</td>
+                    <td>Öğe 2</td>
+                    <td class="text-center" colspan="3">İşlem</td>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach (var item in Model)
+                {
+                    count++;
+                    <tr>
+                        <th><strong>@count</strong></th>
+                        <td>@item.Title</td>
+                        <td>@item.Description</td>
+                        <td><img src="@item.ImageUrl" style="object-fit:cover; width:100px; height:100px;" /></td>
+                        <td>@item.Item1</td>
+                        <td>@item.Item2</td>
+                        <td>@item.Item3</td>
+                        <td> <button type="button" data-id="@item.AboutId" class="btn btn-outline-danger deleteAboutButton">Sil</button></td>
+                        <td><a href="/About/UpdateAbout/@item.AboutId" class="btn btn-outline-success">Güncelle</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<br />
+<br />
+
+
+
+@if (TempData["Result"] != null)
+{
+
+
+
+    <div class="alert alert-dark" id="alert" style="display:none">
+        @TempData["Result"].ToString()
+    </div>
+
+    <script>
+        $("#alert").fadeIn();
+        $("#alert").fadeOut(2500);
+    </script>
+
+}

@@ -1,0 +1,166 @@
+﻿
+@{
+    ViewBag.Title = "AddAbout";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+
+<script>
+    function FormValidatior(elementName, value) {
+        if (elementName == "title") {
+            if (value.length <= 0) {
+                document.querySelector(".inputmessageForTitle").innerHTML = "Lütfen bu alanı doldurun.";
+                $(".inputmessageForTitle").fadeIn();
+            }
+            else {
+                $(".inputmessageForTitle").fadeOut();
+            }
+        }
+
+        if (elementName == "item1") {
+            if (value.length <= 0) {
+                document.querySelector(".inputmessageForItem1").innerHTML = "Lütfen bu alanı doldurun.";
+                $(".inputmessageForItem1").fadeIn();
+            }
+            else {
+                $(".inputmessageForItem1").fadeOut();
+            }
+        }
+        if (elementName == "item2") {
+            if (value.length <= 0) {
+                document.querySelector(".inputmessageForItem2").innerHTML = "Lütfen bu alanı doldurun.";
+                $(".inputmessageForItem2").fadeIn();
+            }
+            else {
+                $(".inputmessageForItem2").fadeOut();
+            }
+        }
+        if (elementName == "item3") {
+            if (value.length <= 0) {
+                document.querySelector(".inputmessageForItem3").innerHTML = "Lütfen bu alanı doldurun.";
+                $(".inputmessageForItem3").fadeIn();
+            }
+            else {
+                $(".inputmessageForItem3").fadeOut();
+            }
+        }
+        if (elementName == "description") {
+            if (value.length <= 0) {
+                document.querySelector(".inputmessageForDescription").innerHTML = "Lütfen bu alanı doldurun.";
+                $(".inputmessageForDescription").fadeIn();
+            }
+            else {
+                $(".inputmessageForDescription").fadeOut();
+            }
+
+
+            if (value.length >= 500) {
+                document.querySelector(".mbodytextlenght").style.color = 'red';
+                $(".mbodytextmessage").fadeIn();
+            }
+            else {
+                document.querySelector(".mbodytextlenght").style.color = '#697a8d';
+                $(".mbodytextmessage").fadeOut();
+            }
+            document.querySelector(".mbodytextlenght").innerHTML = value.length + " / 500";
+        }
+    }
+</script>
+
+
+@if (TempData["Result"] != null)
+{
+
+    <div class="alert alert-danger" id="alert" style="display:none">
+        @Html.Raw(TempData["Result"].ToString())
+    </div>
+
+    <script>
+        $("#alert").fadeIn();
+
+    </script>
+
+}
+
+
+<div class="col-md-12">
+    <small class="text-light fw-semibold">Hakkımızda Alanı</small>
+    <div class="card mb-4">
+        <h5 class="card-header">
+            Yeni Hakkımızda Ekleme Alanı
+            <br />
+            <span class="small"> <small>  <b>* Aşağıdaki alanları lütfen eksiksiz doldurun</b> </small></span>
+
+        </h5>
+
+        <div class="card-body">
+            <form method="post" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Başlık</label>
+                    <input name="Title" onkeyup="FormValidatior('title',this.value)" type="text"
+                           class="form-control"
+                           id="exampleFormControlInput1" />
+                    <label style="display:none" class="text-danger inputmessageForTitle"></label>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput2" class="form-label">Görsel</label>
+                    <input accept="image/jpeg, image/jpg, image/png" onchange="validateFileType(this)" name="ImageUrl" type="file"
+                           class="form-control"
+                           id="exampleFormControlInput2" />
+                    <label style="display:none" class="text-danger " id="inputmessageForImage"></label>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput3" class="form-label">Öğe 1</label>
+                    <input name="Item1" onkeyup="FormValidatior('item1',this.value)" type="text"
+                           class="form-control"
+                           id="exampleFormControlInput3" />
+                    <label style="display:none" class="text-danger inputmessageForItem1"></label>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput4" class="form-label">Öğe 2</label>
+                    <input name="Item2" onkeyup="FormValidatior('item2',this.value)" type="text"
+                           class="form-control"
+                           id="exampleFormControlInput4" />
+                    <label style="display:none" class="text-danger inputmessageForItem2"></label>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput5" class="form-label">Öğe 3</label>
+                    <input name="Item3" onkeyup="FormValidatior('item3',this.value)" type="text"
+                           class="form-control"
+                           id="exampleFormControlInput5" />
+                    <label style="display:none" class="text-danger inputmessageForItem3"></label>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput6" class="form-label">Açıklama</label><br />
+                    <span class="mbodytextlenght"><b>0 / 500</b></span><br />
+                    <span class="mbodytextmessage" style="color: red; display:none">500 karakter sınırını aştınız lütfen mesajı kısaltın.</span>
+                    <textarea name="Description" onkeyup="FormValidatior('description',this.value)" id="exampleFormControlInput6" rows="10" class="form-control"></textarea>
+                    <label style="display:none" class="text-danger inputmessageForDescription"></label>
+                </div>
+                <div class="mb-3">
+                    <input type="submit" class="btn btn-outline-success" value="Kaydet" />
+
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+<script>
+    function validateFileType(input) {
+        const allowedExtensions = ['jpg', 'jpeg', 'png'];
+        const selectedFile = input.files[0];
+        const selectedFileExtension = selectedFile.name.split('.').pop().toLowerCase();
+
+        if (!allowedExtensions.includes(selectedFileExtension)) {
+            $("#inputmessageForImage").fadeIn();
+            document.getElementById("inputmessageForImage").innerText = "Seçilen Dosya türü desteklenmiyor. işlem iptal edildi lütfen tekrar görsel seçin.. (* .jpg - .jpeg - .png)";
+            input.value = '';
+        }
+        else {
+            $("#inputmessageForImage").fadeOut();
+        }
+    }
+</script>
