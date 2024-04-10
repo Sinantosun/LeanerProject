@@ -1,0 +1,195 @@
+﻿
+@{
+    ViewBag.Title = "AddCategory";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<style>
+    .Icon:hover {
+        color: darkseagreen;
+        transform: scale(1.3);
+    }
+
+    .IconsDiv .bx {
+        transition-duration: 500ms;
+        padding: 15px;
+    }
+</style>
+
+<div class="modal fade col-md-12" id="backDropModal" data-bs-backdrop="static" tabindex="-1">
+    <div class="modal-dialog">
+        <form class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="backDropModalTitle">İkon Seç</h5>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <small>Ara.. (Lütfen aramak istedğiniz ikonun adını ingilizce olarak yazınız.)</small>
+                <input type="text" placeholder="Ara.." onkeyup="myFunction(this.value)" class="form-control" />
+                <br />
+
+                <div class="IconsDiv">
+
+                </div>
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary TriggerButton" data-bs-dismiss="modal">
+                    Kapat
+                </button>
+                <button type="button" class="btn btn-outline-danger deleteAboutConfirmButton">
+                    Seç
+                </button>
+
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+<script>
+    function ChooseIcon(data) {
+        $(".selectedIconTxt").fadeIn();
+        $(".SetIcon").fadeIn();
+        document.querySelector(".selectedIconTxt").innerHTML = "<b>Seçilen İkon: " + data + "</b>";
+        $(".SetIcon").empty();
+        $(".SetIcon").append(`(<i class="${data}"></i>)`);
+     
+        $(".TriggerButton").trigger("click");
+
+        $.ajax({
+            url: '/Category/FindData',
+            type: 'get',
+            data: { resultData: data },
+            success: function (jsonData) {
+                if (jsonData == "err") {
+                    alert('hata');
+                }
+                else {
+           
+                    $("#CategoryInput").val(jsonData);
+                 
+                }
+
+            }
+        });
+
+    }
+
+
+
+
+    $(function () {
+
+        var modal = new bootstrap.Modal(document.getElementById("backDropModal"));
+
+        $(".chooseIcon").click(function () {
+            modal.show();
+            let div = ``;
+            $(".IconsDiv").empty();
+            $.ajax({
+                url: '/Category/LoadData',
+                type: 'get',
+                success: function (data) {
+                    $.each(data, (index, item) => {
+
+                        div += `<a href="#" onclick="ChooseIcon('${item.IconType}')"  style=" color:grey; cursor:pointer;"><i style="font-size:20pt; " class="${item.IconType} Icon"></i></a>`;
+
+                    });
+
+                    $(".IconsDiv").html(div);
+                }
+
+            });
+
+
+
+        });
+
+
+
+
+    });
+    function myFunction(data) {
+        let div = ``;
+        $(".IconsDiv").empty();
+        $.ajax({
+            url: '/Category/SearchData/',
+            type: 'get',
+            data: { IconName: data },
+            success: function (result) {
+                $.each(result, (index, item) => {
+
+                    div += `<a id="test" onclick="ChooseIcon('${item.IconType}')"  style=" color:grey; cursor:pointer;"><i style="font-size:20pt" class="${item.IconType} Icon"></i></a>`;
+
+                });
+
+                $(".IconsDiv").html(div);
+            }
+        });
+    }
+
+</script>
+
+
+@if (TempData["Result"] != null)
+{
+
+    <div class="alert alert-danger" id="alert" style="display:none">
+        @Html.Raw(TempData["Result"].ToString())
+    </div>
+
+    <script>
+        $("#alert").fadeIn();
+    </script>
+
+}
+
+
+<div class="col-md-12">
+    <small class="text-light fw-semibold">Kategori Alanı</small>
+    <div class="card mb-4">
+        <h5 class="card-header">
+            Yeni Kategori Ekleme Sayfası
+            <br />
+            <span class="small"> <small>  <b>* Aşağıdaki alanları lütfen eksiksiz doldurun</b> </small></span>
+
+        </h5>
+
+        <div class="card-body">
+            <form method="post">
+                <input name="CategoryIconsID" type="hidden"
+                       class="form-control"
+                       id="CategoryInput" />
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Kategori Adı</label>
+                    <input name="CategoryName" type="text"
+                           class="form-control"
+                           id="exampleFormControlInput1" />
+                    <label style="display:none" class="text-danger inputmessageForCategory"></label>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Ikon Seçiniz</label>
+                    <br />
+                    <a class="btn btn-outline-primary chooseIcon">İkon Seç</a>
+                    <br />
+                    <br />
+                    <span style="display:none" class="selectedIconTxt"><small>Seçilen İkon : Car</small></span>
+                    <span class="SetIcon"></span>
+                </div>
+                <div class="mb-3">
+                    <input type="submit" class="btn btn-outline-success" value="Kaydet" />
+
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+

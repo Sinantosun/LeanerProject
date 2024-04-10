@@ -139,6 +139,8 @@
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AdminLayoutController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\CategoryIconsController.cs" />
+    <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\ErrorPagesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="DAL\CheckImageExtentions.cs" />
@@ -149,11 +151,20 @@
     <Compile Include="Migrations\202404091107429_migration_initilize.designer.cs">
       <DependentUpon>202404091107429_migration_initilize.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202404101451347_migration_relation_add_category_ıcons.cs" />
+    <Compile Include="Migrations\202404101451347_migration_relation_add_category_ıcons.designer.cs">
+      <DependentUpon>202404101451347_migration_relation_add_category_ıcons.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404101454259_add_table_category_ıcons.cs" />
+    <Compile Include="Migrations\202404101454259_add_table_category_ıcons.designer.cs">
+      <DependentUpon>202404101454259_add_table_category_ıcons.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Context.cs" />
     <Compile Include="Models\Entities\About.cs" />
     <Compile Include="Models\Entities\Banner.cs" />
     <Compile Include="Models\Entities\Category.cs" />
+    <Compile Include="Models\Entities\CategoryIcons.cs" />
     <Compile Include="Models\Entities\Classroom.cs" />
     <Compile Include="Models\Entities\Course.cs" />
     <Compile Include="Models\Entities\CourseRegister.cs" />
@@ -614,6 +625,10 @@
     <Content Include="Views\ErrorPages\Page413.cshtml" />
     <Content Include="Views\About\UpdateAbout.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
+    <Content Include="Views\Category\AddCategory.cshtml" />
+    <Content Include="Views\Default\Index.cshtml" />
+    <Content Include="Views\CategoryIcons\Index.cshtml" />
+    <Content Include="Views\CategoryIcons\AddIcon.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -649,6 +664,12 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202404091107429_migration_initilize.resx">
       <DependentUpon>202404091107429_migration_initilize.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404101451347_migration_relation_add_category_ıcons.resx">
+      <DependentUpon>202404101451347_migration_relation_add_category_ıcons.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404101454259_add_table_category_ıcons.resx">
+      <DependentUpon>202404101454259_add_table_category_ıcons.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

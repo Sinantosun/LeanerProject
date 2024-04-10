@@ -1,4 +1,5 @@
 ﻿
+using LeanerProject.Models.Entities;
 using LearnerProject.Models.Entities;
 using System.Data.Entity;
 
@@ -16,5 +17,6 @@ namespace LeanerProject.Models
         public DbSet<Review> Reviews { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Testimonial> Testimonials { get; set; }
+        public DbSet<CategoryIcons> CategoryIcons { get; set; }
     }
 }

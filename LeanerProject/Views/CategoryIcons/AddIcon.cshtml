@@ -1,0 +1,58 @@
+﻿
+@{
+    ViewBag.Title = "AddIcon";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+
+@{
+    ViewBag.Title = "AddCategory";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+<div class="col-md-12">
+    <small class="text-light fw-semibold">Kategoriye Ait İkon Alanı</small>
+
+    <div class="card mb-4">
+        <h5 class="card-header">
+            Yeni İkon Ekleme Sayfası
+            <br />
+            <small>İkonları burdan bulabilirisiniz : <a href="https://boxicons.com" target="_blank">https://boxicons.com</a></small>
+        </h5>
+
+        <div class="card-body">
+            <form method="post">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">İkon Adı</label>
+                    <input name="IconType" type="text"
+                           class="form-control"
+                           id="exampleFormControlInput1" />
+                    <label style="display:none" class="text-danger inputmessageForCategory"></label>
+                </div>
+                <div class="mb-3">
+                    <input type="submit" class="btn btn-outline-success" value="Kaydet" />
+
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+@if (TempData["Result"] != null)
+{
+
+    <div class="alert alert-dark" id="alert" style="display:none">
+        @Html.Raw(TempData["Result"].ToString())
+    </div>
+
+    <script>
+        $("#alert").fadeIn();
+
+    </script>
+
+}
+
+
