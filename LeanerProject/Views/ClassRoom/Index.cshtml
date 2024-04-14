@@ -1,0 +1,78 @@
+﻿@model List<LearnerProject.Models.Entities.Classroom>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+
+
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<div class="card">
+
+    <span class="card-header">
+        Sınıf alanı ile ilgili işlemleri aşağıdan gerçekleştirebilirsiniz.
+        <br />
+        <small><strong>Not:</strong>Tema bütünlüğü için bu alanda tek kayıt bulunmalıdır.</small>
+    </span>
+
+
+
+    <div class="table text-nowrap">
+
+        <a href="/ClassRoom/AddClassRoom/" style="margin-left:23px; position:relative" class="btn btn-outline-primary">Yeni Sınıf Alanı Ekle</a>
+        <br />
+        <br />
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th><strong>#</strong></th>
+                    <td>Ad</td>
+                    <td>Açıklama</td>
+                    <td class="text-center">Sınıfa Ait İkon</td>
+                    <td class="text-center" colspan="2">İşlem</td>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach (var item in Model)
+                {
+                    count++;
+                    <tr>
+                        <th><strong>@count</strong></th>
+                        <td>@item.Name</td>
+                        <td>@item.Description</td>
+                        <td class="text-center"><i style="font-size:15pt" class="@item.CategoryIcons.IconType "></i></td>
+
+                        <td><a href="/ClassRoom/DeleteClassRoom/@item.ClassroomId" class="btn btn-outline-danger">Sil</a></td>
+                        <td><a href="/ClassRoom/UpdateClassRoom/@item.ClassroomId" class="btn btn-outline-success">Güncelle</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<br />
+<br />
+
+
+
+@if (TempData["Result"] != null)
+{
+
+
+
+    <div class="alert alert-dark" id="alert" style="display:none">
+        @TempData["Result"].ToString()
+    </div>
+
+    <script>
+        $("#alert").fadeIn();
+        $("#alert").fadeOut(2500);
+    </script>
+
+}
+
+

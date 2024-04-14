@@ -4,55 +4,34 @@
 }
 
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Icon Seçimi</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha512-4SX8R27D3vjW/M2UGw+wM+u7mO/f02v0WxZMZ5JxNWm3w01LLv5anayFhqDEoXi40e6etGoiCmj45Cz1g3tUCw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <style>
-        .icon-list {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+    <link href="~/Content/main.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script>
+        window.onload = function () {
+            const container = document.querySelector('.container');
+            //container.classList.add('loaded');
+
+           
         }
+        $(".btn1").click(function () {
+            $(".div1").fadeIn();
+            document.getElementsByClassName("div1").classList.add("container");
+         
+        });
 
-            .icon-list li {
-                display: inline-block;
-                margin: 5px;
-                cursor: pointer;
-            }
 
-                .icon-list li i {
-                    font-size: 24px;
-                }
-    </style>
+    </script>
 </head>
 <body>
+    <input type="text" placeholder="Number 1" /> + <input type="text" placeholder="Number 2" /> <input type="button" class="btn1" value="Calc" />
+    <div style="display:none"  class="div1">
 
-    <h2>Icon Seçimi</h2>
+        <img src="https://t4.ftcdn.net/jpg/04/43/21/17/360_F_443211705_cULEBX9irazpZ8qxRvG1BtfRLIiIB2pM.jpg" alt="Fotoğraf">
+    </div>
 
-    <!-- Icon seçim listesi -->
-    <ul class="icon-list">
-        <li><i class="fas fa-heart" data-icon="heart"></i></li>
-        <li><i class="fas fa-star" data-icon="star"></i></li>
-        <li><i class="fas fa-check" data-icon="check"></i></li>
-    </ul>
 
-    <!-- Seçilen ikonu göstermek için bir alan -->
-    <div id="selected-icon"></div>
-
-    <script>
-    // İkon listesindeki her bir ikonu dinleyin
-    document.querySelectorAll('.icon-list i').forEach(icon => {
-        icon.addEventListener('click', function() {
-            // Tıklanan ikonun veri özniteliğinden (data-icon) ikon adını alın
-            const iconName = this.getAttribute('data-icon');
-            // Seçilen ikonu göstermek için bir alanı güncelleyin
-            document.getElementById('selected-icon').innerHTML = `<p>Seçilen İkon: <i class="fas fa-${iconName}"></i></p>`;
-        });
-    });
-    </script>
 
 </body>
 </html>

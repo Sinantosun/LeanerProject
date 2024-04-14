@@ -56,6 +56,12 @@
       <HintPath>..\packages\FluentValidation.11.9.0\lib\netstandard2.0\FluentValidation.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -138,11 +144,16 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AboutController.cs" />
     <Compile Include="Controllers\AdminLayoutController.cs" />
+    <Compile Include="Controllers\BannerController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CategoryIconsController.cs" />
+    <Compile Include="Controllers\ClassRoomController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\ErrorPagesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MainController.cs" />
+    <Compile Include="DAL\CategoryIconsDal\CategoryIconsManager.cs" />
+    <Compile Include="DAL\CategoryIconsDal\ICategoryIconsService.cs" />
     <Compile Include="DAL\CheckImageExtentions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -159,6 +170,10 @@
     <Compile Include="Migrations\202404101454259_add_table_category_ıcons.designer.cs">
       <DependentUpon>202404101454259_add_table_category_ıcons.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202404131222371_new_relationship_icons_classroms.cs" />
+    <Compile Include="Migrations\202404131222371_new_relationship_icons_classroms.designer.cs">
+      <DependentUpon>202404131222371_new_relationship_icons_classroms.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Context.cs" />
     <Compile Include="Models\Entities\About.cs" />
@@ -174,6 +189,8 @@
     <Compile Include="Models\Entities\Testimonial.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidationRules\AboutRules\CreateAboutValidator.cs" />
+    <Compile Include="ValidationRules\CategoryRules\CreateCategoryValidator.cs" />
+    <Compile Include="ValidationRules\ClassRoomRules\CreateClassRoomValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -192,6 +209,8 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\main.css" />
+    <Content Include="Content\PagedList.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -202,6 +221,7 @@
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\CategoryIcons.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -629,6 +649,16 @@
     <Content Include="Views\Default\Index.cshtml" />
     <Content Include="Views\CategoryIcons\Index.cshtml" />
     <Content Include="Views\CategoryIcons\AddIcon.cshtml" />
+    <Content Include="Views\Main\Index.cshtml" />
+    <Content Include="Views\Category\UpdateCategory.cshtml" />
+    <Content Include="Views\Category\_IconsPartial.cshtml" />
+    <Content Include="Views\Banner\Index.cshtml" />
+    <Content Include="Views\Banner\AddBaner.cshtml" />
+    <Content Include="Views\Banner\UpdateBanner.cshtml" />
+    <Content Include="Views\ClassRoom\Index.cshtml" />
+    <Content Include="Views\ClassRoom\AddClassRoom.cshtml" />
+    <Content Include="Views\ClassRoom\UpdateClassRoom.cshtml" />
+    <Content Include="Views\ClassRoom\_IconsPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -670,6 +700,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202404101454259_add_table_category_ıcons.resx">
       <DependentUpon>202404101454259_add_table_category_ıcons.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404131222371_new_relationship_icons_classroms.resx">
+      <DependentUpon>202404131222371_new_relationship_icons_classroms.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

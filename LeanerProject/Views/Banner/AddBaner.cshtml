@@ -1,0 +1,65 @@
+﻿
+@{
+    ViewBag.Title = "AddBaner";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+
+@if (TempData["Result"] != null)
+{
+
+    <div class="alert alert-danger" id="alert" style="display:none">
+        @Html.Raw(TempData["Result"].ToString())
+    </div>
+    <script>
+        $("#alert").fadeIn();
+    </script>
+}
+<script>
+  
+    function FormValidatior(value) {
+
+        if (value.length <= 0) {
+            document.querySelector(".inputmessageForTitle").innerHTML = "Lütfen bu alanı doldurun.";
+            $(".inputmessageForTitle").fadeIn();
+        }
+        else {
+            $(".inputmessageForTitle").fadeOut();
+        }
+
+    }
+</script>
+
+<div class="col-md-12">
+    <small class="text-light fw-semibold">Banner Alanı</small>
+    <div class="card mb-4">
+        <h5 class="card-header">
+            Yeni Baner Ekleme Sayfası
+            <br />
+            <span class="small"> <small>  <b>* Aşağıdaki alanları lütfen eksiksiz doldurun</b> </small></span>
+
+        </h5>
+
+        <div class="card-body">
+            <form method="post">
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Başlık</label>
+                    <input name="Title" onkeyup="FormValidatior(this.value)" type="text"
+                           class="form-control"
+                           id="exampleFormControlInput1" />
+                    <label style="display:none" class="text-danger inputmessageForTitle"></label>
+                </div>
+                <div class="mb-3">
+                    <input type="submit" class="btn btn-outline-success" value="Kaydet" />
+
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,4 +1,11 @@
-﻿@{
+﻿
+@{
+    ViewBag.Title = "AddClassRoom";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+
+@{
     ViewBag.Title = "AddCategory";
     Layout = "~/Views/AdminLayout/Index.cshtml";
 }
@@ -7,6 +14,7 @@
 @using PagedList.Mvc;
 @model  PagedList.PagedList<CategoryIcons>
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
 
 <style>
     .Icon:hover {
@@ -59,8 +67,8 @@
             <div class="modal-body">
 
                 <small>Ara.. (Lütfen aramak istedğiniz ikonun adını ingilizce olarak yazınız.)</small>
-       
-                <input type="text" onkeyup="SearchIconFunction(this.value,'Category','AddCategory','')" placeholder="Ara.." id="modaltxtinput" class="form-control " />
+
+                <input type="text" placeholder="Ara.." id="modaltxtinput" onkeyup="SearchIconFunction(this.value,'ClassRoom','AddClassRoom','')" class="form-control " />
                 <br />
 
                 <div class="IconsDiv">
@@ -71,13 +79,15 @@
                 </div>
                 <br />
                 <div style="justify-content:center; align-items:center; display:flex;">
-                    @Html.PagedListPager((IPagedList)Model, pageNumber => Url.Action("AddCategory", new { pageNumber, status = "active" }), new PagedListRenderOptions { LiElementClasses = new List<string> { "page-link" } })
+                    @Html.PagedListPager((IPagedList)Model, pageNumber => Url.Action("AddClassRoom", new { pageNumber, status = "active" }), new PagedListRenderOptions { LiElementClasses = new List<string> { "page-link" } })
                 </div>
             </div>
-  
         </div>
     </div>
 </div>
+
+
+
 
 @if (TempData["pagenumber"] != null)
 {
@@ -88,6 +98,8 @@
         });
     </script>
 }
+
+
 
 
 @if (TempData["Result"] != null)
@@ -119,20 +131,25 @@
         <div class="card-body">
             <form method="post">
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Kategori Adı</label>
-                    <input name="CategoryName" type="text"
+                    <label for="exampleFormControlInput1" class="form-label">Sınıf Adı</label>
+                    <input name="Name" type="text"
                            class="form-control"
                            id="exampleFormControlInput1" />
-                    <label style="display:none" class="text-danger inputmessageForCategory"></label>
+                    <label style="display:none" class="text-danger inputmessageForName"></label>
                 </div>
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Ikon Seçiniz</label>
+                    <label for="exampleFormControlInput1" class="form-label">Sınıf İkonu</label>
                     <br />
                     <a class="btn btn-outline-primary chooseIcon">İkon Seç</a>
                     <br />
                     <br />
                     <span style="display:none" class="selectedIconTxt"><small>Seçilen İkon : Car</small></span>
                     <span class="SetIcon"></span>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput2" class="form-label">Açıklama</label>
+                    <textarea rows="10" class="form-control" name="description" id=""></textarea>
+                    <label style="display:none" class="text-danger inputmessageForDescription" id="exampleFormControlInput2"></label>
                 </div>
                 <div class="mb-3">
                     <input type="submit" class="btn btn-outline-success" value="Kaydet" />
@@ -143,6 +160,7 @@
         </div>
     </div>
 </div>
+
 
 
 

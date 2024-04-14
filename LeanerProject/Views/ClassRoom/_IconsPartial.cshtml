@@ -1,0 +1,7 @@
+﻿
+@using LeanerProject.Models.Entities
+@model  PagedList.PagedList<CategoryIcons>
+@foreach (var item in Model)
+{
+    <a href="#" onclick="ChooseIcon('@item.IconType')" style=" color:grey; cursor:pointer;"><i style="font-size:20pt; " class="@item.IconType Icon"></i></a>
+}

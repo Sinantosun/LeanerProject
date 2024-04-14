@@ -1,11 +1,14 @@
-﻿@{
-    ViewBag.Title = "AddCategory";
+﻿
+@{
+    ViewBag.Title = "UpdateCategory";
     Layout = "~/Views/AdminLayout/Index.cshtml";
 }
+
+
 @using LeanerProject.Models.Entities
 @using PagedList;
 @using PagedList.Mvc;
-@model  PagedList.PagedList<CategoryIcons>
+@model LearnerProject.Models.Entities.Category
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 
 <style>
@@ -59,25 +62,31 @@
             <div class="modal-body">
 
                 <small>Ara.. (Lütfen aramak istedğiniz ikonun adını ingilizce olarak yazınız.)</small>
-       
-                <input type="text" onkeyup="SearchIconFunction(this.value,'Category','AddCategory','')" placeholder="Ara.." id="modaltxtinput" class="form-control " />
+
+                <input type="text" placeholder="Ara.." id="modaltxtinput" onkeyup="SearchIconFunction(this.value,'Category','UpdateCategory',@Model.CategoryId)" class="form-control " />
                 <br />
 
                 <div class="IconsDiv">
-                    @foreach (var item in Model)
-                    {
-                        <a href="#" onclick="ChooseIcon('@item.IconType')" style=" color:grey; cursor:pointer;"><i style="font-size:20pt; " class="@item.IconType Icon"></i></a>
-                    }
+                    @Html.Action("_IconsPartial")
                 </div>
                 <br />
                 <div style="justify-content:center; align-items:center; display:flex;">
-                    @Html.PagedListPager((IPagedList)Model, pageNumber => Url.Action("AddCategory", new { pageNumber, status = "active" }), new PagedListRenderOptions { LiElementClasses = new List<string> { "page-link" } })
+                    @Html.PagedListPager((IPagedList)ViewBag.V, pageNumber => Url.Action("UpdateCategory", new { pageNumber, status = "active" }), new PagedListRenderOptions { LiElementClasses = new List<string> { "page-link" } })
                 </div>
             </div>
-  
+
         </div>
     </div>
 </div>
+
+
+
+
+
+
+
+
+
 
 @if (TempData["pagenumber"] != null)
 {
@@ -88,6 +97,8 @@
         });
     </script>
 }
+
+
 
 
 @if (TempData["Result"] != null)
@@ -110,29 +121,29 @@
     <small class="text-light fw-semibold">Kategori Alanı</small>
     <div class="card mb-4">
         <h5 class="card-header">
-            Yeni Kategori Ekleme Sayfası
+            Kategori Güncelleme Sayfası
             <br />
-            <span class="small"> <small>  <b>* Aşağıdaki alanları lütfen eksiksiz doldurun</b> </small></span>
-
         </h5>
 
         <div class="card-body">
             <form method="post">
                 <div class="mb-3">
+                    <input type="hidden" value="@Model.CategoryId" name="CategoryId" />
                     <label for="exampleFormControlInput1" class="form-label">Kategori Adı</label>
-                    <input name="CategoryName" type="text"
+                    <input value="@Model.CategoryName" name="CategoryName" type="text"
                            class="form-control"
                            id="exampleFormControlInput1" />
                     <label style="display:none" class="text-danger inputmessageForCategory"></label>
                 </div>
                 <div class="mb-3">
-                    <label for="exampleFormControlInput1" class="form-label">Ikon Seçiniz</label>
+                    <span style="display:none" class="selectedIconTxt2"><small><b>Mevcut İkon :</b> <i class="@Model.CategoryIcons.IconType"></i> </small></span>
                     <br />
-                    <a class="btn btn-outline-primary chooseIcon">İkon Seç</a>
+                    <span class="selectedIconTxt"><small><b>Mevcut İkon :</b> @Model.CategoryIcons.IconType </small></span>
+                    <span class="SetIcon"><i class="@Model.CategoryIcons.IconType"></i></span>
                     <br />
                     <br />
-                    <span style="display:none" class="selectedIconTxt"><small>Seçilen İkon : Car</small></span>
-                    <span class="SetIcon"></span>
+                    <label for="exampleFormControlInput1" class="form-label">Ikon Değiştirmek İçin Seçiniz</label><br />
+                    <a class="btn btn-outline-warning chooseIcon">İkon Seç</a>
                 </div>
                 <div class="mb-3">
                     <input type="submit" class="btn btn-outline-success" value="Kaydet" />
@@ -143,7 +154,6 @@
         </div>
     </div>
 </div>
-
 
 
 

@@ -1,0 +1,14 @@
+﻿.container {
+    height: 0;
+    overflow: hidden;
+    transition: height 10s;
+
+}
+
+    .container img {
+        max-width: 100%;
+    }
+
+    .container.loaded {
+        height:100vh;
+    }

@@ -1,0 +1,75 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+@model List<LearnerProject.Models.Entities.Banner>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<div class="card">
+
+    <span class="card-header">
+        Banner alanı ile ilgili işlemleri aşağıdan gerçekleştirebilirsiniz.
+        <br />
+        <small><strong>Not:</strong>Tema bütünlüğü için bu alanda tek kayıt bulunmalıdır.</small>
+    </span>
+
+
+
+    <div class="table text-nowrap">
+
+        <a href="/Banner/AddBaner/" style="margin-left:23px; position:relative" class="btn btn-outline-primary">Yeni Banner Alanı Ekle</a>
+        <br />
+        <br />
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th><strong>#</strong></th>
+                    <td>Başlık</td>
+                    <td class="text-center" colspan="2">İşlem</td>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach (var item in Model)
+                {
+                    count++;
+                    <tr>
+                        <th><strong>@count</strong></th>
+                        <td>@item.Title</td>
+
+                        <td><a href="/Banner/DeleteBanner/@item.BannerId" class="btn btn-outline-danger">Sil</a></td>
+                        <td><a href="/Banner/UpdateBanner/@item.BannerId" class="btn btn-outline-success">Güncelle</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<br />
+<br />
+
+
+
+@if (TempData["Result"] != null)
+{
+
+
+
+    <div class="alert alert-dark" id="alert" style="display:none">
+        @TempData["Result"].ToString()
+    </div>
+
+    <script>
+        $("#alert").fadeIn();
+        $("#alert").fadeOut(2500);
+    </script>
+
+}
+

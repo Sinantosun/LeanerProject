@@ -13,6 +13,8 @@ namespace LeanerProject.Models.Entities
 
         public List<Category> categories { get; set; }
 
+        public List<Classroom> classrooms { get; set; }
+
 
 
     }
