@@ -148,6 +148,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CategoryIconsController.cs" />
     <Compile Include="Controllers\ClassRoomController.cs" />
+    <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\ErrorPagesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -659,6 +660,8 @@
     <Content Include="Views\ClassRoom\AddClassRoom.cshtml" />
     <Content Include="Views\ClassRoom\UpdateClassRoom.cshtml" />
     <Content Include="Views\ClassRoom\_IconsPartial.cshtml" />
+    <Content Include="Views\Courses\Index.cshtml" />
+    <Content Include="Views\Courses\CourseDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

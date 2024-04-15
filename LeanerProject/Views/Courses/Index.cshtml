@@ -1,0 +1,76 @@
+﻿@model List<LearnerProject.Models.Entities.Course>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<div class="card">
+
+    <span class="card-header">
+        Kurs alanı ile ilgili işlemleri aşağıdan gerçekleştirebilirsiniz.
+        <br />
+        <small><strong>Not:</strong>Tema bütünlüğü için bu alanda tek kayıt bulunmalıdır.</small>
+    </span>
+
+
+
+    <div class="col-md-12 container-fluid">
+        <small><i>Aramak istediğiniz kursun adını yazıp kurs ara butonuna tıklayınız.</i></small>
+        <input placeholder="Aranacak Kurs Adı.." type="text" class="form-control" /> <br />
+        <a href="/Courses/AddCourse/" class="btn btn-outline-primary">Yeni Kurs Ekle</a>
+        <a href="/Courses/AddCourse/" class="btn btn-outline-info">Kurs Ara</a> <br /><br />
+
+
+
+
+
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th><strong>#</strong></th>
+                    <td>Kurs Adı</td>
+                    <td>Açıklama</td>
+                    <td>İşlem</td>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach (var item in Model)
+                {
+                    count++;
+                    <tr>
+                        <th><strong>@count</strong></th>
+                        <td>@item.CourseName </td>
+                        <td>@item.Description </td>
+
+                        <td><a href="/Courses/CourseDetail/@item.CourseId" class="btn btn-outline-success">Detay Gör</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<br />
+<br />
+
+
+@if (TempData["Result"] != null)
+{
+
+    <div class="alert alert-dark" id="alert" style="display:none">
+        @TempData["Result"].ToString()
+    </div>
+
+    <script>
+        $("#alert").fadeIn();
+        $("#alert").fadeOut(2500);
+    </script>
+
+}
+
+
+
