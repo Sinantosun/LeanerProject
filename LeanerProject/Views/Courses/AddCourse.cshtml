@@ -1,59 +1,51 @@
 ﻿@model LearnerProject.Models.Entities.Course
-
 @{
-    ViewBag.Title = "CourseDetail";
+    ViewBag.Title = "AddCourse";
     Layout = "~/Views/AdminLayout/Index.cshtml";
 }
-
-
 
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <div class="card">
 
     <span class="card-header">
-        <span style="font-weight:bold; text-transform:capitalize">Görüntülediğiniz Kurs Adı : @Model.CourseName</span><br /> <i>Bu kursa ile ilgili silme ve güncelleme işlemlerini aşağıdan gerçekleştirebilirsiniz.</i>
+       <i>Yeni Kurs Ekleme Sayfası</i>
     </span>
 
     <div class="card-body">
         <form method="post">
             <div class="mb-3">
-                <input type="hidden" value="@Model.CourseId" name="CourseId" />
                 <label for="exampleFormControlInput1" class="form-label">Kurs Adı</label>
-                <input name="CourseName" value="@Model.CourseName" onkeyup="FormValidatior(this.value)" type="text"
+                <input name="CourseName"  type="text"
                        class="form-control"
                        id="exampleFormControlInput1" />
                 <label style="display:none" class="text-danger inputmessageForTitle"></label>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Görseli</label>
-                <img src="@Model.ImageUrl" alt="Kurs: @Model.CourseName - Görseli" style="width:100%; height:300px;" class="img-thumbnail" /><br />
                 <input name="ImageUrl" type="file"
                        class="form-control"
                        id="exampleFormControlInput1" />
                 <label style="display:none" class="text-danger inputmessageForTitle"></label>
-                <small><i>Kurs görselini değiştirmek için lütfen dosya seçiniz.</i></small>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Kategorisi</label>  <br />
-                <small>Değiştirmek İçin Tıklayınız.</small>
                 <br />
-                @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.CategoryList, Model.Category.CategoryName, new { @class = "form-control" })
+                @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.CategoryList, "Seçiniz", new { @class = "form-control" })
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Fiyatı</label>
-                <input name="Price" value="@Model.Price" onkeyup="FormValidatior(this.value)" type="text"
+                <input name="Price"   type="text"
                        class="form-control"
                        id="exampleFormControlInput1" />
                 <label style="display:none" class="text-danger inputmessageForTitle"></label>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Açıklama</label>
-                <textarea class="form-control" rows="10" name="Description">@Model.Description</textarea>
+                <textarea class="form-control" rows="10" name="Description"></textarea>
                 <label style="display:none" class="text-danger inputmessageForTitle"></label>
             </div>
             <div class="mb-3">
-                <input type="submit" value="Güncelle" class="btn btn-outline-success" />
-                <a href="/Courses/DeleteCourse/@Model.CourseId" class="btn btn-outline-danger">Sil</a>
+                <input type="submit" value="Kaydet" class="btn btn-outline-success" />
             </div>
         </form>
 
@@ -78,8 +70,4 @@
     </script>
 
 }
-
-
-
-
 

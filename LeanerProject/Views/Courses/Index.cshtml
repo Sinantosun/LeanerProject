@@ -5,8 +5,6 @@
     int count = 0;
 }
 
-
-
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <div class="card">
 
@@ -16,47 +14,63 @@
         <small><strong>Not:</strong>Tema bütünlüğü için bu alanda tek kayıt bulunmalıdır.</small>
     </span>
 
-
-
     <div class="col-md-12 container-fluid">
-        <small><i>Aramak istediğiniz kursun adını yazıp kurs ara butonuna tıklayınız.</i></small>
-        <input placeholder="Aranacak Kurs Adı.." type="text" class="form-control" /> <br />
+    
+        <form method="post" action="SearchCourse">
+            @if (TempData["SearchValue"] == null)
+            {<small><i>Aramak istediğiniz kursun adını yazıp kurs ara butonuna tıklayınız.</i></small>
+                <input placeholder="Aranacak Kurs Adı.." type="text" name="courseName" class="form-control" />
+                <br />
+                <input type="submit" value="Ara" class="btn btn-outline-danger" />
+            }
+        </form>
+        @if (TempData["SearchValue"] != null)
+        {
+            <br />
+            <a href="/Courses/Index" class="btn btn-outline-danger">Tüm Kayıtlar</a>
+            <br />
+        }
+        <br />
         <a href="/Courses/AddCourse/" class="btn btn-outline-primary">Yeni Kurs Ekle</a>
-        <a href="/Courses/AddCourse/" class="btn btn-outline-info">Kurs Ara</a> <br /><br />
-
-
-
-
-
-        <table class="table table-hover">
-            <thead>
-                <tr>
-                    <th><strong>#</strong></th>
-                    <td>Kurs Adı</td>
-                    <td>Açıklama</td>
-                    <td>İşlem</td>
-                </tr>
-            </thead>
-            <tbody class="table-border-bottom-0">
-                @foreach (var item in Model)
-                {
-                    count++;
+        <br /><br />
+        @if (Model.Count > 0)
+        {
+            <table class="table table-hover">
+                <thead>
                     <tr>
-                        <th><strong>@count</strong></th>
-                        <td>@item.CourseName </td>
-                        <td>@item.Description </td>
-
-                        <td><a href="/Courses/CourseDetail/@item.CourseId" class="btn btn-outline-success">Detay Gör</a></td>
+                        <th><strong>#</strong></th>
+                        <td>Kurs Adı</td>
+                        <td>Açıklama</td>
+                        <td>İşlem</td>
                     </tr>
-                }
-            </tbody>
-        </table>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @foreach (var item in Model)
+                    {
+                        count++;
+                        <tr>
+                            <th><strong>@count</strong></th>
+                            <td>@item.CourseName </td>
+                            <td>@(item.Description.Length>50 ? item.Description.Substring(0,50) + "...": item.Description)</td>
+
+                            <td><a href="/Courses/CourseDetail/@item.CourseId" class="btn btn-outline-success">Detay Gör</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+            <div class="alert alert-info">
+                Burada Hiç Veri Yok.
+            </div>
+        }
+
     </div>
 </div>
 
 <br />
 <br />
-
 
 @if (TempData["Result"] != null)
 {
