@@ -1,0 +1,82 @@
+﻿
+@{
+    ViewBag.Title = "UpdateCourse";
+    Layout = "~/Views/TeacherLayout/Index.cshtml";
+}
+
+@model LearnerProject.Models.Entities.Course
+@{
+    ViewBag.Title = "AddCourse";
+    Layout = "~/Views/TeacherLayout/Index.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<div class="card">
+
+    <span class="card-header">
+        <i>Kurs Güncelleme Sayfası</i>
+    </span>
+
+    <div class="card-body">
+        <form method="post">
+            <input name="CourseId" value="@Model.CourseId" type="hidden"
+                   class="form-control"
+                   id="exampleFormControlInput1" />
+            <div class="mb-3">
+                <label for="exampleFormControlInput1"  class="form-label">Kurs Adı</label>
+                <input name="CourseName" value="@Model.CourseName" type="text"
+                       class="form-control"
+                       id="exampleFormControlInput1" />
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1"  class="form-label">Görseli</label>
+                <input name="ImageUrl" type="file"
+                       class="form-control"
+                       id="exampleFormControlInput1" />
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1"  class="form-label">Kategorisi</label>
+                <br />
+                @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.CategoryList, "Seçiniz", new { @class = "form-control" })
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Fiyatı</label>
+                <input value="@Model.Price" name="Price" type="text"
+                       class="form-control"
+                       id="exampleFormControlInput1" />
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Açıklama</label>
+                <textarea class="form-control" rows="10" name="Description">@Model.Description</textarea>
+            </div>
+            <div class="mb-3">
+                <input type="submit" value="Kaydet" class="btn btn-outline-success" />
+            </div>
+        </form>
+
+
+    </div>
+</div>
+
+<br />
+<br />
+
+
+@if (TempData["Result"] != null)
+{
+
+    <div class="alert alert-dark" id="alert" style="display:none">
+        @TempData["Result"].ToString()
+    </div>
+
+    <script>
+        $("#alert").fadeIn();
+        $("#alert").fadeOut(2500);
+    </script>
+
+}
+
+
+
+
+

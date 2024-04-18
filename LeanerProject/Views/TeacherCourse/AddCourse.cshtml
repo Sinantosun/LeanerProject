@@ -1,0 +1,71 @@
+﻿@model LearnerProject.Models.Entities.Course
+@{
+    ViewBag.Title = "AddCourse";
+    Layout = "~/Views/TeacherLayout/Index.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<div class="card">
+
+    <span class="card-header">
+        <i>Yeni Kurs Ekleme Sayfası</i>
+    </span>
+
+    <div class="card-body">
+        <form method="post">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Kurs Adı</label>
+                <input name="CourseName" type="text"
+                       class="form-control"
+                       id="exampleFormControlInput1" />
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Görseli</label>
+                <input name="ImageUrl" type="file"
+                       class="form-control"
+                       id="exampleFormControlInput1" />
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Kategorisi</label> 
+                <br />
+                @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.CategoryList, "Seçiniz", new { @class = "form-control" })
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Fiyatı</label>
+                <input name="Price" type="text"
+                       class="form-control"
+                       id="exampleFormControlInput1" />
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Açıklama</label>
+                <textarea class="form-control" rows="10" name="Description"></textarea>
+            </div>
+            <div class="mb-3">
+                <input type="submit" value="Kaydet" class="btn btn-outline-success" />
+            </div>
+        </form>
+
+
+    </div>
+</div>
+
+<br />
+<br />
+
+
+@if (TempData["Result"] != null)
+{
+
+    <div class="alert alert-dark" id="alert" style="display:none">
+        @TempData["Result"].ToString()
+    </div>
+
+    <script>
+        $("#alert").fadeIn();
+        $("#alert").fadeOut(2500);
+    </script>
+
+}
+
+
+

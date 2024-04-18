@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LeanerProject.Models.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,6 +17,11 @@ namespace LearnerProject.Models.Entities
         public virtual Category Category { get; set; }
         public List<Review> Reviews { get; set; }
         public List<CourseRegister> CourseRegisters { get; set; }
+
+        public int? TeacherID { get; set; }
+        public virtual Teacher Teacher { get; set; }
+
+        public List<CourseVideo> Courses { get; set; }
 
 
 

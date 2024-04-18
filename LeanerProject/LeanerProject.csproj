@@ -154,6 +154,9 @@
     <Compile Include="Controllers\ErrorPagesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MainController.cs" />
+    <Compile Include="Controllers\TeacherCourseController.cs" />
+    <Compile Include="Controllers\TeacherLayoutController.cs" />
+    <Compile Include="Controllers\TeacherLoginController.cs" />
     <Compile Include="DAL\CategoryIconsDal\CategoryIconsManager.cs" />
     <Compile Include="DAL\CategoryIconsDal\ICategoryIconsService.cs" />
     <Compile Include="DAL\CheckImageExtentions.cs" />
@@ -176,6 +179,14 @@
     <Compile Include="Migrations\202404131222371_new_relationship_icons_classroms.designer.cs">
       <DependentUpon>202404131222371_new_relationship_icons_classroms.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202404181725325_migration_teacher_Add.cs" />
+    <Compile Include="Migrations\202404181725325_migration_teacher_Add.designer.cs">
+      <DependentUpon>202404181725325_migration_teacher_Add.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202404181929163_add_course_table_Add.cs" />
+    <Compile Include="Migrations\202404181929163_add_course_table_Add.designer.cs">
+      <DependentUpon>202404181929163_add_course_table_Add.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Context.cs" />
     <Compile Include="Models\Entities\About.cs" />
@@ -185,9 +196,11 @@
     <Compile Include="Models\Entities\Classroom.cs" />
     <Compile Include="Models\Entities\Course.cs" />
     <Compile Include="Models\Entities\CourseRegister.cs" />
+    <Compile Include="Models\Entities\CourseVideo.cs" />
     <Compile Include="Models\Entities\FAQ.cs" />
     <Compile Include="Models\Entities\Review.cs" />
     <Compile Include="Models\Entities\Student.cs" />
+    <Compile Include="Models\Entities\Teacher.cs" />
     <Compile Include="Models\Entities\Testimonial.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidationRules\AboutRules\CreateAboutValidator.cs" />
@@ -665,6 +678,17 @@
     <Content Include="Views\Courses\CourseDetail.cshtml" />
     <Content Include="Views\Courses\AddCourse.cshtml" />
     <Content Include="Views\Dashboard\Index.cshtml" />
+    <Content Include="Views\TeacherLayout\Index.cshtml" />
+    <Content Include="Views\TeacherLayout\test.cshtml" />
+    <Content Include="Views\TeacherLayout\_TeacherHeadPartial.cshtml" />
+    <Content Include="Views\TeacherLayout\_TeacherSideBarPartial.cshtml" />
+    <Content Include="Views\TeacherLayout\_TeacherNavbarPartial.cshtml" />
+    <Content Include="Views\TeacherLayout\_TeacherFooterPartial.cshtml" />
+    <Content Include="Views\TeacherLayout\_TeacherScriptsPartial.cshtml" />
+    <Content Include="Views\TeacherCourse\Index.cshtml" />
+    <Content Include="Views\TeacherLogin\Index.cshtml" />
+    <Content Include="Views\TeacherCourse\AddCourse.cshtml" />
+    <Content Include="Views\TeacherCourse\UpdateCourse.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -709,6 +733,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202404131222371_new_relationship_icons_classroms.resx">
       <DependentUpon>202404131222371_new_relationship_icons_classroms.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404181725325_migration_teacher_Add.resx">
+      <DependentUpon>202404181725325_migration_teacher_Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404181929163_add_course_table_Add.resx">
+      <DependentUpon>202404181929163_add_course_table_Add.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
