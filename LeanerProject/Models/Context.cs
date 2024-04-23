@@ -19,5 +19,8 @@ namespace LeanerProject.Models
         public DbSet<Testimonial> Testimonials { get; set; }
         public DbSet<CategoryIcons> CategoryIcons { get; set; }
         public DbSet<Teacher> teachers { get; set; }
+        public DbSet<Contact> Contacts { get; set; }
+        public DbSet<Message> Messages { get; set; }
+        public DbSet<CourseVideo> courseVideos { get; set; }
     }
 }

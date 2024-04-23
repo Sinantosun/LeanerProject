@@ -1,0 +1,132 @@
+﻿@model LearnerProject.Models.Entities.Course
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/UILayout.cshtml";
+    string text = "";
+    var find = Model.Reviews.FirstOrDefault(x => x.CourseId == Model.CourseId);
+    if (find == null)
+    {
+        text = "Henüz değerlendirme yok";
+    }
+    else
+    {
+        var value = Model.Reviews.Where(x => x.CourseId == Model.CourseId).Average(y => y.ReviewValue);
+        text = value.ToString() + " / 5";
+    }
+
+
+
+}
+
+<div class="untree_co-hero overlay" style="background-image: url('/Templates/learner-1.0.0/images/hero-img-1-min.jpg'); ">
+
+
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+
+            <div class="col-12">
+
+                <div class="row justify-content-center ">
+
+                    <div class="col-lg-6 text-center ">
+
+
+                        <h1 class="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">@Model.CourseName Kurs Detayı</h1>
+                        <a href="#" href="https://vimeo.com/342333493" data-fancybox data-aos="fade-up" data-aos-delay="0" class="caption mb-4 d-inline-block">İlk Video'u aç</a>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
+<div class="untree_co-section ">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
+                <h2 class="line-bottom text-center mb-4">Kurs Detay Sayfası</h2>
+                <h4 class="line-bottom text-center mb-2">@Model.CourseName</h4>
+
+            </div>
+        </div>
+
+        <div class="row">
+
+            <div class="col-12 ">
+                <div class="custom-media">
+
+                    <a href="#"><img src="/Templates/learner-1.0.0/images/img-school-1-min.jpg" alt="Image" style="width:100%; height:600px " class="img-fluid"></a>
+                    <div class="custom-media-body">
+                        <div class="d-flex justify-content-between pb-3">
+                            <div class="text-primary"><span class="uil uil-video"></span> <span>Video Sayısı : @ViewBag.VideoCount</span></div>
+                            <div class="review">
+                                <span class="text-dark">
+                                    Kurs Ortalaması : @text
+                                </span>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between pb-3">
+                            <div class="text-primary"><span class="uil uil-analytics"></span> <span>Kurs Kategorisi</span></div>
+                            <div class="review">
+                                <span class="text-dark">
+                                    @Model.Category.CategoryName
+                                </span>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between pb-3">
+                            <div class="text-primary"><span class="uil uil-subject"></span> <span>Kurs Adı</span></div>
+                            <div class="review">
+                                <span class="text-dark">
+                                    @Model.CourseName
+                                </span>
+                            </div>
+                        </div>
+                        <h4>Kurs Açıklaması</h4>
+                        <p class="mb-4">@Model.Description</p>
+                        <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
+                            <div><span class="price">@Model.Price.ToString("C2")</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <br />
+    <div class="container ">
+        <form method="post">
+            <div class="form-group">
+                <input type="hidden" value="@Model.CourseId" name="CourseId" />
+            </div>
+            <div class="form-group">
+                @Html.Label("Puanınız")
+                <select class="form-control" name="ReviewValue">
+                    <option value="5">5</option>
+                    <option value="4">4</option>
+                    <option value="3">3</option>
+                    <option value="2">2</option>
+                    <option value="1">1</option>
+                </select>
+            </div>
+            <div class="form-group">
+                @Html.Label("Yorumunuz")
+                <textarea class="form-control" name="Comment" rows="5"></textarea>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Yorum Yap" class="btn btn-outline-primary" style="border-radius:5px" />
+            </div>
+        </form>
+
+    </div>
+    @Html.Action("Comments")
+
+</div>
+
+

@@ -148,6 +148,8 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\CategoryIconsController.cs" />
     <Compile Include="Controllers\ClassRoomController.cs" />
+    <Compile Include="Controllers\ContactController.cs" />
+    <Compile Include="Controllers\CourseDetailsController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
@@ -187,6 +189,10 @@
     <Compile Include="Migrations\202404181929163_add_course_table_Add.designer.cs">
       <DependentUpon>202404181929163_add_course_table_Add.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202404191858085_migration_conatct_message_tables_Add.cs" />
+    <Compile Include="Migrations\202404191858085_migration_conatct_message_tables_Add.designer.cs">
+      <DependentUpon>202404191858085_migration_conatct_message_tables_Add.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Context.cs" />
     <Compile Include="Models\Entities\About.cs" />
@@ -194,10 +200,12 @@
     <Compile Include="Models\Entities\Category.cs" />
     <Compile Include="Models\Entities\CategoryIcons.cs" />
     <Compile Include="Models\Entities\Classroom.cs" />
+    <Compile Include="Models\Entities\Contact.cs" />
     <Compile Include="Models\Entities\Course.cs" />
     <Compile Include="Models\Entities\CourseRegister.cs" />
     <Compile Include="Models\Entities\CourseVideo.cs" />
     <Compile Include="Models\Entities\FAQ.cs" />
+    <Compile Include="Models\Entities\Message.cs" />
     <Compile Include="Models\Entities\Review.cs" />
     <Compile Include="Models\Entities\Student.cs" />
     <Compile Include="Models\Entities\Teacher.cs" />
@@ -661,7 +669,6 @@
     <Content Include="Views\About\UpdateAbout.cshtml" />
     <Content Include="Views\Category\Index.cshtml" />
     <Content Include="Views\Category\AddCategory.cshtml" />
-    <Content Include="Views\Default\Index.cshtml" />
     <Content Include="Views\CategoryIcons\Index.cshtml" />
     <Content Include="Views\CategoryIcons\AddIcon.cshtml" />
     <Content Include="Views\Main\Index.cshtml" />
@@ -689,6 +696,14 @@
     <Content Include="Views\TeacherLogin\Index.cshtml" />
     <Content Include="Views\TeacherCourse\AddCourse.cshtml" />
     <Content Include="Views\TeacherCourse\UpdateCourse.cshtml" />
+    <Content Include="Views\Shared\UILayout.cshtml" />
+    <Content Include="Views\Default\Index.cshtml" />
+    <Content Include="Views\Default\DefaultCoursePartial.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\Contact\ContactInfo.cshtml" />
+    <Content Include="Views\Contact\SendMessage.cshtml" />
+    <Content Include="Views\CourseDetails\Index.cshtml" />
+    <Content Include="Views\CourseDetails\Comments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -739,6 +754,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202404181929163_add_course_table_Add.resx">
       <DependentUpon>202404181929163_add_course_table_Add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404191858085_migration_conatct_message_tables_Add.resx">
+      <DependentUpon>202404191858085_migration_conatct_message_tables_Add.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
