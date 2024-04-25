@@ -1,4 +1,5 @@
 ﻿using LeanerProject.Models;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -15,10 +16,10 @@ namespace LeanerProject.Controllers
         {
             return View();
         }
+       
         public PartialViewResult DefaultCoursePartial()
         {
             var values = _context.Courses.Include(x=>x.Reviews).OrderByDescending(x=>x.CourseId).Take(3).ToList();
-            
             
             return PartialView(values);
         }

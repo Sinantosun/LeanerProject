@@ -156,12 +156,16 @@
     <Compile Include="Controllers\ErrorPagesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MainController.cs" />
+    <Compile Include="Controllers\StudentLayoutController.cs" />
     <Compile Include="Controllers\TeacherCourseController.cs" />
     <Compile Include="Controllers\TeacherLayoutController.cs" />
     <Compile Include="Controllers\TeacherLoginController.cs" />
+    <Compile Include="Controllers\UILayoutController.cs" />
     <Compile Include="DAL\CategoryIconsDal\CategoryIconsManager.cs" />
     <Compile Include="DAL\CategoryIconsDal\ICategoryIconsService.cs" />
     <Compile Include="DAL\CheckImageExtentions.cs" />
+    <Compile Include="DAL\Repositoryies\CourseRepository.cs" />
+    <Compile Include="DAL\Repositoryies\GenericRepository.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -210,6 +214,7 @@
     <Compile Include="Models\Entities\Student.cs" />
     <Compile Include="Models\Entities\Teacher.cs" />
     <Compile Include="Models\Entities\Testimonial.cs" />
+    <Compile Include="Models\ViewModels\CourseViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ValidationRules\AboutRules\CreateAboutValidator.cs" />
     <Compile Include="ValidationRules\CategoryRules\CreateCategoryValidator.cs" />
@@ -479,6 +484,7 @@
     <Content Include="Templates\sneat-1.0.0\tasks\build.js" />
     <Content Include="Templates\sneat-1.0.0\tasks\prod.js" />
     <Content Include="Templates\sneat-1.0.0\webpack.config.js" />
+    <Content Include="test.html" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -704,6 +710,13 @@
     <Content Include="Views\Contact\SendMessage.cshtml" />
     <Content Include="Views\CourseDetails\Index.cshtml" />
     <Content Include="Views\CourseDetails\Comments.cshtml" />
+    <Content Include="Views\StudentLayout\Index.cshtml" />
+    <Content Include="Views\UILayout\DefaultHeadPartial.cshtml" />
+    <Content Include="Views\UILayout\DefaultNavbarPartial.cshtml" />
+    <Content Include="Views\UILayout\DefaultFooterPartial.cshtml" />
+    <Content Include="Views\UILayout\DefaultScriptsPartial.cshtml" />
+    <Content Include="Views\UILayout\Index.cshtml" />
+    <Content Include="Views\About\twtetet.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

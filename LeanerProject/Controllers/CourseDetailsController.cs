@@ -1,4 +1,5 @@
-﻿using LeanerProject.Models;
+﻿using LeanerProject.DAL.Repositoryies;
+using LeanerProject.Models;
 using LearnerProject.Models.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,29 +13,36 @@ namespace LeanerProject.Controllers
     public class CourseDetailsController : Controller
     {
         Context _context = new Context();
-        
+        CourseRepository _courseRepository = new CourseRepository();
 
         [HttpGet]
         public ActionResult Index(int id)
         {
-            var value = _context.Courses.Include(x => x.Reviews).FirstOrDefault(x => x.CourseId == id);
-            var videoCountById = _context.courseVideos.Where(x => x.CourseId == id).Count();
+            var value = _courseRepository.getListCourseWithReview(id);
+            var videoCountById = _courseRepository.getCourseVideoCount(id);
             ViewBag.VideoCount = videoCountById;
             return View(value);
         }
         [HttpPost]
         public ActionResult Index(Review review)
         {
-
-            review.CourseId = review.CourseId;
-            review.StudentId = 2;
-            _context.Reviews.Add(review);
-            _context.SaveChanges();
-
-            var value = _context.Courses.Include(x => x.Reviews).FirstOrDefault(x => x.CourseId == review.CourseId);
-            var videoCountById = _context.courseVideos.Where(x => x.CourseId == review.CourseId).Count();
+            var value = _courseRepository.getListCourseWithReview(review.CourseId);
+            var videoCountById = _courseRepository.getCourseVideoCount(review.CourseId);
             ViewBag.VideoCount = videoCountById;
-            return View(value);
+            if (Session["userStudentName"] != null)
+            {
+                review.CourseId = review.CourseId;
+                review.StudentId = 2;
+                _context.Reviews.Add(review);
+                _context.SaveChanges();
+                return View(value);
+            }
+            else
+            {
+                TempData["session"] = "userNotFound";
+                return View(value);
+            }
+
         }
 
         public PartialViewResult Comments(int id)

@@ -4,11 +4,9 @@
 }
 
 <!doctype html>
-<html lang="en">
-@Html.Partial("DefaultHeadPartial")
-
+<html lang="tr">
+@Html.Partial("~/Views/UILayout/DefaultHeadPartial.cshtml")
 <body>
-
     <div class="site-mobile-menu">
         <div class="site-mobile-menu-header">
             <div class="site-mobile-menu-close">
@@ -17,17 +15,15 @@
         </div>
         <div class="site-mobile-menu-body"></div>
     </div>
-    @Html.Partial("DefaultNavbarPartial")
+    @Html.Partial("~/Views/UILayout/DefaultNavbarPartial.cshtml")
     @RenderBody()
-    @Html.Partial("DefaultFooterPartial")
+    @Html.Partial("~/Views/UILayout/DefaultFooterPartial.cshtml")
     <div id="overlayer"></div>
     <div class="loader">
         <div class="spinner-border" role="status">
             <span class="sr-only">Loading...</span>
         </div>
     </div>
-    @Html.Partial("DefaultScriptsPartial")
-
+    @Html.Partial("~/Views/UILayout/DefaultScriptsPartial.cshtml")
 </body>
-
 </html>

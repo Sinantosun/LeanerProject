@@ -44,7 +44,7 @@
                                 </div>
                             </div>
                             <h3>@item.CourseName</h3>
-                            <p class="mb-4">@item.Description</p>
+                            <p class="mb-4">@(item.Description.Length>=35?item.Description.Substring(0,35)+"...":item.Description)</p>
                             <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
                                 <div><span class="price">@item.Price.ToString("C2")</span></div>
                                 <div><a href="/CourseDetails/Index/@item.CourseId">Detay Gör</a></div>

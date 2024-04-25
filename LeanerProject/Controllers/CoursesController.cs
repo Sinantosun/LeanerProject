@@ -1,4 +1,5 @@
-﻿using LeanerProject.Models;
+﻿using LeanerProject.DAL.Repositoryies;
+using LeanerProject.Models;
 using LearnerProject.Models.Entities;
 using System;
 using System.Collections.Generic;
@@ -12,9 +13,10 @@ namespace LeanerProject.Controllers
     public class CoursesController : Controller
     {
         Context _context = new Context();
+        CourseRepository _courseRepository = new CourseRepository();
         public ActionResult Index()
         {
-            var value = _context.Courses.ToList();
+            var value = _courseRepository.GetList();
             return View(value);
         }
 
