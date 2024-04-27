@@ -72,7 +72,7 @@
                         <div class="col-sm-5 text-center text-sm-left">
                             <div class="col-sm-7">
                                 <div class="card-body">
-                                    <h5 class="card-title text-primary">Ortalama Fiyat</h5>
+                                    <h5 class="card-title text-primary">Kursların Ortlama Ücreti</h5>
                                     <p class="mb-4">
                                         @Convert.ToDecimal(@ViewBag.CourseAvgPrice).ToString("C2")
                                     </p>
@@ -113,159 +113,9 @@
         </div>
     </div>
     <div class="row">
-        <!-- Order Statistics -->
-        <div class="col-md-8  order-0 mb-4">
-            <div class="card h-100">
-                <div class="card-header d-flex align-items-center justify-content-between pb-0">
-                    <div class="card-title mb-0">
-                        <h5 class="m-0 me-2">İstatistikler</h5>
-                    </div>
-                </div>
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center mb-3">
-                    </div>
-                    <ul class="p-0 m-0">
-                        <li class="d-flex mb-4 pb-1">
-                            <div class="avatar flex-shrink-0 me-3">
-                                <span class="avatar-initial rounded bg-label-primary">
-                         
-                                    <i class="bx bx-category-alt"></i>
-                                </span>
-                            </div>
-                            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                <div class="me-2">
-                                    <h6 class="mb-0">Kodlama Kategorisine Ait Öğrenci Geri Dönüş Ortalama Puanı</h6>
-                                    <small>@ViewBag.CourseCodingCount Kayıt üzeriden hesaplanmıştır.</small>
 
-                                </div>
-                                <div class="user-progress">
-                                    <small class="fw-semibold">@(ViewBag.CourseAvgCoding == 0 ? "Henüz Değerlendirme Yok." : ViewBag.CourseAvgCoding)</small>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="d-flex mb-4 pb-1">
-                            <div class="avatar flex-shrink-0 me-3">
-                                <span class="avatar-initial rounded bg-label-success"><i class='bx bxs-photo-album'></i></span>
-                            </div>
-                            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                <div class="me-2">
-                                    <h6 class="mb-0">Grafik Tasarım Kategorisine Ait Öğrenci Geri Dönüş Ortalama Puanı</h6>
-                                    <small>@ViewBag.CourseGraphicCount Kayıt üzeriden hesaplanmıştır.</small>
+        @Html.Action("DashboardIstatisticPartial")
+        @Html.Action("DashboardRegeisteredCourseCountPartial")
 
-                                </div>
-                                <div class="user-progress">
-                                    <small class="fw-semibold">@(ViewBag.CourseAvgGraphic== 0 ? "Henüz Değerlendirme Yok." : ViewBag.CourseAvgGraphic)</small>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="d-flex mb-4 pb-1">
-                            <div class="avatar flex-shrink-0 me-3">
-                                <span class="avatar-initial rounded bg-label-info"><i class='bx bxs-image-alt'></i></span>
-                            </div>
-                            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                <div class="me-2">
-                                    <h6 class="mb-0">Fotoğrafcılık Kategorisinine Ait Öğrenci Geri Dönüş Ortalama Puanı</h6>
-                                    <small>@ViewBag.CoursePhotoCount Kayıt üzeriden hesaplanmıştır.</small>
-                                </div>
-                                <div class="user-progress">
-                                    <small class="fw-semibold">@(ViewBag.CourseAvgPhoto == 0 ? "Henüz Değerlendirme Yok." : ViewBag.CourseAvgPhoto)</small>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="d-flex">
-                            <div class="avatar flex-shrink-0 me-3">
-                                <span class="avatar-initial rounded bg-label-secondary">
-                                    <i class='bx bx-map-alt'></i>
-                                </span>
-                            </div>
-                            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                <div class="me-2">
-                                    <h6 class="mb-0">İngilizce Kategorisinine Ait Öğrenci Geri Dönüş Ortalama Puanı</h6>
-                                    <small>@ViewBag.CourseEngCount Kayıt üzeriden hesaplanmıştır.</small>
-                                </div>
-                                <div class="user-progress">
-                                    <small class="fw-semibold">@(ViewBag.CourseAvgEng == 0 ? "Henüz Değerlendirme Yok." : ViewBag.CourseAvgEng)</small>
-                                </div>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!--/ Order Statistics -->
-        <!-- Expense Overview -->
-        <!--/ Expense Overview -->
-        <!-- Transactions -->
-        <div class="col-md-6 col-lg-4 order-2 mb-4">
-            <div class="card h-100">
-                <div class="card-header d-flex align-items-center justify-content-between">
-                    <h5 class="card-title m-0 me-2">Kurslara Göre Öğrenci Kayıt Sayıları</h5>
-
-                </div>
-                <div class="card-body">
-                    <ul class="p-0 m-0">
-                        <li class="d-flex mb-4 pb-1">
-                            <div class="avatar flex-shrink-0 me-3">
-
-                                <i style="font-size:15pt"  class='bx bxs-bookmark-alt rounded'></i>
-                            </div>
-                            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                <div class="me-2">
-                                    <h6 class="mb-0">İngilizce</h6>
-                                </div>
-                                <div class="user-progress d-flex align-items-center gap-1">
-                                    <h6 class="mb-0">@(ViewBag.EngCount==0?"Kayıt Yok":ViewBag.EngCount)</h6>
-
-                                </div>
-                            </div>
-                        </li>
-                        <li class="d-flex mb-4 pb-1">
-                            <div class="avatar flex-shrink-0 me-3">
-                                <i class='bx bxs-coffee rounded'></i>
-                            </div>
-                            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                <div class="me-2">
-                                    <h6 class="mb-0">Kodlama</h6>
-                                </div>
-                                <div class="user-progress d-flex align-items-center gap-1">
-                                    <h6 class="mb-0">@(ViewBag.CodingCount == 0?"Kayıt Yok":ViewBag.CodingCount)</h6>
-
-                                </div>
-                            </div>
-                        </li>
-                        <li class="d-flex mb-4 pb-1">
-                            <div class="avatar flex-shrink-0 me-3">
-                                <i class='bx bxs-photo-album rounded'></i>
-                            </div>
-                            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                <div class="me-2">
-                                    <h6 class="mb-0">Fotoğrafcılık</h6>
-                                </div>
-                                <div class="user-progress d-flex align-items-center gap-1">
-                                    <h6 class="mb-0">@(ViewBag.PhotoCount == 0?"Kayıt Yok":ViewBag.PhotoCount)</h6>
-
-                                </div>
-                            </div>
-                        </li>
-                        <li class="d-flex mb-4 pb-1">
-                            <div class="avatar flex-shrink-0 me-3">
-                                <i class='bx bxs-bell rounded'></i>
-                            </div>
-                            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                <div class="me-2">
-                                    <h6 class="mb-0">Grafik Tasrım</h6>
-                                </div>
-                                <div class="user-progress d-flex align-items-center gap-1">
-                                    <h6 class="mb-0">@(ViewBag.GraphCount == 0?"Kayıt Yok":ViewBag.GraphCount)</h6>
-
-                                </div>
-                            </div>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
-        </div>
-        <!--/ Transactions -->
     </div>
 </div>

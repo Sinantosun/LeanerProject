@@ -1,4 +1,5 @@
 ﻿using LeanerProject.Models;
+using LeanerProject.Models.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -13,76 +14,67 @@ namespace LeanerProject.Controllers
         Context _context = new Context();
         public ActionResult Index()
         {
+            ViewBag.ExpensiveCourseName = _context.Courses.OrderByDescending(x => x.Price).Select(y => y.CourseName).FirstOrDefault();
+            ViewBag.HightReviewName = _context.Reviews.OrderByDescending(x => x.ReviewValue).Select(y => y.Course.CourseName).FirstOrDefault();
+            ViewBag.CheapCourseName = _context.Courses.OrderBy(x => x.Price).Select(y => y.CourseName).FirstOrDefault();
+            ViewBag.CourseAvgPrice = _context.Courses.Average(y => y.Price);
+
             ViewBag.CoursesCount = _context.Courses.Count();
             ViewBag.CategoryCount = _context.Categories.Where(x => x.Status == true).Count();
             ViewBag.ClassRoomCount = _context.ClassRooms.Count();
             ViewBag.RegisteredCount = _context.Students.Count();
-            ViewBag.ExpensiveCourseName = _context.Courses.OrderByDescending(x => x.Price).Select(x => x.CourseName).FirstOrDefault();
-            ViewBag.CheapCourseName = _context.Courses.OrderBy(x => x.Price).Select(y => y.CourseName).FirstOrDefault();
-            ViewBag.CheapCourseName = _context.Courses.OrderBy(x => x.Price).Select(y => y.CourseName).FirstOrDefault();
-            ViewBag.CourseAvgPrice = _context.Courses.Average(y => y.Price);
-
-
-
-
-
-            ViewBag.HightReviewName = _context.Reviews.OrderByDescending(x => x.ReviewValue).Select(y => y.Course.CourseName).FirstOrDefault();
-
-
-            var course1 = _context.Reviews.Where(x => x.Course.Category.CategoryName == "Kodlama").ToList();
-            if (course1.Count != 0)
-            {
-                ViewBag.CourseAvgCoding = course1.Average(y => y.ReviewValue);
-                ViewBag.CourseCodingCount = course1.Count();
-            }
-            else
-            {
-                ViewBag.CourseAvgCoding = 0;
-                ViewBag.CourseCodingCount = "0";
-            }
-
-            var course2 = _context.Reviews.Where(x => x.Course.Category.CategoryName == "Grafik Tasarım").ToList();
-            if (course2.Count != 0)
-            {
-                ViewBag.CourseAvgGraphic = course2.Average(y => y.ReviewValue);
-                ViewBag.CourseGraphicCount = course2.Count();
-            }
-            else
-            {
-                ViewBag.CourseAvgGraphic = 0;
-                ViewBag.CourseGraphicCount = "0";
-            }
-
-            var course3 = _context.Reviews.Where(x => x.Course.Category.CategoryName == "Fotoğrafcılık").ToList();
-            if (course3.Count != 0)
-            {
-                ViewBag.CourseAvgPhoto = course3.Average(y => y.ReviewValue);
-                ViewBag.CoursePhotoCount = course3.Count();
-            }
-            else
-            {
-                ViewBag.CourseAvgPhoto = 0;
-                ViewBag.CoursePhotoCount = "0";
-            }
-
-            var course4 = _context.Reviews.Where(x => x.Course.Category.CategoryName == "İngilizce").ToList();
-            if (course4.Count != 0)
-            {
-                ViewBag.CourseAvgEng = course4.Average(y => y.ReviewValue);
-                ViewBag.CourseEngCount = course4.Count();
-            }
-            else
-            {
-                ViewBag.CourseAvgEng = 0;
-                ViewBag.CourseEngCount = "0";
-            }
-
-
-            ViewBag.EngCount = _context.CourseRegisters.Where(x => x.Course.Category.CategoryName == "İngilizce").Count();
-            ViewBag.CodingCount = _context.CourseRegisters.Where(x => x.Course.Category.CategoryName == "Kodlama").Count();
-            ViewBag.PhotoCount = _context.CourseRegisters.Where(x => x.Course.Category.CategoryName == "Fotoğrafcılık").Count();
-            ViewBag.GraphCount = _context.CourseRegisters.Where(x => x.Course.Category.CategoryName == "Grafik Tasarım").Count();
             return View();
         }
+
+        public PartialViewResult DashboardIstatisticPartial()
+        {
+            List<DasboardViewModel> List = new List<DasboardViewModel>();
+            var categoryName = _context.Categories.ToList();
+            foreach (var item in categoryName)
+            {
+                var value = _context.Reviews.Where(x => x.Course.Category.CategoryName == item.CategoryName).ToList();
+                string categoryAvg = "";
+                if (value.Count != 0)
+                {
+                    categoryAvg = value.Average(x => x.ReviewValue).ToString();
+                }
+                else
+                {
+                    categoryAvg = "0";
+                }
+                List.Add(new DasboardViewModel
+                {
+                    CategoryName = item.CategoryName,
+                    CategoryCount = (_context.Reviews.Count(x => x.Course.Category.CategoryName == item.CategoryName).ToString() == "0" ? "Henüz Değerlendirilmedi" : _context.Reviews.Count(x => x.Course.Category.CategoryName == item.CategoryName).ToString() + " Kayıt üzerinden Hesaplanmıştır"),
+                    CategoryAvg = categoryAvg,
+
+                });
+
+            }
+
+
+            return PartialView(List);
+        }
+
+
+
+        public PartialViewResult DashboardRegeisteredCourseCountPartial()
+        {
+            List<DashboardRegisterCountsViewModel> list = new List<DashboardRegisterCountsViewModel>();
+            var values = _context.Categories.ToList();
+            foreach (var item in values)
+            {
+
+                list.Add(new DashboardRegisterCountsViewModel
+                {
+                    CategoryName = item.CategoryName,
+                    CategoryValue = _context.CourseRegisters.Count(x=>x.Course.Category.CategoryName==item.CategoryName).ToString(),
+                });
+            }
+
+
+            return PartialView(list);
+        }
+
     }
 }

@@ -1,0 +1,64 @@
+﻿@model List<LeanerProject.Models.ViewModels.TeacherCourseViewModel>
+
+@{
+    ViewBag.Title = "TeacherCourses";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+<div class="col-lg-4 col-md-3">
+    <small class="text-light fw-semibold">Öğrenciler Alanı</small>
+</div>
+@if (Model.Count > 0)
+{
+
+    <div class="card">
+
+        <span class="card-header">
+            <b>@ViewBag.StudentName </b>Adlı öğrencimizin kayıt olduğu kursları
+        </span>
+
+        <div class="table-responsive ">
+            <br />
+            <br />
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th><strong>#</strong></th>
+                        <td>Kurs Adı</td>
+                        <td>Kurs Değerlendirmesi</td>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @foreach (var item in Model)
+                    {
+                        count++;
+                        <tr>
+                            <th><strong>@count</strong></th>
+                            <td>@item.NameSurname</td>
+                            <td>@(item.CourseReviewValue=="0"?"Değerlendirilmedi": item.CourseReviewValue + " / 5" ) </td>
+                            <td></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+else
+{
+
+    <div class="card">
+        <br />
+        <div class="container-fluid">
+            <div class="alert alert-danger">Öğrencimiz, <b>@ViewBag.StudentName</b> Henüz Hiç Kursa Kaydolmamış</div>
+        </div>
+
+    </div>
+}
+
+

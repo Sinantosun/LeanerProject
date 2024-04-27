@@ -1,0 +1,72 @@
+﻿@model List<LearnerProject.Models.Entities.FAQ>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+<div class="card">
+
+    <span class="card-header">
+        SSS alanı ile ilgili işlemleri aşağıdan gerçekleştirebilirsiniz.
+    </span>
+
+
+
+    <div class="table-responsive ">
+
+        <a href="/Questions/AddQuestions/" style="margin-left:23px; position:relative" class="btn btn-outline-primary">Yeni SSS Ekle</a>
+        <br />
+        <br />
+        <table class="table table-hover">
+            <thead>
+                <tr>
+                    <th><strong>#</strong></th>
+                    <td>Soru</td>
+                    <td>Cevap</td>
+                    <td>Durum</td>
+                    <th class="text-center" colspan="3">İşlem</th>
+
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach (var item in Model)
+                {
+                    count++;
+                    <tr>
+                        <th><strong>@count</strong></th>
+                        <td>@item.Question</td>
+                        <td>@item.Answer</td>
+                        <td>@(item.Status==true ? "Yayında" : "Pasif")</td>
+                        <td style="text-align:center"><a class="btn btn-outline-danger" href="/Questions/DeleteQuestions/@item.FAQId">Sil</a></td>
+                        <td style="text-align:center"><a class="btn btn-outline-success" href="/Questions/UpdateQuestions/@item.FAQId">Güncelle</a></td>
+                        <td style="text-align:center"><a class="btn btn-outline-dark" href="/Questions/ChangeQuestionStatus/@item.FAQId">@(item.Status==true?"Pasif Yap":"Yayınla")</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<br />
+<br />
+
+
+
+@if (TempData["Result"] != null)
+{
+
+
+
+    <div class="alert alert-dark" id="alert" style="display:none">
+        @TempData["Result"].ToString()
+    </div>
+
+    <script>
+        $("#alert").fadeIn();
+        $("#alert").fadeOut(2500);
+    </script>
+
+}

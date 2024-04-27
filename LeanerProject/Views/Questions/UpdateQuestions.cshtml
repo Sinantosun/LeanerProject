@@ -1,0 +1,50 @@
+﻿@model LearnerProject.Models.Entities.FAQ
+@{
+    ViewBag.Title = "UpdateQuestions";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+@if (TempData["Result"] != null)
+{
+
+    <div class="alert alert-danger" id="alert" style="display:none">
+        @Html.Raw(TempData["Result"].ToString())
+    </div>
+
+    <script>
+        $("#alert").fadeIn();
+
+    </script>
+
+}
+
+
+<div class="col-md-12">
+    <small class="text-light fw-semibold">Sıkça Sorulan Sorular Alanı</small>
+    <div class="card mb-4">
+        <h5 class="card-header">
+            SSS Güncelleme Sayfası
+            <br />
+            <span class="small"> <small>  <b>* Aşağıdaki alanları lütfen eksiksiz doldurun</b> </small></span>
+        </h5>
+
+        <div class="card-body">
+            <form method="post">
+                @Html.HiddenFor(x=>x.FAQId)
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Soru</label>
+                    <textarea rows="5" class="form-control" name="Question">@Model.Question</textarea>
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput3" class="form-label">Cevap</label>
+                    <textarea rows="5" class="form-control" name="Answer">@Model.Answer</textarea>
+                </div>
+                <div class="mb-3">
+                    <input type="submit" class="btn btn-outline-success" value="Kaydet" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

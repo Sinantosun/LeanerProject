@@ -1,0 +1,29 @@
+﻿@model List<LearnerProject.Models.Entities.Classroom>
+    @{ 
+        int count = 100;
+    }
+<div class="untree_co-section">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
+                <h2 class="line-bottom text-center mb-4">En iyi eğitime sahibiz</h2>
+                <p>Uzman kadromuz ile beraber eğitime çok önem veriyoruz.</p>
+            </div>
+        </div>
+        <div class="row">
+            @foreach (var item in Model)
+            {
+               
+                <div class="col-6 col-sm-6 col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="@count">
+                    <div class="feature">
+                        <span class="@item.CategoryIcons.IconType" style="font-size:15pt"></span>
+                        <h3>@item.Name</h3>
+                        <p>@item.Description</p>
+                    </div>
+                </div>
+                count = +100;
+            }
+
+        </div>
+    </div> <!-- /.container -->
+</div>

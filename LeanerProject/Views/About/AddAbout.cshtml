@@ -95,20 +95,13 @@
         </h5>
 
         <div class="card-body">
-            <form method="post" enctype="multipart/form-data">
+            <form method="post" >
                 <div class="mb-3">
                     <label for="exampleFormControlInput1" class="form-label">Başlık</label>
                     <input name="Title" onkeyup="FormValidatior('title',this.value)" type="text"
                            class="form-control"
                            id="exampleFormControlInput1" />
                     <label style="display:none" class="text-danger inputmessageForTitle"></label>
-                </div>
-                <div class="mb-3">
-                    <label for="exampleFormControlInput2" class="form-label">Görsel</label>
-                    <input accept="image/jpeg, image/jpg, image/png" onchange="validateFileType(this)" name="ImageUrl" type="file"
-                           class="form-control"
-                           id="exampleFormControlInput2" />
-                    <label style="display:none" class="text-danger " id="inputmessageForImage"></label>
                 </div>
                 <div class="mb-3">
                     <label for="exampleFormControlInput3" class="form-label">Öğe 1</label>
@@ -147,20 +140,3 @@
         </div>
     </div>
 </div>
-
-<script>
-    function validateFileType(input) {
-        const allowedExtensions = ['jpg', 'jpeg', 'png'];
-        const selectedFile = input.files[0];
-        const selectedFileExtension = selectedFile.name.split('.').pop().toLowerCase();
-
-        if (!allowedExtensions.includes(selectedFileExtension)) {
-            $("#inputmessageForImage").fadeIn();
-            document.getElementById("inputmessageForImage").innerText = "Seçilen Dosya türü desteklenmiyor. işlem iptal edildi lütfen tekrar görsel seçin.. (* .jpg - .jpeg - .png)";
-            input.value = '';
-        }
-        else {
-            $("#inputmessageForImage").fadeOut();
-        }
-    }
-</script>

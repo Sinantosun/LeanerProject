@@ -35,12 +35,6 @@ namespace LeanerProject.Controllers
             if (status > 0)
             {
 
-                if (System.IO.File.Exists(Server.MapPath(value.ImageUrl)))
-                {
-                    System.IO.File.Delete(Server.MapPath(value.ImageUrl));
-                }
-
-
 
                 TempData["Result"] = value.Title + " Başlıklı Kayıt Silindi.";
                 return Json("");
@@ -61,58 +55,35 @@ namespace LeanerProject.Controllers
         [HttpPost]
         public ActionResult AddAbout(About about)
         {
-            if (string.IsNullOrEmpty(about.ImageUrl))
-            {
-                TempData["Result"] = "Lütfen Görsel Seçiniz";
-                return View();
-            }
-            else
-            {
 
-                var extentions = Path.GetExtension(Request.Files[0].FileName);
-                bool imageExtResult = CheckImageExtentions.CheckExtentions(extentions);
-                if (imageExtResult)
+           
+
+                CreateAboutValidator validationRules = new CreateAboutValidator();
+                ValidationResult validationResult = validationRules.Validate(about);
+                if (validationResult.IsValid)
                 {
-
-                    CreateAboutValidator validationRules = new CreateAboutValidator();
-                    ValidationResult validationResult = validationRules.Validate(about);
-                    if (validationResult.IsValid)
+                    _context.Abouts.Add(about);
+                    var InsertStatus = _context.SaveChanges();
+                    if (InsertStatus > 0)
                     {
-                        var guid = Guid.NewGuid();
-                        var newImageName = guid + extentions;
-                        about.ImageUrl = "/Images/About/" + newImageName;
-                        _context.Abouts.Add(about);
-                        var InsertStatus = _context.SaveChanges();
-                        if (InsertStatus > 0)
-                        {
-                            Request.Files[0].SaveAs(Server.MapPath("/Images/About/" + newImageName));
-                            TempData["Result"] = "Yeni Kayıt Eklendi";
-                            return RedirectToAction("Index");
-                        }
-                        else
-                        {
-                            TempData["Result"] = "Bir hata oluştu kayıt eklenemedi.";
-                            return RedirectToAction("Index");
-                        }
+                        TempData["Result"] = "Yeni Kayıt Eklendi";
+                        return RedirectToAction("Index");
                     }
                     else
                     {
-                        var result = string.Join("<br>", validationResult.Errors.Select(x => x.ErrorMessage));
-                        TempData["Result"] = result;
-                        return View();
+                        TempData["Result"] = "Bir hata oluştu kayıt eklenemedi.";
+                        return RedirectToAction("Index");
                     }
                 }
                 else
                 {
-
-                    TempData["Result"] = "Seçtiğiniz Dosya biçimi (" + extentions + ") desteklenmiyor.";
+                    var result = string.Join("<br>", validationResult.Errors.Select(x => x.ErrorMessage));
+                    TempData["Result"] = result;
                     return View();
                 }
-
-
-            }
-
         }
+
+
 
 
 
@@ -134,29 +105,9 @@ namespace LeanerProject.Controllers
             var value = _context.Abouts.Find(_id);
             if (validationResult.IsValid)
             {
-              
-                string OldImage = "";
-                string path = "";
+
                 if (_id == about.AboutId)
                 {
-
-                    OldImage = value.ImageUrl;
-
-                    if (!string.IsNullOrEmpty(about.ImageUrl))
-                    {
-                        var extentions = Path.GetExtension(Request.Files[0].FileName);
-                        bool imageExtResult = CheckImageExtentions.CheckExtentions(extentions);
-                        if (!imageExtResult)
-                        {
-                            TempData["Result"] = "Seçtiğiniz Dosya biçimi (" + extentions + ") desteklenmiyor.";
-                            TempData["AboutId"] = _id;
-                            return View(value);
-                        }
-                        var guid = Guid.NewGuid();
-                        var newImageName = guid + extentions;
-                        value.ImageUrl = "/Images/About/" + newImageName;
-                        path = newImageName;
-                    }
 
                     value.Description = about.Description;
                     value.Item1 = about.Item1;
@@ -166,15 +117,6 @@ namespace LeanerProject.Controllers
                     var updateStatus = _context.SaveChanges();
                     if (updateStatus > 0)
                     {
-                        if (!string.IsNullOrEmpty(path))
-                        {
-                            Request.Files[0].SaveAs(Server.MapPath("~/Images/About/" + path));
-
-                            if (System.IO.File.Exists(Server.MapPath(OldImage)))
-                            {
-                                System.IO.File.Delete(Server.MapPath(OldImage));
-                            }
-                        }
 
                         TempData["Result"] = "Kayıt Güncellendi.";
                         return RedirectToAction("Index");
@@ -201,7 +143,7 @@ namespace LeanerProject.Controllers
                 TempData["AboutId"] = _id;
                 return View(value);
             }
-           
+
 
 
         }

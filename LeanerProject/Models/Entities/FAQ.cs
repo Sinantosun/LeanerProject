@@ -11,7 +11,6 @@ namespace LearnerProject.Models.Entities
         public int FAQId { get; set; }
         public string Question { get; set; }
         public string Answer { get; set; }
-        public string ImageUrl { get; set; }
         public bool Status { get; set; }
     }
 }

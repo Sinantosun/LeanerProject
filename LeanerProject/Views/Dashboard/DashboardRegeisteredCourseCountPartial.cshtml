@@ -1,0 +1,34 @@
+﻿@using LeanerProject.Models.ViewModels
+@model List<DashboardRegisterCountsViewModel>
+<div class="col-md-6 col-lg-4 order-2 mb-4">
+    <div class="card h-100">
+        <div class="card-header d-flex align-items-center justify-content-between">
+            <h5 class="card-title m-0 me-2">Kategorilere Göre Öğrenci Kayıt Sayıları</h5>
+
+        </div>
+        <div class="card-body">
+            <ul class="p-0 m-0">
+                @foreach (var item in Model)
+                {
+                    <li class="d-flex mb-4 pb-1">
+                        <div class="avatar flex-shrink-0 me-3">
+
+                            <i style="font-size:15pt" class='bx bxs-star-half'></i>
+                        </div>
+                        <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                            <div class="me-2">
+                                <h6 class="mb-0">@item.CategoryName</h6>
+                            </div>
+                            <div class="user-progress d-flex align-items-center gap-1">
+                                <h6 class="mb-0">@item.CategoryValue</h6>
+
+                            </div>
+                        </div>
+                    </li>
+                }
+
+
+            </ul>
+        </div>
+    </div>
+</div>

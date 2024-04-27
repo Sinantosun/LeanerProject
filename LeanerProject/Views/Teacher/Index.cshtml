@@ -1,0 +1,89 @@
+﻿@model List<LeanerProject.Models.Entities.Teacher>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+<div class="col-lg-4 col-md-3">
+    <small class="text-light fw-semibold">Öğretmenler Alanı</small>
+</div>
+@if (Model.Count > 0)
+{
+    <div class="card">
+
+        <span class="card-header">
+            Öğretmenlerimiz
+        </span>
+
+        <div class="container-fluid col-12">
+            <form method="post">
+                <input type="text" class="form-control" name="UserName" placeholder="Öğretmen Ara.." />
+                <br />
+                <input type="submit" class="btn btn-outline-dark" value="Ara" />
+            </form>
+
+
+        </div>
+
+
+        <div class="table-responsive ">
+            <br />
+            <br />
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th><strong>#</strong></th>
+                        <td>Ad Soyad</td>
+                        <td>Kursları</td>
+                    </tr>
+                </thead>
+                <tbody class="table-border-bottom-0">
+                    @foreach (var item in Model)
+                    {
+                        count++;
+                        <tr>
+                            <th><strong>@count</strong></th>
+                            <td>@item.NameSurname</td>
+                            <td><a href="/Students/StudentCourses/@item.TeacherID" class="btn btn-outline-primary">Aç</a></td>
+
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+}
+else
+{
+    <div class="alert alert-primary" id="alert">
+        Aranan Öğrenci Adı : "@ViewBag.TeacherName" Öğrenci Kaydı Bulunamadı.<br /><br />
+        <a href="/Students/Index" class="btn btn-outline-secondary">Tüm Öğrenciler</a>
+
+    </div>
+}
+
+
+<br />
+<br />
+
+
+
+@if (TempData["Result"] != null)
+{
+
+
+
+    <div class="alert alert-dark" id="alert" style="display:none">
+        @TempData["Result"].ToString()
+    </div>
+
+    <script>
+        $("#alert").fadeIn();
+        $("#alert").fadeOut(2500);
+    </script>
+
+}
+

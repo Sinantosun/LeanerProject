@@ -1,0 +1,38 @@
+﻿
+@model List<LearnerProject.Models.Entities.About>
+
+<div class="untree_co-section">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-lg-12 mb-5">
+                <h2 class="line-bottom mb-4" data-aos="fade-up" data-aos-delay="0">Hakkımızda</h2>
+                @foreach (var item in Model)
+                {
+                    <p data-aos="fade-up" data-aos-delay="100">@item.Description</p>
+                    <ul class="list-unstyled ul-check mb-5 primary" data-aos="fade-up" data-aos-delay="200">
+                        <li>@item.Item1</li>
+                        <li>@item.Item2</li>
+                        <li>@item.Item3</li>
+                    </ul>
+
+                    <div class="row count-numbers mb-5">
+                        <div class="col-4 col-lg-4" data-aos="fade-up" data-aos-delay="0">
+                            <span class="counter d-block"><span data-number="@TempData["StudentRegisterCount"].ToString()">@TempData["StudentRegisterCount"].ToString()</span><span>+</span></span>
+                            <span class="caption-2">Kayıtlı Öğrenci</span>
+                        </div>
+                        <div class="col-4 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                            <span class="counter d-block"><span data-number="@TempData["TeacherRegisterCount"].ToString()">@TempData["TeacherRegisterCount"].ToString()</span><span></span></span>
+                            <span class="caption-2">Kayıtlı Öğretmen</span>
+                        </div>
+                    </div>
+
+                    <p data-aos="fade-up" data-aos-delay="200">
+                        <a href="#" class="btn btn-outline-primary">Detay</a>
+                    </p>
+                }
+
+
+            </div>
+        </div>
+    </div>
+</div>
