@@ -1,0 +1,70 @@
+﻿@model List<LeanerProject.Models.Entities.Message>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<section class="content">
+    <div class="row">
+        <div class="col-md-3">
+            @Html.Action("MessagesSide", "Messages")
+        </div>
+      
+
+        <div class="col-md-9">
+
+            <div class="card card-primary card-outline">
+                <div class="card-header">
+                    <h3 class="card-title">Gelen Kutusu</h3>
+
+                    <div class="card-tools">
+                        <div class="input-group input-group">
+                            <input type="text" class="form-control" placeholder="Mail Ara">&nbsp;&nbsp;
+                            <div class="input-group-append">
+                                <div class="btn btn-primary">
+                                    <i class="bx bx-search"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <div class="table-responsive mailbox-messages">
+                        <table class="table table-hover table-striped">
+                            <tr>
+                                <th style="font-weight:bold">Gönderen</th>
+                                <th style="font-weight:bold">Başlık</th>
+                                <th style="font-weight:bold">Tarih</th>
+                            </tr>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    string color = "#696cff";
+                                    string time = LeanerProject.DAL.TimeCalculator.getTime(item.MessageDate.ToString());
+                                    if (item.IsRead == true)
+                                    {
+                                        color = "#697a8d";
+                                    }
+                                    else
+                                    {
+                                        color = "#696cff";
+                                    }
+
+                                    <tr>
+
+                                        <td class="mailbox-name"><a style="color:@color" href="/Messages/MessageDetail/@item.MessageID">@item.SenderNameSurname</a></td>
+                                        <td class="mailbox-subject">
+                                            <a style="color:@color" href="/Messages/MessageDetail/@item.MessageID">@item.Subject</a>
+                                        </td>
+                                        <td style="color:@color" class="mailbox-date">@time</td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

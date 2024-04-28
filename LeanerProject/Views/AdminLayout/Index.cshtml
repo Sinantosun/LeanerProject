@@ -16,7 +16,7 @@
 <body>
     <div class="layout-wrapper layout-content-navbar">
         <div class="layout-container">
-            @Html.Partial("~/Views/AdminLayout/_AdminSideBarPartial.cshtml")
+            @Html.Action("_AdminSideBarPartial", "AdminLayout")
             <div class="layout-page">
                 @Html.Partial("~/Views/AdminLayout/_AdminNavbarPartial.cshtml")
                 <div class="content-wrapper">

@@ -47,7 +47,7 @@
                         <tr>
                             <th><strong>@count</strong></th>
                             <td>@item.NameSurname</td>
-                            <td><a href="/Students/StudentCourses/@item.TeacherID" class="btn btn-outline-primary">Aç</a></td>
+                            <td><a href="/Teacher/TeacherCourses/@item.TeacherID" class="btn btn-outline-primary">Aç</a></td>
 
                         </tr>
                     }
@@ -59,8 +59,8 @@
 else
 {
     <div class="alert alert-primary" id="alert">
-        Aranan Öğrenci Adı : "@ViewBag.TeacherName" Öğrenci Kaydı Bulunamadı.<br /><br />
-        <a href="/Students/Index" class="btn btn-outline-secondary">Tüm Öğrenciler</a>
+        Aranan Öğretmen Adı : "@ViewBag.TeacherName" Öğretmen Kaydı Bulunamadı.<br /><br />
+        <a href="/Teacher/Index" class="btn btn-outline-secondary">Tüm Öğretmenler</a>
 
     </div>
 }

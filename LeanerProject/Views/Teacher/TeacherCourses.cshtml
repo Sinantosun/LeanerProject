@@ -19,7 +19,7 @@
     <div class="card">
 
         <span class="card-header">
-            <b>@ViewBag.StudentName </b>Adlı öğrencimizin kayıt olduğu kursları
+            <b>@ViewBag.TeacherName </b> Öğretmenimize Ait kurslar
         </span>
 
         <div class="table-responsive ">
@@ -30,7 +30,7 @@
                     <tr>
                         <th><strong>#</strong></th>
                         <td>Kurs Adı</td>
-                        <td>Kurs Değerlendirmesi</td>
+                        <td>Kurs Ortalama Değerlendirilme Puanı</td>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
@@ -40,7 +40,7 @@
                         <tr>
                             <th><strong>@count</strong></th>
                             <td>@item.NameSurname</td>
-                            <td>@(item.CourseReviewValue=="0"?"Değerlendirilmedi": item.CourseReviewValue + " / 5" ) </td>
+                            <td>@item.CourseReviewValue </td>
                             <td></td>
                         </tr>
                     }
@@ -55,7 +55,7 @@ else
     <div class="card">
         <br />
         <div class="container-fluid">
-            <div class="alert alert-danger">Öğrencimiz, <b>@ViewBag.StudentName</b> Henüz Hiç Kursa Kaydolmamış</div>
+            <div class="alert alert-danger"><b>@ViewBag.TeacherName</b> Öğretmenimize ait yayınladığı hiç kurs bulunamadı.</div>
         </div>
 
     </div>

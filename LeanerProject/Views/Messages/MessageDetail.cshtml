@@ -1,0 +1,45 @@
+﻿@model LeanerProject.Models.Entities.Message
+@{
+    ViewBag.Title = "MessageDetail";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<section class="content">
+   
+    <div class="row">
+        <div class="col-md-3">
+
+            @Html.Action("MessagesSide", "Messages")
+        </div>
+        <div class="col-md-9">
+            <div class="card card-primary card-outline">
+
+
+                <div class="card-body p-5">
+                    <div class="mailbox-read-info">
+                        <h4 class="mb-4">Mesaj İçeriği</h4>
+                        <h6>Konu: @Model.Subject</h6>
+                        <h6>
+                            Kimden: @Model.Email <br />
+                        </h6>
+                        <h6>
+                            Tarih: @(((DateTime)Model.MessageDate).ToString("f"))<br />
+                        </h6>
+                    </div>
+                    <div class="mailbox-read-message">
+
+                        <p>
+                            @Model.MessageContent
+                        </p>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <div class="float-right">
+                        <button type="button" class="btn btn-outline-danger"><i class="bx bx-trash"></i> Sil</button>
+                        <button type="button" class="btn btn-outline-primary"><i class="bx bx-reply"></i> Yanıtla</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -22,5 +22,6 @@ namespace LeanerProject.Models
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Message> Messages { get; set; }
         public DbSet<CourseVideo> courseVideos { get; set; }
+        public DbSet<Admins> Admins { get; set; }
     }
 }

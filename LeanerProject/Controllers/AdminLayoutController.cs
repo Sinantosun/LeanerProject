@@ -8,9 +8,10 @@ namespace LeanerProject.Controllers
 {
     public class AdminLayoutController : Controller
     {
-        // GET: AdminLayout
+     
         public ActionResult Index()
         {
+            
             return View();
         }
 
@@ -26,6 +27,7 @@ namespace LeanerProject.Controllers
 
         public PartialViewResult _AdminNavbarPartial()
         {
+
             return PartialView();
         }
 
