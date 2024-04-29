@@ -1,55 +1,5 @@
 ﻿
-
-<script src="~/Scripts/jquery-3.4.1.min.js"></script>
-
-<div class="modal fade" id="largeModal" tabindex="-1" aria-hidden="true">
-    <div class="modal-dialog modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel3">Kime Mesaj Göndermek İsityorsunuz?</h5>
-                <button type="button"
-                        class="btn-close"
-                        data-bs-dismiss="modal"
-                        aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-
-                <div class="col-md-12 " style="display:flex; justify-content:space-around;">
-                    <button type="button" data-name="Teacher" class="btn btn-outline-primary btn-lg btn-block ChooseUser">Öğretmen</button>
-                    <button type="button" data-name="Student" class="btn btn-outline-primary btn-lg btn-block ChooseUser">Öğrenci</button>
-                    <button type="button" data-name="Admin" class="btn btn-outline-primary btn-lg btn-block ChooseUser">Admin</button>
-                </div>
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                    Kapat
-                </button>
-                <button type="button" class="btn btn-outline-primary">Seç</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-<script>
-    $(function () {
-        var modal = new bootstrap.Modal(document.getElementById("largeModal"));
-        $(".createNewMessage").click(function () {
-     
-            modal.show();
-        });
-        $(".ChooseUser").click(function () {
-            var name = $(this).data("name");
-            window.location.href = "/Messages/SendMessage?send=" + name;
-        });
-    });
-
-
-</script>
-<button class="btn btn-primary btn-block mb-3 createNewMessage"><i class="bx bx-message-rounded-add"></i> Yeni Mesaj Oluştur</button>
-
+<a href="/Messages/SendMessage/" class="btn btn-primary btn-block mb-3"><i class="bx bx-message-rounded-add"></i>    Yeni Mesaj Oluştur</a>
 <div class="card">
     <div class="card-body p-0">
         <ul class="nav nav-pills flex-column">

@@ -27,17 +27,13 @@
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Görseli</label>
                 <img src="@Model.ImageUrl" alt="Kurs: @Model.CourseName - Görseli" style="width:100%; height:300px;" class="img-thumbnail" /><br />
-                <input name="ImageUrl" type="file"
-                       class="form-control"
-                       id="exampleFormControlInput1" />
-                <label style="display:none" class="text-danger inputmessageForTitle"></label>
-                <small><i>Kurs görselini değiştirmek için lütfen dosya seçiniz.</i></small>
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Kategorisi</label>  <br />
-                <small>Değiştirmek İçin Tıklayınız.</small>
                 <br />
-                @Html.DropDownListFor(x => x.CategoryId, (List<SelectListItem>)ViewBag.CategoryList, Model.Category.CategoryName, new { @class = "form-control" })
+                <input name="Price" value="@Model.Category.CategoryName" onkeyup="FormValidatior(this.value)" type="text"
+                       class="form-control"
+                       id="exampleFormControlInput1" />
             </div>
             <div class="mb-3">
                 <label for="exampleFormControlInput1" class="form-label">Fiyatı</label>
@@ -52,7 +48,6 @@
                 <label style="display:none" class="text-danger inputmessageForTitle"></label>
             </div>
             <div class="mb-3">
-                <input type="submit" value="Güncelle" class="btn btn-outline-success" />
                 <a href="/Courses/DeleteCourse/@Model.CourseId" class="btn btn-outline-danger">Sil</a>
             </div>
         </form>

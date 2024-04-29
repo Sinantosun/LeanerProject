@@ -5,7 +5,7 @@
 }
 
 <section class="content">
-   
+
     <div class="row">
         <div class="col-md-3">
 
@@ -25,6 +25,14 @@
                         <h6>
                             Tarih: @(((DateTime)Model.MessageDate).ToString("f"))<br />
                         </h6>
+                        @if (Model.Attachment != null)
+                        {
+                            <h6>
+                                Dosya Eki: <a href="@Model.Attachment" download="">@Model.AttachmentNormalizeName &nbsp; <i class="bx bx-download"></i></a><br />
+                            </h6>
+                            
+                        }
+
                     </div>
                     <div class="mailbox-read-message">
 

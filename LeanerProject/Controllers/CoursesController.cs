@@ -41,23 +41,6 @@ namespace LeanerProject.Controllers
             dropDowonLoad();
             return View(value);
         }
-        [HttpPost]
-        public ActionResult CourseDetail(Course course)
-        {
-            var value = _context.Courses.Find(course.CourseId);
-            value.CourseName = course.CourseName;
-            value.Description = course.Description;
-            if (course.ImageUrl != null)
-            {
-                value.ImageUrl = course.ImageUrl;
-            }
-
-            value.Price = course.Price;
-            value.CategoryId = course.CategoryId;
-            _context.SaveChanges();
-            TempData["Result"] = "Kayıt güncellendi.";
-            return RedirectToAction("../Courses/Index");
-        }
 
 
         public ActionResult DeleteCourse(int id)

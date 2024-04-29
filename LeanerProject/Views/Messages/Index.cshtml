@@ -40,7 +40,7 @@
                                 @foreach (var item in Model)
                                 {
                                     string color = "#696cff";
-                                    string time = LeanerProject.DAL.TimeCalculator.getTime(item.MessageDate.ToString());
+                                    string time = LeanerProject.DAL.TimeCalculator.getTime(item.MessageDate.ToString("g"));
                                     if (item.IsRead == true)
                                     {
                                         color = "#697a8d";

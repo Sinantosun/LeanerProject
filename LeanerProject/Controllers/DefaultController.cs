@@ -50,7 +50,7 @@ namespace LeanerProject.Controllers
         }
         public PartialViewResult DefaultCoursePartial()
         {
-            var values = _context.Courses.Include(x => x.Reviews).OrderByDescending(x => x.CourseId).Take(3).ToList();
+            var values = _context.Courses.Include(x => x.Reviews).Include(x=>x.Courses).OrderByDescending(x => x.CourseId).Take(3).ToList();
 
             return PartialView(values);
         }

@@ -1,16 +1,12 @@
 ﻿@model List<LearnerProject.Models.Entities.Review>
 <div class="container">
-    <div class="row justify-content-center mb-2">
-        <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
-            <h2 class="line-bottom text-center mb-4">Kursun Değerlendirmeleri/Yorumları</h2>
-            <h6 class="line-bottom text-center mb-4">Değerlendirme Sayısı (@Model.Count())</h6>
-            <h6 class="line-bottom text-center mb-4">Değerlendirme Ortalaması (@(Model.Count==0?0:Model.Average(x=>x.ReviewValue))/5)</h6>
-        </div>
-    </div>
+    
     @if (Model.Count > 0)
     {
         foreach (var item in Model)
         {
+            double islem = 0;
+            islem = 5 - item.ReviewValue;
             <div class="row">
                 <div class="col-12 ">
                     <div class="custom-media">
@@ -18,8 +14,15 @@
                             <div class="d-flex justify-content-between pb-3">
                                 <div class="text-primary"><span class="uil uil-user"></span> <span>@item.Student.NameSurname</span></div>
                                 <div class="review">
-                                    <span class="text-dark">
-                                        Öğrencinin Bu Kursa Puanı :  @item.ReviewValue / 5
+                                    <span class="text-primary">
+                                        @for (int i = 0; i < item.ReviewValue; i++)
+                                        {
+                                            <i class="bx bxs-star"></i>
+                                        }
+                                        @for (int i = 0; i < islem; i++)
+                                        {
+                                            <i class="bx bx-star"></i>
+                                        }
                                     </span>
                                 </div>
                             </div>
@@ -40,7 +43,7 @@
                 <div class="custom-media">
                     <div class="custom-media-body ">
                         <div class="d-flex justify-content-center pb-1">
-                            <h4 style="text-align:center"> Bu kursa henüz hiç değerlendirme yapılmadı.</h4>
+                            <h4 style="text-align:center"> Bu kursa henüz hiç değerlendirme yapılmadı <i class="bx bx-sad"></i></h4>
                         </div>
                     </div>
                 </div>

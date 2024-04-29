@@ -1,35 +1,71 @@
-﻿
+﻿@model List<LeanerProject.Models.Entities.Contact>
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/UILayout.cshtml";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int count = 0;
 }
-<div class="untree_co-hero overlay" style="background-image: url('images/img-school-2-min.jpg');">
-    <div class="container">
-        <div class="row align-items-center justify-content-center">
-            <div class="col-12">
-                <div class="row justify-content-center ">
-                    <div class="col-lg-6 text-center ">
-                        <h1 class="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">Bize ulaşın</h1>
-                        <div class="mb-5 text-white desc mx-auto" data-aos="fade-up" data-aos-delay="200">
-                            Bize ulaşabilrisiniz.
-                        </div>
 
-                    </div>
-                </div>
-            </div>
-        </div> 
-    </div> 
+<div class="card">
 
-</div> 
-<div class="untree_co-section">
-    <div class="container">
+    <span class="card-header">
+        İletişim alanı ile ilgili işlemleri aşağıdan gerçekleştirebilirsiniz.
+        <br />
+        <small><strong>Not:</strong>Tema bütünlüğü için bu alanda tek kayıt bulunmalıdır.</small>
+    </span>
 
-        <div class="row mb-5">
-            <div class="col-lg-4 mb-5 order-2 mb-lg-0" data-aos="fade-up" data-aos-delay="100">
-                @Html.Action("ContactInfo")
-            </div>
-            @Html.Action("SendMessage")
-           
-        </div>
+
+
+    <div class="table-responsive ">
+
+        <a href="/Contact/AddContact/" style="margin-left:23px; position:relative" class="btn btn-outline-primary">Yeni İletişim Ekle</a>
+        <br />
+        <br />
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th><strong>#</strong></th>
+                    <td>Adress</td>
+                    <td>Açık Saatler</td>
+                    <td>Email</td>
+                    <td>Telefon</td>
+                    <td class="text-center" colspan="3">İşlem</td>
+                </tr>
+            </thead>
+            <tbody class="table-border-bottom-0">
+                @foreach (var item in Model)
+                {
+                    count++;
+                    <tr>
+                        <th><strong>@count</strong></th>
+                        <td>@item.Address</td>
+                        <td>@item.OpenHours</td>
+                        <td>@item.Email</td>
+                        <td>@item.Phone</td>
+                        <td><a href="/Contact/DeleteContact/@item.ContactID" class="btn btn-outline-danger">Sil</a></td>
+                        <td><a href="/Contact/UpdateContact/@item.ContactID" class="btn btn-outline-success">Güncelle</a></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
     </div>
 </div>
+
+<br />
+<br />
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+@if (TempData["Result"] != null)
+{
+
+    <div class="alert alert-danger" id="alert" style="display:none">
+        @Html.Raw(TempData["Result"].ToString())
+    </div>
+
+    <script>
+        $("#alert").fadeIn();
+
+    </script>
+
+}

@@ -152,6 +152,7 @@
     <Compile Include="Controllers\ContactController.cs" />
     <Compile Include="Controllers\CourseDetailsController.cs" />
     <Compile Include="Controllers\CoursesController.cs" />
+    <Compile Include="Controllers\CourseUIController.cs" />
     <Compile Include="Controllers\DashboardController.cs" />
     <Compile Include="Controllers\DefaultController.cs" />
     <Compile Include="Controllers\ErrorPagesController.cs" />
@@ -235,6 +236,10 @@
     <Compile Include="Migrations\202404281413245_migration_attechment_add.designer.cs">
       <DependentUpon>202404281413245_migration_attechment_add.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202404281716164_new_colm_adding.cs" />
+    <Compile Include="Migrations\202404281716164_new_colm_adding.designer.cs">
+      <DependentUpon>202404281716164_new_colm_adding.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Context.cs" />
     <Compile Include="Models\Entities\About.cs" />
@@ -262,6 +267,7 @@
     <Compile Include="ValidationRules\AboutRules\CreateAboutValidator.cs" />
     <Compile Include="ValidationRules\CategoryRules\CreateCategoryValidator.cs" />
     <Compile Include="ValidationRules\ClassRoomRules\CreateClassRoomValidator.cs" />
+    <Compile Include="ValidationRules\ContactRules\ContactValidator.cs" />
     <Compile Include="ValidationRules\QuestionsRules\QuestionValidator.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -283,6 +289,7 @@
     <Content Include="Content\bootstrap.rtl.min.css" />
     <Content Include="Content\main.css" />
     <Content Include="Content\PagedList.css" />
+    <Content Include="Content\sweetalert2.min.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -304,6 +311,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Scripts\sweetalert2.min.js" />
     <Content Include="Templates\AdminLTE-3.0.4\build\config\postcss.config.js" />
     <Content Include="Templates\AdminLTE-3.0.4\build\config\rollup.config.js" />
     <Content Include="Templates\AdminLTE-3.0.4\build\js\AdminLTE.js" />
@@ -2583,9 +2591,6 @@
     <Content Include="Views\Shared\UILayout.cshtml" />
     <Content Include="Views\Default\Index.cshtml" />
     <Content Include="Views\Default\DefaultCoursePartial.cshtml" />
-    <Content Include="Views\Contact\Index.cshtml" />
-    <Content Include="Views\Contact\ContactInfo.cshtml" />
-    <Content Include="Views\Contact\SendMessage.cshtml" />
     <Content Include="Views\CourseDetails\Index.cshtml" />
     <Content Include="Views\CourseDetails\Comments.cshtml" />
     <Content Include="Views\StudentLayout\Index.cshtml" />
@@ -2870,10 +2875,15 @@
     <Content Include="Views\Messages\MessagesSide.cshtml" />
     <Content Include="Views\AdminLogin\Index.cshtml" />
     <Content Include="Views\Messages\SendMessage.cshtml" />
+    <Content Include="Views\Contact\Index.cshtml" />
+    <Content Include="Views\Contact\AddContact.cshtml" />
+    <Content Include="Views\Contact\UpdateContact.cshtml" />
+    <Content Include="Views\CourseUI\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Images\About\" />
+    <Folder Include="Images\Messages\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap.rtl.min.css.map" />
@@ -2947,6 +2957,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202404281413245_migration_attechment_add.resx">
       <DependentUpon>202404281413245_migration_attechment_add.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202404281716164_new_colm_adding.resx">
+      <DependentUpon>202404281716164_new_colm_adding.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

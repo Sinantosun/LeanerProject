@@ -14,6 +14,7 @@ namespace LeanerProject.Models.Entities
         public string Subject { get; set; }
         public string MessageContent { get; set; }
         public string Attachment { get; set; }
+        public string AttachmentNormalizeName { get; set; }
         public bool IsRead { get; set; }
 
         public bool IsDeleted { get; set; }

@@ -1,7 +1,9 @@
 ﻿using LeanerProject.Models;
+using LeanerProject.Models.Entities;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -14,7 +16,7 @@ namespace LeanerProject.Controllers
         public ActionResult Index()
         {
             var values = _context.Messages.ToList();
-           
+
             return View(values);
         }
 
@@ -37,6 +39,27 @@ namespace LeanerProject.Controllers
         }
         public ActionResult SendMessage()
         {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult SendMessage(Message message)
+        {
+            if (message.Attachment != null)
+            {
+                var guid = Guid.NewGuid();
+                var ex = Path.GetExtension(Request.Files[0].FileName);
+                string fullFile = "~/Images/Messages/" + guid + ex;
+                Request.Files[0].SaveAs(Server.MapPath(fullFile));
+                message.Attachment = "/Images/Messages/" + guid + ex;
+                message.AttachmentNormalizeName = Path.GetFileName(Request.Files[0].FileName) + ex;
+            }
+
+            message.SenderNameSurname = "Sinan Tosun";
+            message.IsDeleted = false;
+            message.MessageDate = DateTime.Now;
+            message.IsRead = false;
+            _context.Messages.Add(message);
+            _context.SaveChanges();
             return View();
         }
     }

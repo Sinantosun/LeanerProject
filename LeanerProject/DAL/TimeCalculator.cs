@@ -18,7 +18,7 @@ namespace LeanerProject.DAL
             {
                 if (times.TotalMinutes == 0)
                 {
-                    time = "Şimdi";
+                    time = "Az Önce";
                 }
                 else
                 {

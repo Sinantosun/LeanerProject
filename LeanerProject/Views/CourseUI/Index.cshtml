@@ -1,10 +1,43 @@
-﻿@model List<LearnerProject.Models.Entities.Course>
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/UILayout/Index.cshtml";
+}
+
+@model List<LearnerProject.Models.Entities.Course>
+<div class="untree_co-hero overlay" style="background-image: url('/Templates/learner-1.0.0/images/hero-img-1-min.jpg'); ">
+
+
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+
+            <div class="col-12">
+
+                <div class="row justify-content-center ">
+
+                    <div class="col-lg-6 text-center ">
+
+
+                        <h1 class="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">Kurslarımız</h1>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>
+
+
 
 <div class="untree_co-section bg-light">
     <div class="container">
         <div class="row justify-content-center mb-5">
             <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
-                <h2 class="line-bottom text-center mb-4">Son eklenen kurslar</h2>
+                <h2 class="line-bottom text-center mb-4">Kurslarımız (@Model.Count())</h2>
                 <p>Alanında uzman eğitmenler tarafından hazırlanan kurslarımızı inceleyebilirsiniz.</p>
             </div>
         </div>
@@ -12,13 +45,21 @@
         <div class="row">
             @foreach (var item in Model)
             {
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-0">
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-5">
+
                     <div class="custom-media">
 
                         <a href="#"><img src="/Templates/learner-1.0.0/images/img-school-1-min.jpg" alt="Image" class="img-fluid"></a>
                         <div class="custom-media-body">
                             <div class="d-flex justify-content-between pb-3">
-                                <div class="text-primary"><span class="uil uil-book-open"></span> <span> <i class="bx bx-video"></i> @item.Courses.Where(x => x.CourseId == item.CourseId).Count() Video</span></div>
+                                <div class="text-primary">
+                                    <span class="bx bx-video"></span> <span>
+                                        @item.Courses.Where(x => x.CourseId == item.CourseId).Count() video
+                                        <br />
+
+                                    </span>
+                                </div>
+
                                 <div class="review">
                                     <span>
                                         @{
@@ -27,14 +68,14 @@
                                         }
                                         @if (value == null)
                                         {
-                                            <span class="text-primary"><small>Henüz Puanlanmadı</small></span>
+                                            <span class="text-primary"><small>Henüz Puanlanmadı <i class="bx bx-sad"></i></small></span>
                                         }
                                         else
                                         {
                                             //Ortalamasını al.
                                             var reviewss = item.Reviews.Where(x => x.CourseId == item.CourseId).Average(x => x.ReviewValue);
                                             <span class="text-primary">@reviewss.ToString("0.0")</span>
-
+                                           
                                             //Alınan ortalama 5 üstünden olduğu için 5 den çıkar (kalan sayı kadar boş yıldız doncez.)
                                             double islem = 5 - reviewss;
 
@@ -65,6 +106,8 @@
                                             }
 
 
+
+
                                         }
                                     </span>
                                 </div>
@@ -73,21 +116,17 @@
                             <p class="mb-4">@(item.Description.Length>=35?item.Description.Substring(0,35)+"...":item.Description)</p>
                             <p class="mb-4"><span class="bx bx-user"></span> <span>Eğitmen : @item.Teacher.NameSurname</span></p>
                             <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
-                                <div><span class="price text-primary">@item.Price.ToString("C2")</span></div>
-                                <div><a href="/CourseDetails/Index/@item.CourseId" class="btn btn-sm btn-outline-primary" style="border-radius:5px"> <i class="bx bx-search"></i> Detay Gör</a></div>
+                                <div><span class="price text-primary">@item.Price.ToString("C2") </span></div>
+                                <div><a href="/CourseDetails/Index/@item.CourseId" style="border-radius:5px;" class="btn btn-sm btn-outline-primary"><i class="bx bx-search"></i> Detay Gör</a></div>
                             </div>
                         </div>
+
                     </div>
+
                 </div>
             }
-
         </div>
 
-    </div>
-    <div class="row justify-content-center mt-5">
-        <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="20">
-           <a href="/CourseUI/Index" class="btn btn-sm btn-outline-info">Kurslara Göz At</a>
-        </div>
     </div>
 
 </div>

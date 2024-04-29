@@ -4,6 +4,8 @@
     Layout = "~/Views/UILayout/Index.cshtml";
     string text = "";
     var find = Model.Reviews.FirstOrDefault(x => x.CourseId == Model.CourseId);
+    double xt = 0;
+    double islem = 5;
     if (find == null)
     {
         text = "Henüz değerlendirme yok";
@@ -12,11 +14,28 @@
     {
         var value = Model.Reviews.Where(x => x.CourseId == Model.CourseId).Average(y => y.ReviewValue);
         text = value.ToString() + " / 5";
+        xt = value;
+        islem = islem - value;
     }
 
 
 
 }
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<script src="~/Scripts/sweetalert2.min.js"></script>
+<link href="~/Content/sweetalert2.min.css" rel="stylesheet" />
+<script>
+    $(function () {
+        $(".registerCourseBtn").click(function () {
+            Swal.fire(
+                'Uyarı',
+                'Kursa Kayıt Olmak İçin Önce Giriş Yapmanız Gereklidir.',
+                'error'
+            );
+        });
+    });
+</script>
 
 
 @if (Session["session"] != null)
@@ -71,16 +90,9 @@
 
                     <a href="#"><img src="/Templates/learner-1.0.0/images/img-school-1-min.jpg" alt="Image" style="width:100%; height:600px " class="img-fluid"></a>
                     <div class="custom-media-body">
+
                         <div class="d-flex justify-content-between pb-3">
-                            <div class="text-primary"><span class="uil uil-video"></span> <span>Video Sayısı : @ViewBag.VideoCount</span></div>
-                            <div class="review">
-                                <span class="text-dark">
-                                    Kurs Ortalaması : @text
-                                </span>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-between pb-3">
-                            <div class="text-primary"><span class="uil uil-analytics"></span> <span>Kurs Kategorisi</span></div>
+                            <div class="text-primary"><span class="bx bx-category"></span> <span>Kurs Kategorisi</span></div>
                             <div class="review">
                                 <span class="text-dark">
                                     @Model.Category.CategoryName
@@ -88,18 +100,53 @@
                             </div>
                         </div>
                         <div class="d-flex justify-content-between pb-3">
-                            <div class="text-primary"><span class="uil uil-subject"></span> <span>Kurs Adı</span></div>
+                            <div class="text-primary"><span class="bx bxs-graduation"></span> <span>Kurs Adı</span></div>
                             <div class="review">
                                 <span class="text-dark">
                                     @Model.CourseName
                                 </span>
                             </div>
                         </div>
+                        <div class="d-flex justify-content-between pb-3">
+                            <div class="text-primary"><span class="bx bx-video"></span> <span>Video Sayısı : </span></div>
+                            <div class="review">
+                                <span class="text-dark">
+                                    @ViewBag.VideoCount
+                                </span>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between pb-3">
+                            <div class="text-primary"><span class="bx bx-star"></span> <span>Değerlendirilme :  </span></div>
+                            <div class="review">
+                                <span class="text-dark">@xt.ToString("0.0")</span>
+                                @for (int i = 1; i <= xt; i++)
+                                {
+                                    <i class="icon-star text-dark"></i>
+                                }
+                                @if (xt % 1 != 0)
+                                {
+                                    <span class="icon-star-half-empty text-dark"></span>
+                                    for (int i = 1; i <= islem; i++)
+                                    {
+                                        <i class="icon-star-o text-dark"></i>
+                                    }
 
+                                }
+                                @if (islem % 1 == 0)
+                                {
+                                    for (int i = 1; i <= islem; i++)
+                                    {
+                                        <i class="icon-star-o text-dark"></i>
+                                    }
+                                }
+                            </div>
+                        </div>
                         <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
                             <div><span class="price">@Model.Price.ToString("C2")</span></div>
+                            <input class="registerCourseBtn btn btn-sm btn-outline-primary" value="Kayıt Ol" style="border-radius:5px" />
                         </div>
                     </div>
+
                 </div>
             </div>
             <div class="col-6 ">
@@ -142,7 +189,7 @@
         {
 
             <div class="container alert alert-warning text-center">
-                Yorum Yapabilmek İçin Önce Sisteme Giriş Yapmalısınız.
+                <i class="bx bx-info-circle"></i>  Yorum Yapabilmek İçin Önce Sisteme Giriş Yapmalısınız.
             </div>
         }
         else
@@ -173,6 +220,38 @@
             </div>
 
         }
+        <div class="row justify-content-center mb-2">
+            <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
+                <h2 class="line-bottom text-center mb-4">Kursun Değerlendirmeleri/Yorumları</h2>
+                <h6 class="line-bottom text-center mb-4"> <i class="bx bx-comment-check"></i> Değerlendirme Sayısı  (@Model.Reviews.Count(x => x.CourseId == Model.CourseId))</h6>
+                <h6 class="line-bottom text-center mb-4">
+                    <i class="icon icon-stars"></i>  Değerlendirme Ortalaması
+                    <br />
+                    <br />
+                    @for (int i = 1; i <= xt; i++)
+                    {
+                        <i class="icon-star text-primary"></i>
+                    }
+                    @if (xt % 1 != 0)
+                    {
+                        <span class="icon-star-half-empty text-primary"></span>
+                        for (int i = 1; i <= islem; i++)
+                        {
+                            <i class="icon-star-o text-primary"></i>
+                        }
+
+                    }
+                    @if (islem % 1 == 0)
+                    {
+                        for (int i = 1; i <= islem; i++)
+                        {
+                            <i class="icon-star-o text-primary"></i>
+                        }
+                    }
+
+                </h6>
+            </div>
+        </div>
         @Html.Action("Comments")
 
     </div>

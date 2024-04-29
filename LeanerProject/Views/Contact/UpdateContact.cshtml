@@ -1,0 +1,60 @@
+﻿@model LeanerProject.Models.Entities.Contact
+@{
+    ViewBag.Title = "UpdateContact";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+@if (TempData["Result"] != null)
+{
+
+    <div class="alert alert-danger" id="alert" style="display:none">
+        @Html.Raw(TempData["Result"].ToString())
+    </div>
+
+    <script>
+        $("#alert").fadeIn();
+
+    </script>
+
+}
+
+<div class="col-md-12">
+    <small class="text-light fw-semibold">İletişim Alanı</small>
+    <div class="card mb-4">
+        <h5 class="card-header">
+            İletişim Güncelleme Sayfası
+            <br />
+            <span class="small"> <small>  <b>* Aşağıdaki alanları lütfen eksiksiz doldurun</b> </small></span>
+
+        </h5>
+        <div class="card-body">
+            <form method="post">
+                @Html.HiddenFor(x => x.ContactID, new { @class = "form-control" })
+                <div class="mb-3">
+                    @Html.Label("Açık Saatler")
+                    @Html.TextBoxFor(x => x.OpenHours, new { @class = "form-control" })
+                </div>
+                <div class="mb-3">
+                    @Html.Label("Email Adresi")
+                    @Html.TextBoxFor(x => x.Email, new { @class = "form-control" })
+                </div>
+                <div class="mb-3">
+                    @Html.Label("Telefon")
+                    @Html.TextBoxFor(x => x.Phone, new { @class = "form-control" })
+                </div>
+                <div class="mb-3">
+                    @Html.Label("Adress")
+                    @Html.TextAreaFor(x => x.Address, 5, 1, new { @class = "form-control" })
+                </div>
+                <div class="mb-3">
+                    <input type="submit" class="btn btn-outline-success" value="Güncelle" />
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+

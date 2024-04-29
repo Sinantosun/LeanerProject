@@ -32,47 +32,40 @@
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
-                    <div class="form-group">
-                        <small>Mesaj göndermek istediğiniz üyeyi seçiniz</small>
-                        <select onchange="change(this.value)" class="form-control">
-                            <option value="">Seçiniz</option>
-                            <option value="Teacher">Öğretmen</option>
-                            <option value="Student">Öğrenci</option>
-                            <option value="Admin">Admin</option>
-                        </select>
-                    </div>
-                    <br />
-                    <div>
-                        <div class="form-group">
-                            <input class="form-control" placeholder="Kime *:">
-                        </div>
-                        <br />
-                        <div class="form-group">
-                            <input class="form-control" placeholder="Email *:">
-                        </div>
-                        <br />
-                        <div class="form-group">
-                            <input class="form-control" placeholder="Başlık: *">
-                        </div>
-                        <br />
-                        <div class="form-group">
-                            <textarea placeholder="Mesajınız *" rows="10" class="form-control"></textarea>
-                        </div>
-                        <br />
-                        <div class="form-group">
+                    <form method="post" enctype="multipart/form-data">
+                        <div>
+                            <div class="form-group">
+                                <input class="form-control" name="ReciverNameSurname" placeholder="Kime *:">
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <input class="form-control" name="Email" placeholder="Email *:">
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <input class="form-control" name="Subject" placeholder="Başlık: *">
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <textarea placeholder="Mesajınız *"  name="MessageContent" rows="10" class="form-control"></textarea>
+                            </div>
+                            <br />
+                            <div class="form-group">
 
-                            <i class="bx bx-paperclip"></i>
-                            <label for="filechoose">Dosya Seç</label>
-                            <p class="help-block"><small>Yanlızca ekte bir adet dosya gönderebilirsiniz. (İsteğe Bağlı)</small></p>
-                            <input id="filechoose" type="file" class="form-control" name="attachment">
-                        </div>
-                        <br />
-                        <div class="form-group">
-                            <button type="submit" class="btn btn-primary"><i class="bx bx-send"></i> Gönder</button>
-                        </div>
+                                <i class="bx bx-paperclip"></i>
+                                <label for="filechoose">Dosya Seç</label>
+                                <p class="help-block"><small>Yanlızca ekte bir adet dosya gönderebilirsiniz. (İsteğe Bağlı)</small></p>
+                                <input id="filechoose" type="file" class="form-control" name="Attachment">
+                            </div>
+                            <br />
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-primary"><i class="bx bx-send"></i> Gönder</button>
+                            </div>
+                            <a href="/Images/Messages/b80bce12-2ee9-4c82-9ed8-0856ae05f722.txt" download="">.txt dosyasını aç</a>
 
-
-                    </div>
+                        </div>
+                    </form>
+            
 
                 </div>
 
