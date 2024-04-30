@@ -20,6 +20,8 @@ namespace LeanerProject.Models.Entities
         public bool IsDeleted { get; set; }
         public DateTime MessageDate { get; set; }
 
+        public string RoleType { get; set; }
+
       
     }
 }

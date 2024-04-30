@@ -75,7 +75,7 @@
                                             //Ortalamasını al.
                                             var reviewss = item.Reviews.Where(x => x.CourseId == item.CourseId).Average(x => x.ReviewValue);
                                             <span class="text-primary">@reviewss.ToString("0.0")</span>
-                                           
+
                                             //Alınan ortalama 5 üstünden olduğu için 5 den çıkar (kalan sayı kadar boş yıldız doncez.)
                                             double islem = 5 - reviewss;
 
@@ -112,8 +112,8 @@
                                     </span>
                                 </div>
                             </div>
-                            <h3 class="text-primary">@item.CourseName</h3>
-                            <p class="mb-4">@(item.Description.Length>=35?item.Description.Substring(0,35)+"...":item.Description)</p>
+                            <h3 class="text-primary">@(item.CourseName.Length>=25?item.CourseName.Substring(0,25)+"...":item.CourseName)</h3>
+                            <p class="mb-4">@(item.Description.Length>=30?item.Description.Substring(0,30)+"...":item.Description)</p>
                             <p class="mb-4"><span class="bx bx-user"></span> <span>Eğitmen : @item.Teacher.NameSurname</span></p>
                             <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
                                 <div><span class="price text-primary">@item.Price.ToString("C2") </span></div>

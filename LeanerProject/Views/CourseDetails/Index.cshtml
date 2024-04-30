@@ -153,19 +153,9 @@
                 <div class="custom-media">
                     <div class="custom-media-body">
                         <h4>Kurs İçeriği</h4>
-                        <ul>
-                            <li style="color: #666">
-                                Uzun pozlama nedir ve nasıl çalışır?
-                            </li>
-
-                        </ul>
-                        <h4>Kursta Öğrenecekleriniz</h4>
-                        <ul>
-                            <li>
-                                Uzun pozlama temel kavramlarına hakim olacak ve nasıl uygulanacağını öğreneceksiniz.
-                            </li>
-
-                        </ul>
+                        @Html.Action("UICourseDetailPartial")
+                        <h4>Ek Bilgiler</h4>
+                        @Html.Action("UIDetailPartial")
                     </div>
 
                 </div>

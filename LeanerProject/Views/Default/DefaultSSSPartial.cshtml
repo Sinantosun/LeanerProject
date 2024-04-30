@@ -1,0 +1,42 @@
+﻿@model List<LearnerProject.Models.Entities.FAQ>
+<div class="untree_co-section" id="SSS">
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-5 mr-auto mb-5 mb-lg-0" data-aos="fade-up" data-aos-delay="0">
+                <img src="~/Templates/learner-1.0.0/images/img-school-4-min.jpg" alt="image" class="img-fluid">
+            </div>
+            <div class="col-lg-7 ml-auto" data-aos="fade-up" data-aos-delay="100">
+                <h3 class="line-bottom mb-4">Sıkça Sorulan Sorular</h3>
+                <p>Sıkça Sorulan Soruları Sizler İçin Derledik Sorulara Aşağıdan Ulaşabilirsiniz. </p>
+
+                <div class="custom-accordion" id="accordion_1">
+                    @foreach (var item in Model)
+                    {
+                        <div class="accordion-item">
+                            <h2 class="mb-0">
+                                <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#accordion_@item.FAQId" aria-expanded="false" aria-controls="accordion_@item.FAQId">@item.Question</button>
+                            </h2>
+
+                            <div id="accordion_@item.FAQId" class="collapse" aria-labelledby="headingOne" data-parent="#accordion_1">
+                                <div class="accordion-body">
+                                    <div class="d-flex">
+                                        <div>
+                                            <p>@item.Answer </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+
+
+
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

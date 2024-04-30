@@ -12,6 +12,7 @@ namespace LeanerProject.Models
         public DbSet<Category> Categories { get; set; }
         public DbSet<Classroom> ClassRooms { get; set; }
         public DbSet<Course>  Courses{ get; set; }
+        public DbSet<CoursesDetails> CoursesDetails{ get; set; }
         public DbSet<CourseRegister> CourseRegisters { get; set; }
         public DbSet<FAQ> FAQquestions { get; set; }
         public DbSet<Review> Reviews { get; set; }

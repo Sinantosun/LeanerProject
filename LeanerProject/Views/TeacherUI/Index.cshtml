@@ -1,0 +1,100 @@
+﻿@model List<LeanerProject.Models.ViewModels.UITeacherViewModel>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/UILayout/Index.cshtml";
+}
+
+<div class="untree_co-hero overlay" style="background-image: url('/Templates/learner-1.0.0/images/hero-img-1-min.jpg'); ">
+
+
+    <div class="container">
+        <div class="row align-items-center justify-content-center">
+
+            <div class="col-12">
+
+                <div class="row justify-content-center ">
+
+                    <div class="col-lg-6 text-center ">
+
+
+                        <h1 class="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">Öğretmenlerimiz</h1>
+                    </div>
+
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="untree_co-section bg-light">
+    <div class="container">
+        <div class="row justify-content-center mb-5">
+            <div class="col-lg-7 text-center" data-aos="fade-up" data-aos-delay="0">
+                <h2 class="line-bottom text-center mb-4">Öğretmenlerimiz (@Model.Count())</h2>
+                <p>Alanında uzman eğitmenlerimiz ile tanışın</p>
+            </div>
+        </div>
+
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-4 mb-lg-5">
+
+                    <div class="custom-media">
+
+                        <i class="container-fluid bx bxs-user text-primary mt-3" style="font-size:70pt; text-align:center"></i>
+
+                        <div class="custom-media-body">
+
+                            <div class="d-flex justify-content-between pb-3">
+                                <div class="text-primary">
+                                    <span class="bx bx-info-circle text-primary"></span> <span>
+                                        Adı Soyadı:
+                                        <br />
+                                    </span>
+                                </div>
+
+                                <div class="review text-primary">
+                                    @item.NameSurname
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-between pb-3">
+                                <div class="text-primary">
+                                    <span class="bx bx-movie-play"></span> <span>
+                                        Kurs Sayısı
+                                        <br />
+                                    </span>
+                                </div>
+
+                                <div class="review text-primary">
+                                   @item.CourseCount
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-center pb-3">
+                                <div class="text-primary">
+                                    <form method="post" action="~/TeacherUI/TeacherCoursesDetail/@item.TeacherID">
+                                        <span class="text-center">
+                                            <button type="submit" class="btn btn-sm btn-outline-primary">Kurslarını Gör</button>
+                                        </span>
+                                    </form>
+                                  
+                                </div>
+
+                            </div>
+                          
+                        </div>
+
+
+
+                    </div>
+
+                </div>
+            }
+            </div>
+
+    </div>
+    </div>

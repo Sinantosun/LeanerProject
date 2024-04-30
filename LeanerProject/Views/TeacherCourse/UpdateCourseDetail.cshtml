@@ -1,0 +1,103 @@
+﻿@using LeanerProject.Models.Entities
+@model CoursesDetails
+
+
+@{
+    ViewBag.Title = "UpdateCourseDetail";
+    Layout = "~/Views/TeacherLayout/Index.cshtml";
+}
+
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+<div class="card">
+
+    <span class="card-header">
+        <i>Kurs Detay Görüntüleme Sayfası</i><br />
+        <small>Lütfen kursları liste (li) formatında güncelleyin.</small>
+    </span>
+
+    <div class="card-body">
+        <form method="post">
+            @Html.HiddenFor(x=>x.CoursesDetailsID)
+            <div class="mb-3">
+                @Html.DropDownListFor(x => x.CourseId, (List<SelectListItem>)ViewBag.CourseList, "Seçiniz", new { @class = "form-control" })
+            </div>
+
+            <div class="mb-3">
+                @Html.Label("Kurs İçeriği")
+                <textarea class="form-control" name="CourseContent" id="summernote" asp-for="ContentBody">
+          @Model.CourseContent
+</textarea>
+                <br />
+            </div>
+            <div class="mb-3">
+                @Html.Label("Ek Bilgiler")
+                <textarea class="form-control" name="CourseDetail" id="summernote2" asp-for="ContentBody">
+                      @Model.CourseDetail
+</textarea>
+                <br />
+            </div>
+            <div class="mb-3">
+                <input type="submit" value="Kaydet" class="btn btn-outline-success" />
+            </div>
+        </form>
+
+
+    </div>
+</div>
+
+<br />
+<br />
+
+
+@if (TempData["Result"] != null)
+{
+
+    <div class="alert alert-dark" id="alert" style="display:none">
+        @TempData["Result"].ToString()
+    </div>
+
+    <script>
+        $("#alert").fadeIn();
+        $("#alert").fadeOut(2500);
+    </script>
+
+}
+
+
+
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote-lite.min.js"></script>
+<script>
+    $('#summernote').summernote({
+        placeholder: 'Mesajınızı Giriniz.',
+        tabsize: 2,
+        height: 300,
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']]
+        ]
+    });
+    $('#summernote2').summernote({
+        placeholder: 'Mesajınızı Giriniz.',
+        tabsize: 2,
+        height: 300,
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'underline', 'clear']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']]
+        ]
+    });
+</script>
+
+

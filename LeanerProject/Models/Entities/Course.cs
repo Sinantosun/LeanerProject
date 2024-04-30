@@ -23,6 +23,8 @@ namespace LearnerProject.Models.Entities
 
         public List<CourseVideo> Courses { get; set; }
 
+        public List<CoursesDetails> CoursesDetails { get; set; }
+
 
 
     }

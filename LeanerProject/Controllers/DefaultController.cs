@@ -54,5 +54,10 @@ namespace LeanerProject.Controllers
 
             return PartialView(values);
         }
+        public PartialViewResult DefaultSSSPartial()
+        {
+            var values = _context.FAQquestions.Where(x => x.Status == true).ToList();
+            return PartialView(values);
+        }
     }
 }

@@ -23,6 +23,17 @@ namespace LeanerProject.Controllers
             ViewBag.VideoCount = videoCountById;
             return View(value);
         }
+
+        public PartialViewResult UICourseDetailPartial(int id)
+        {
+            var values = _context.CoursesDetails.Where(x => x.CourseId == id).ToList();
+            return PartialView(values);
+        }
+        public PartialViewResult UIDetailPartial(int id)
+        {
+            var values = _context.CoursesDetails.Where(x => x.CourseId == id).ToList();
+            return PartialView(values);
+        }
         [HttpPost]
         public ActionResult Index(Review review)
         {

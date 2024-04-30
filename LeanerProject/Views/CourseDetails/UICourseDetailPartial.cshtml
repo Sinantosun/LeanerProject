@@ -1,0 +1,6 @@
+﻿@model List<LeanerProject.Models.Entities.CoursesDetails>
+
+@foreach (var item in Model)
+{
+  @Html.Raw(item.CourseContent)
+}
