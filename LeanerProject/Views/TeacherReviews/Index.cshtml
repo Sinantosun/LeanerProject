@@ -1,0 +1,76 @@
+﻿@model List<LearnerProject.Models.Entities.Course>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/TeacherLayout/Index.cshtml";
+}
+
+<div class="row row-cols-1 row-cols-md-3 g-4 mb-5">
+    @foreach (var item in Model)
+    {
+        <div class="col">
+            <div class="card h-100">
+                <img class="card-img-top" src="@item.ImageUrl" alt="Card image cap" />
+                <div class="card-body">
+                    <h5 class="card-title">@item.CourseName</h5>
+                    <p class="card-text">
+                        @item.Description
+                    </p>
+                </div>
+                <hr />
+                <div class="card-footer">
+                    <h5 class="card-title">Kurs Değerlendirmesi</h5>
+                    <br />
+                    @{
+                        var value = item.Reviews.FirstOrDefault(x => x.CourseId == item.CourseId);
+
+                    }
+                    @if (value == null)
+                    {
+                        <span class="text-primary"><small>Henüz Puanlanmadı</small></span>
+                    }
+                    else
+                    {
+                        //Ortalamasını al.
+                        var reviewss = item.Reviews.Where(x => x.CourseId == item.CourseId).Average(x => x.ReviewValue);
+                        <span class="text-primary">@reviewss.ToString("0.0")</span>
+
+                        //Alınan ortalama 5 üstünden olduğu için 5 den çıkar (kalan sayı kadar boş yıldız doncez.)
+                        double islem = 5 - reviewss;
+
+                        //Ortalama kadar yıldız dön.
+                        for (float i = 1; i <= reviewss; i++)
+                        {
+                            <i class="bx bxs-star text-primary"></i>
+
+                        }
+                        //eğer ondalıklıysa değer yıldızların sonuna yarım yıldız ekle
+                        if (reviewss % 1 != 0)
+                        {
+                            <span class="bx bxs-star-half text-primary"></span>
+                            for (int i = 1; i <= islem; i++)
+                            {
+                                <i class="bx bx-star text-primary"></i>
+                            }
+
+
+                        }
+                        //eğer 5 den ortalama değeri ondalıklı değilse boş yıldız ekleme işlemi
+                        if (islem % 1 == 0)
+                        {
+                            for (int i = 1; i <= islem; i++)
+                            {
+                                <i class="bx bx-star text-primary"></i>
+                            }
+                        }
+
+
+                    }
+                    <br />
+                    <br />
+                    <a href="/TeacherReviews/TeacherRewievDetail/@item.CourseId" class="btn btn-outline-primary">Bu kursa ait yorumlar</a>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>

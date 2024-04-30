@@ -1,0 +1,62 @@
+﻿@model List<LearnerProject.Models.Entities.Review>
+@{
+    ViewBag.Title = "TeacherRewievDetail";
+    Layout = "~/Views/TeacherLayout/Index.cshtml";
+}
+<div class="card">
+    <div class="card-header text-center mt-3">
+        <h4 class="card-title">@ViewBag.TeacherCourseName kurs değerlendirmeleri</h4>
+    </div>
+</div>
+<br />
+
+@if (Model.Count > 0)
+{
+    <div class="row mb-5">
+        @foreach (var item in Model)
+        {
+            <div class="col-md">
+                <div class="card mb-3">
+                    <div class="row g-0">
+                        <div class="col-md-8">
+                            <div class="card-body">
+                                @{
+
+                                }
+                                <p class="card-text">
+                                    <i class="bx bxs-quote-alt-left"></i>
+                                    @item.Comment
+                                    <i class="bx bxs-quote-alt-right"></i>
+                                </p>
+                                <p class="card-text"><small class="text-muted"><i class="bx bx-user"></i> @item.Student.NameSurname</small></p>
+                                <p class="card-text">
+                                    <small class="text-muted">
+
+                                        @for (int i = 0; i < item.ReviewValue; i++)
+                                        {
+                                            <i class="bx bxs-star"></i>
+                                        }
+                                        @for (int i = 0; i < 5 - item.ReviewValue; i++)
+                                        {
+                                            <i class="bx bx-star"></i>
+                                        }
+                                    </small>
+                                </p>
+                                <p></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+}
+else
+{
+    <div class="container-fluid">
+        <div class="alert alert-primary text-center">
+            Henüz Hiç Yorum/Değerlendirme Yok.
+        </div>
+    </div>
+}

@@ -166,6 +166,7 @@
     <Compile Include="Controllers\TeacherCourseController.cs" />
     <Compile Include="Controllers\TeacherLayoutController.cs" />
     <Compile Include="Controllers\TeacherLoginController.cs" />
+    <Compile Include="Controllers\TeacherReviewsController.cs" />
     <Compile Include="Controllers\TeacherUIController.cs" />
     <Compile Include="Controllers\UIContactController.cs" />
     <Compile Include="Controllers\UILayoutController.cs" />
@@ -2905,6 +2906,8 @@
     <Content Include="Views\CourseDetails\UICourseDetailPartial.cshtml" />
     <Content Include="Views\CourseDetails\UIDetailPartial.cshtml" />
     <Content Include="Views\TeacherCourse\UpdateCourseDetail.cshtml" />
+    <Content Include="Views\TeacherReviews\Index.cshtml" />
+    <Content Include="Views\TeacherReviews\TeacherRewievDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
