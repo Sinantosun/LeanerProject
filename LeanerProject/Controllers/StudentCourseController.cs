@@ -13,9 +13,9 @@ namespace LeanerProject.Controllers
         Context _context = new Context();
         public ActionResult Index()
         {
-            //string session = Session["StudentName"].ToString();
-            //var studentId = _context.Students.FirstOrDefault(x => x.NameSurname == session).StudentId;
-            var values = _context.CourseRegisters.Include(x => x.Course).Where(x => x.StudentId == 7).ToList();
+
+            int id = Convert.ToInt32(Session["StudentID"]);
+            var values = _context.CourseRegisters.Include(x => x.Course).Include(x=>x.Course.Reviews).Where(x => x.StudentId == id).ToList();
             return View(values);
         }
 

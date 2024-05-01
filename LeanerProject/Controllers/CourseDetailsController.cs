@@ -19,11 +19,10 @@ namespace LeanerProject.Controllers
 
         bool IsRegistred(int courseId)
         {
-            if (Session["StudentName"] != null)
+            if (Session["StudentID"] != null)
             {
-                var session = Session["StudentName"].ToString();
-                var value = _context.Students.FirstOrDefault(x => x.NameSurname == session.ToString()).StudentId;
-                var IsApprove = _context.CourseRegisters.FirstOrDefault(x => x.CourseId == courseId && x.StudentId == value);
+                var session = Convert.ToInt32(Session["StudentID"]);
+                var IsApprove = _context.CourseRegisters.FirstOrDefault(x => x.CourseId == courseId && x.StudentId == session);
                 if (IsApprove != null)
                 {
                     return true;
@@ -63,7 +62,7 @@ namespace LeanerProject.Controllers
         {
             var lists = _courseRepository.getListCourseWithReview(id);
 
-            if (Session["StudentName"] == null)
+            if (Session["StudentID"] == null)
             {
                 TempData["userResult"] = "giriş yapmadan devam edilemez.";
                 TempData["userResultIcon"] = "warning";
@@ -72,15 +71,14 @@ namespace LeanerProject.Controllers
             else
             {
 
-                var session = Session["StudentName"].ToString();
-                var value = _context.Students.FirstOrDefault(x => x.NameSurname == session.ToString()).StudentId;
-                var IsApprove = _context.CourseRegisters.FirstOrDefault(x => x.CourseId == id && x.StudentId == value);
+                var session = Convert.ToInt32(Session["StudentID"]);
+                var IsApprove = _context.CourseRegisters.FirstOrDefault(x => x.CourseId == id && x.StudentId == session);
                 if (IsApprove == null)
                 {
                     _context.CourseRegisters.Add(new CourseRegister
                     {
                         CourseId = id,
-                        StudentId = value
+                        StudentId = session
                     });
                     _context.SaveChanges();
                     TempData["userResult"] = "Bu kursa kayıt oldunuz. ilerlemenizi öğrenci panelinizden takip edebilirisinz.!!";
@@ -115,19 +113,19 @@ namespace LeanerProject.Controllers
             }
 
             var value = Datas(review.CourseId);
-            if (Session["StudentName"] != null)
+            if (Session["StudentID"] != null)
             {
 
                 var IsApprevd = IsRegistred(review.CourseId);
                 if (IsApprevd)
                 {
-                    string session = Session["StudentName"].ToString();
-                    var IsApprove = _context.Reviews.FirstOrDefault(x => x.Student.NameSurname == session.ToString() && x.CourseId == review.CourseId);
+                    int session = Convert.ToInt32(Session["StudentID"]);
+                    var IsApprove = _context.Reviews.FirstOrDefault(x => x.Student.StudentId == session && x.CourseId == review.CourseId);
                     if (IsApprove == null)
                     {
-                        var id = _context.Students.FirstOrDefault(x => x.NameSurname == session).StudentId;
+                       
                         review.CourseId = review.CourseId;
-                        review.StudentId = id;
+                        review.StudentId = session;
                         _context.Reviews.Add(review);
                         _context.SaveChanges();
                        

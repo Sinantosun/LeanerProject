@@ -12,18 +12,26 @@ namespace LeanerProject.Controllers
 {
     public class TeacherCourseController : Controller
     {
+
+        int Teacherid()
+        {
+            int _id = Convert.ToInt32(Session["teacherId"]);
+            return _id;
+        }
+
+
         Context _context = new Context();
         public ActionResult Index()
         {
-
-
-            var values = _context.Courses.Where(x => x.Teacher.NameSurname == "Murat Yücedağ").Include(x => x.CoursesDetails).ToList();
+            int id = Teacherid();
+            var values = _context.Courses.Where(x => x.Teacher.TeacherID == id).Include(x => x.CoursesDetails).ToList();
             return View(values);
         }
 
         void listitem()
         {
-            var value = _context.Courses.Where(x => x.TeacherID == 2).ToList();
+            int id = Teacherid();
+            var value = _context.Courses.Where(x => x.TeacherID == id).ToList();
             List<SelectListItem> list = (from x in value
                                          select new SelectListItem
                                          {
@@ -50,12 +58,14 @@ namespace LeanerProject.Controllers
             _context.courseVideos.Add(courseVideo);
             _context.SaveChanges();
             listitem();
+
             return View();
         }
         [HttpGet]
         public ActionResult AddCourseDetail()
         {
-            var CategoriesList = _context.Courses.Where(x => x.Teacher.TeacherID == 2).ToList();
+            int id = Teacherid();
+            var CategoriesList = _context.Courses.Where(x => x.Teacher.TeacherID == id).ToList();
 
             List<SelectListItem> dropDownList = (from x in CategoriesList
                                                  select new SelectListItem
@@ -71,8 +81,8 @@ namespace LeanerProject.Controllers
         {
             _context.CoursesDetails.Add(coursesDetails);
             _context.SaveChanges();
-
-            return RedirectToAction("Index");
+            TempData["ResultSuccess"] = "Kurs Detayı Eklendi";
+            return RedirectToAction("Index", "TeacherReviews");
         }
 
         [HttpGet]
@@ -80,7 +90,7 @@ namespace LeanerProject.Controllers
         {
 
             var value = _context.CoursesDetails.FirstOrDefault(x => x.CourseId == id);
-           
+
             return View(value);
         }
         [HttpPost]
@@ -90,8 +100,8 @@ namespace LeanerProject.Controllers
             value.CourseDetail = coursesDetails.CourseDetail;
             value.CourseContent = coursesDetails.CourseContent;
             _context.SaveChanges();
-
-            return RedirectToAction("Index");
+            TempData["ResultSuccess"] = "Kurs Detayı Güncellendi";
+            return RedirectToAction("Index", "TeacherReviews");
         }
 
         [HttpGet]
@@ -112,12 +122,14 @@ namespace LeanerProject.Controllers
         [HttpPost]
         public ActionResult AddCourse(Course course)
         {
-            // string name = Session["teacherName"].ToString();
-            //course.TeacherID = _context.teachers.Where(x => x.NameSurname == name).Select(y => y.TeacherID).FirstOrDefault();
-            course.TeacherID = 1;
+            course.ImageUrl = "/Templates/learner-1.0.0/images/img-school-1-min.jpg";
+
+            int id = Teacherid();
+            course.TeacherID = id;
             _context.Courses.Add(course);
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            TempData["ResultSuccess"] = "Kurs Eklendi";
+            return RedirectToAction("Index", "TeacherReviews");
         }
 
         [HttpGet]
@@ -141,9 +153,9 @@ namespace LeanerProject.Controllers
         [HttpPost]
         public ActionResult UpdateCourse(Course course)
         {
-            int Id = Convert.ToInt32(Session["teacherId"].ToString());
+            int id = Teacherid();
             var values = _context.Courses.Find(course.CourseId);
-            values.TeacherID = _context.teachers.Where(x => x.TeacherID == Id).Select(y => y.TeacherID).FirstOrDefault();
+            values.TeacherID = id;
             values.CourseName = course.CourseName;
             values.CategoryId = course.CategoryId;
             values.Price = course.Price;
@@ -151,14 +163,16 @@ namespace LeanerProject.Controllers
             values.Description = course.Description;
 
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            TempData["ResultSuccess"] = "Kurs Güncellendi";
+            return RedirectToAction("Index", "TeacherReviews");
         }
         public ActionResult DeleteCourse(int id)
         {
             var values = _context.Courses.Find(id);
             _context.Courses.Remove(values);
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            TempData["ResultSuccess"] = "Kurs Silindi";
+            return RedirectToAction("Index", "TeacherReviews");
         }
     }
 }

@@ -11,17 +11,25 @@ namespace LeanerProject.Controllers
 {
     public class StudentReviewsController : Controller
     {
+        int StudentId()
+        {
+            return Convert.ToInt32(Session["StudentID"]);
+        }
+
+
         Context _context = new Context();
         public ActionResult Index()
         {
-            var value = _context.Reviews.Include(x => x.Course).Where(x => x.StudentId == 7).ToList();
+            int id = StudentId();
+            var value = _context.Reviews.Include(x => x.Course).Where(x => x.StudentId == id).ToList();
 
             return View(value);
         }
         [HttpGet]
         public ActionResult CreateReview()
         {
-            var value = _context.CourseRegisters.Include(x => x.Course).Where(x => x.StudentId == 7).ToList();
+            int id = StudentId();
+            var value = _context.CourseRegisters.Include(x => x.Course).Where(x => x.StudentId == id).ToList();
 
             List<SelectListItem> list = (from x in value
                                          select new SelectListItem
@@ -37,10 +45,12 @@ namespace LeanerProject.Controllers
         [HttpPost]
         public ActionResult CreateReview(Review review)
         {
-            review.StudentId = 7;
+            int id = StudentId();
+            review.StudentId = id;
             _context.Reviews.Add(review);
             _context.SaveChanges();
-            return RedirectToAction("Index", "StudentReviews");
+            TempData["ResultSuccess"] = "Yorumunuz Eklendi";
+            return RedirectToAction("Index", "StudentCourse");
         }
         [HttpGet]
         public ActionResult StudentReviewDetail(int id)
@@ -58,14 +68,16 @@ namespace LeanerProject.Controllers
             }
             value.Comment = review.Comment;
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            TempData["ResultSuccess"] = "Yorumunuz Güncellendi";
+            return RedirectToAction("Index", "StudentCourse");
         }
         public ActionResult DeleteReview(int id)
         {
             var value = _context.Reviews.Find(id);
             _context.Reviews.Remove(value);
             _context.SaveChanges();
-            return RedirectToAction("Index");
+            TempData["ResultSuccess"] = "Yorumunuz Silindi.";
+            return RedirectToAction("Index", "StudentCourse");
         }
     }
 }

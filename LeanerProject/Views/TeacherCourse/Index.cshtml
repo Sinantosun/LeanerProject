@@ -8,93 +8,78 @@
 <h2>Kurslarım</h2>
 
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
-<div class="card">
+<div>
+    <div class="card">
 
-    <span class="card-header">
-        Kurs alanı ile ilgili işlemleri aşağıdan gerçekleştirebilirsiniz.
-        <br />
-    </span>
+        <span class="card-header">
+            Kurs alanı ile ilgili işlemleri aşağıdan gerçekleştirebilirsiniz.
+            <br />
+        </span>
 
-    <div class="col-md-12 container-fluid">
+        <div class="col-md-12 container-fluid">
 
-        <br />
-        <a href="/TeacherCourse/AddCourse/" class="btn btn-outline-primary">Yeni Kurs Ekle</a>
-        @if (Model.Count > 0)
-        {
-            <a href="/TeacherCourse/AddCourseDetail/" class="btn btn-outline-dark">Kurs Detay Ekle</a>
+            <br />
+            <a href="/TeacherCourse/AddCourse/" class="btn btn-outline-primary">Yeni Kurs Ekle</a>
+            @if (Model.Count > 0)
+            {
+                <a href="/TeacherCourse/AddCourseDetail/" class="btn btn-outline-dark">Kurs Detay Ekle</a>
 
-            <a href="/TeacherCourse/AddCourseVideo/" class="btn btn-outline-secondary">Kurs Video Ekle</a>
-        }
-
-
-        <br /><br />
-
-        @if (Model.Count > 0)
-        {
-            <table class="table table-hover">
-                <thead>
-                    <tr>
-                        <th><strong>#</strong></th>
-                        <td>Kurs Adı</td>
-                        <td>Açıklama</td>
-                        <td>Detay</td>
-                        <td class="text-center" colspan="3">İşlem</td>
-                    </tr>
-                </thead>
-                <tbody class="table-border-bottom-0">
-                    @foreach (var item in Model)
-                    {
-                        var value = item.CoursesDetails.FirstOrDefault(x => x.CourseId == item.CourseId);
+                <a href="/TeacherCourse/AddCourseVideo/" class="btn btn-outline-secondary">Kurs Video Ekle</a>
+            }
 
 
-                        count++;
+            <br /><br />
+
+            @if (Model.Count > 0)
+            {
+                <table class="table table-hover">
+                    <thead>
                         <tr>
-                            <th><strong>@count</strong></th>
-                            <td>@item.CourseName </td>
-                            <td>@(item.Description.Length>50 ? item.Description.Substring(0,50) + "...": item.Description)</td>
-
-                            <td><a href="/TeacherCourse/DeleteCourse/@item.CourseId" class="btn btn-outline-danger">Sil</a></td>
-                            <td><a href="/TeacherCourse/UpdateCourse/@item.CourseId" class="btn btn-outline-success">Güncelle</a></td>
-                            @if (value == null)
-                            {
-                                <td><a href="#" style="cursor:not-allowed" class="btn btn-outline-primary">Detay Gör</a></td>
-                            }
-                            else
-                            {
-                                <td><a href="/TeacherCourse/UpdateCourseDetail/@item.CourseId" style="cursor:pointer" class="btn btn-outline-primary">Detay Gör</a></td>
-                            }
-
+                            <th><strong>#</strong></th>
+                            <td>Kurs Adı</td>
+                            <td>Açıklama</td>
+                            <td>Detay</td>
+                            <td class="text-center" colspan="3">İşlem</td>
                         </tr>
-                    }
-                </tbody>
-            </table>
-        }
-        else
-        {
-            <div class="alert alert-primary">
-                Henüz Hiç Kurs Eklemediniz
-            </div>
-        }
+                    </thead>
+                    <tbody class="table-border-bottom-0">
+                        @foreach (var item in Model)
+                        {
+                            var value = item.CoursesDetails.FirstOrDefault(x => x.CourseId == item.CourseId);
 
+
+                            count++;
+                            <tr>
+                                <th><strong>@count</strong></th>
+                                <td>@item.CourseName </td>
+                                <td>@(item.Description.Length>50 ? item.Description.Substring(0,50) + "...": item.Description)</td>
+
+                                <td><a href="/TeacherCourse/DeleteCourse/@item.CourseId" class="btn btn-outline-danger">Sil</a></td>
+                                <td><a href="/TeacherCourse/UpdateCourse/@item.CourseId" class="btn btn-outline-success">Güncelle</a></td>
+                                @if (value == null)
+                                {
+                                    <td><a href="#" style="cursor:not-allowed" class="btn btn-outline-primary">Detay Gör</a></td>
+                                }
+                                else
+                                {
+                                    <td><a href="/TeacherCourse/UpdateCourseDetail/@item.CourseId" style="cursor:pointer" class="btn btn-outline-primary">Detay Gör</a></td>
+                                }
+
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <div class="alert alert-primary">
+                    Henüz Hiç Kurs Eklemediniz
+                </div>
+            }
+
+        </div>
     </div>
 </div>
 
 <br />
 <br />
-
-@if (TempData["Result"] != null)
-{
-
-    <div class="alert alert-dark" id="alert" style="display:none">
-        @TempData["Result"].ToString()
-    </div>
-
-    <script>
-        $("#alert").fadeIn();
-        $("#alert").fadeOut(2500);
-    </script>
-
-}
-
-
-

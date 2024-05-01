@@ -1,5 +1,6 @@
 ﻿using LeanerProject.Models;
 using LeanerProject.Models.Entities;
+using LearnerProject.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,27 +9,24 @@ using System.Web.Mvc;
 
 namespace LeanerProject.Controllers
 {
-    public class TeacherProfileController : Controller
+    public class StudentProfileController : Controller
     {
         Context context = new Context();
-
         public ActionResult Index()
         {
-
-            int Id = Convert.ToInt32(Session["teacherId"].ToString());
-            var value = context.teachers.FirstOrDefault(x => x.TeacherID == Id);
+            int Id = Convert.ToInt32(Session["StudentID"].ToString());
+            var value = context.Students.FirstOrDefault(x => x.StudentId == Id);
             return View(value);
         }
-
         [HttpPost]
-        public ActionResult Index(Teacher teacher)
+        public ActionResult Index(Student student)
         {
-            var value = context.teachers.Find(teacher.TeacherID);
-            value.NameSurname = teacher.NameSurname;
-            value.UserName = teacher.UserName;
-            if (teacher.Password != null)
+            var value = context.Students.Find(student.StudentId);
+            value.NameSurname = student.NameSurname;
+            value.UserName = student.UserName;
+            if (student.Password != null)
             {
-                value.Password = teacher.Password;
+                value.Password = student.Password;
             }
             context.SaveChanges();
             TempData["ResultSuccess"] = "Profiliniz Güncellendi";

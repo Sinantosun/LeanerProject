@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LeanerProject.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -27,7 +28,9 @@ namespace LeanerProject.Controllers
 
         public PartialViewResult _AdminNavbarPartial()
         {
-
+            int id = Convert.ToInt32(Session["AdminID"]);
+            Context context = new Context();
+            ViewBag.NameSurname = context.Admins.FirstOrDefault(x => x.AdminsID == id).NameSurname;
             return PartialView();
         }
 

@@ -7,41 +7,49 @@
     Layout = "~/Views/TeacherLayout/Index.cshtml";
 }
 
+@if (Model != null)
+{
+    <div class="card">
 
-<script src="~/Scripts/jquery-3.4.1.min.js"></script>
-<div class="card">
+        <span class="card-header">
+            <i>Kurs Detay Görüntüleme Sayfası</i><br />
+            <small>Lütfen kursları liste (li) formatında güncelleyin.</small>
+        </span>
 
-    <span class="card-header">
-        <i>Kurs Detay Görüntüleme Sayfası</i><br />
-        <small>Lütfen kursları liste (li) formatında güncelleyin.</small>
-    </span>
+        <div class="card-body">
+            <form method="post">
+                @Html.HiddenFor(x => x.CoursesDetailsID)
 
-    <div class="card-body">
-        <form method="post">
-            @Html.HiddenFor(x=>x.CoursesDetailsID)
-
-            <div class="mb-3">
-                @Html.Label("Kurs İçeriği")
-                <textarea class="form-control" name="CourseContent" id="summernote" asp-for="ContentBody">
+                <div class="mb-3">
+                    @Html.Label("Kurs İçeriği")
+                    <textarea class="form-control" name="CourseContent" id="summernote" asp-for="ContentBody">
           @Model.CourseContent
 </textarea>
-                <br />
-            </div>
-            <div class="mb-3">
-                @Html.Label("Ek Bilgiler")
-                <textarea class="form-control" name="CourseDetail" id="summernote2" asp-for="ContentBody">
+                    <br />
+                </div>
+                <div class="mb-3">
+                    @Html.Label("Ek Bilgiler")
+                    <textarea class="form-control" name="CourseDetail" id="summernote2" asp-for="ContentBody">
                       @Model.CourseDetail
 </textarea>
-                <br />
-            </div>
-            <div class="mb-3">
-                <input type="submit" value="Kaydet" class="btn btn-outline-success" />
-            </div>
-        </form>
+                    <br />
+                </div>
+                <div class="mb-3">
+                    <input type="submit" value="Kaydet" class="btn btn-outline-success" />
+                </div>
+            </form>
 
 
+        </div>
     </div>
-</div>
+
+}
+else
+{
+    <div class="alert alert-dark">Bu Kursa Ek Detay Eklemediniz.</div>
+}
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
 
 <br />
 <br />

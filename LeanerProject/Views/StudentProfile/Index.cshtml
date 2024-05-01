@@ -1,8 +1,9 @@
-﻿@model LeanerProject.Models.Entities.Teacher
+﻿@model LearnerProject.Models.Entities.Student
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/TeacherLayout/Index.cshtml";
+    Layout = "~/Views/StudentLayout/Index.cshtml";
 }
+
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 
 @Html.Partial("~/Views/Notifications/Notification.cshtml")
@@ -16,7 +17,7 @@
         <div class="card-body">
             <form method="post">
                 <div class="mb-3">
-                    <input name="TeacherID" value="@Model.TeacherID" type="hidden"
+                    <input name="StudentId" value="@Model.StudentId" type="hidden"
                            class="form-control"
                            id="exampleFormControlInput1" />
                     <label for="exampleFormControlInput1" class="form-label">Ad Soyad</label>

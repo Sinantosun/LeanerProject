@@ -4,7 +4,7 @@
     Layout = "~/Views/StudentLayout/Index.cshtml";
 }
 
-<h2>Yorumlar / Değerlendirmeler</h2>
+<h2>Kurslarım </h2>
 
 <a href="/StudentReviews/CreateReview" class="btn btn-outline-primary">Kurs Yorum Yap</a>
 
@@ -22,7 +22,7 @@
                         <h5 class="card-title">@item.Course.CourseName</h5>
                         <span> Yorum : @item.Comment</span><br />
                         <span> Puan : @item.ReviewValue / 5</span><br /><br />
-                        <a href="/StudentReviews/StudentReviewDetail/@item.ReviewId" class="btn btn-outline-primary">Detay</a>
+                        <a href="/StudentReviews/StudentReviewDetail/@item.ReviewId" class="btn btn-outline-primary">Yorum Detay</a>
                     </div>
                 </div>
             </div>

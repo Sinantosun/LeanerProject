@@ -18,7 +18,7 @@
         <div class="layout-container">
             @Html.Partial("~/Views/StudentLayout/_StudentSideBarPartial.cshtml")
             <div class="layout-page">
-                @Html.Partial("~/Views/StudentLayout/_StudentNavbarPartial.cshtml")
+                @Html.Action("_StudentNavbarPartial", "StudentLayout")
                 <div class="content-wrapper">
                     <div class="container-xxl flex-grow-1 container-p-y">
                         @RenderBody()

@@ -26,7 +26,7 @@ namespace LeanerProject.Controllers
             {
             
                 FormsAuthentication.SetAuthCookie(values.NameSurname, false);
-                Session["StudentName"] = values.NameSurname;
+                Session["StudentID"] = values.StudentId;
                 return RedirectToAction("Index", "StudentCourse");
             }
             else

@@ -18,7 +18,7 @@
         <div class="layout-container">
             @Html.Action("_AdminSideBarPartial", "AdminLayout")
             <div class="layout-page">
-                @Html.Partial("~/Views/AdminLayout/_AdminNavbarPartial.cshtml")
+                @Html.Action("_AdminNavbarPartial","AdminLayout")
                 <div class="content-wrapper">
                     <div class="container-xxl flex-grow-1 container-p-y">
                         @RenderBody()
