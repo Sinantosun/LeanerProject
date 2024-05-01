@@ -14,7 +14,7 @@ namespace LeanerProject.DAL.Repositoryies
 
         public Course getListCourseWithReview(int id)
         {
-            return _context.Courses.Include(x => x.Reviews).FirstOrDefault(x => x.CourseId == id);
+            return _context.Courses.Include(x => x.Reviews).Include(x=>x.CourseRegisters).FirstOrDefault(x => x.CourseId == id);
         }
         public int getCourseVideoCount(int id)
         {

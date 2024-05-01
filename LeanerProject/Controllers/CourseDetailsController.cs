@@ -49,6 +49,13 @@ namespace LeanerProject.Controllers
         public ActionResult Index(int id)
         {
             var value = Datas(id);
+            var value2 = IsRegistred(id);
+            if (value2)
+            {
+                TempData["IsRegistred"] = "Bu kursa kayıt oldunuz.";
+            }
+
+
             return View(value);
         }
         [HttpPost]
@@ -83,7 +90,7 @@ namespace LeanerProject.Controllers
 
 
             }
-            return RedirectToAction("../CourseDetails/Index/"+id);
+            return RedirectToAction("../CourseDetails/Index/" + id);
 
 
 
@@ -101,6 +108,12 @@ namespace LeanerProject.Controllers
         [HttpPost]
         public ActionResult Index(Review review)
         {
+            var value2 = IsRegistred(review.CourseId);
+            if (value2)
+            {
+                TempData["IsRegistred"] = "Bu kursa kayıt oldunuz.";
+            }
+
             var value = Datas(review.CourseId);
             if (Session["StudentName"] != null)
             {
@@ -117,6 +130,7 @@ namespace LeanerProject.Controllers
                         review.StudentId = id;
                         _context.Reviews.Add(review);
                         _context.SaveChanges();
+                       
                     }
                     else
                     {
@@ -127,7 +141,7 @@ namespace LeanerProject.Controllers
                 {
                     TempData["result"] = "Bu kursa henüz kayıt olmadınız. kayıt olduktan sonra kursa yorum yapabilirsiniz. lütfen kurs kaydını gerçekleştirdikten sonra tekrar deneyin.";
                 }
-                
+
 
                 return View(value);
             }

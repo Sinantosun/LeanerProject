@@ -4,7 +4,7 @@
     Layout = "~/Views/UILayout/Index.cshtml";
     string text = "";
     var find = Model.Reviews.FirstOrDefault(x => x.CourseId == Model.CourseId);
-    double xt = 0;
+    double _value = 0;
     double islem = 5;
     if (find == null)
     {
@@ -14,7 +14,7 @@
     {
         var value = Model.Reviews.Where(x => x.CourseId == Model.CourseId).Average(y => y.ReviewValue);
         text = value.ToString() + " / 5";
-        xt = value;
+        _value = value;
         islem = islem - value;
     }
 
@@ -117,12 +117,12 @@
                         <div class="d-flex justify-content-between pb-3">
                             <div class="text-primary"><span class="bx bx-star"></span> <span>Değerlendirilme :  </span></div>
                             <div class="review">
-                                <span class="text-dark">@xt.ToString("0.0")</span>
-                                @for (int i = 1; i <= xt; i++)
+                                <span class="text-dark">@_value.ToString("0.0")</span>
+                                @for (int i = 1; i <= _value; i++)
                                 {
                                     <i class="icon-star text-dark"></i>
                                 }
-                                @if (xt % 1 != 0)
+                                @if (_value % 1 != 0)
                                 {
                                     <span class="icon-star-half-empty text-dark"></span>
                                     for (int i = 1; i <= islem; i++)
@@ -143,9 +143,16 @@
                         <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
                             <div><span class="price">@Model.Price.ToString("C2")</span></div>
                             <form method="post" action="~/CourseDetails/RegisterCourse/@Model.CourseId">
+                                @if (TempData["IsRegistred"] != null)
+                                {
+                                    <span>Bu kursa kayıt oldunuz <i class="bx bx-check" style="font-size:15pt"></i></span>
 
+                                }
+                                else
+                                {
+                                    <input type="submit" class="registerCourseBtn btn btn-sm btn-outline-primary" value="Kayıt Ol" style="border-radius:5px" />
+                                }
 
-                                <input type="submit" class="registerCourseBtn btn btn-sm btn-outline-primary" value="Kayıt Ol" style="border-radius:5px" />
 
 
                             </form>
@@ -229,11 +236,11 @@
                     <i class="icon icon-stars"></i>  Değerlendirme Ortalaması
                     <br />
                     <br />
-                    @for (int i = 1; i <= xt; i++)
+                    @for (int i = 1; i <= _value; i++)
                     {
                         <i class="icon-star text-primary"></i>
                     }
-                    @if (xt % 1 != 0)
+                    @if (_value % 1 != 0)
                     {
                         <span class="icon-star-half-empty text-primary"></span>
                         for (int i = 1; i <= islem; i++)
