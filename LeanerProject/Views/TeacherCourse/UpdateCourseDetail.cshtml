@@ -19,9 +19,6 @@
     <div class="card-body">
         <form method="post">
             @Html.HiddenFor(x=>x.CoursesDetailsID)
-            <div class="mb-3">
-                @Html.DropDownListFor(x => x.CourseId, (List<SelectListItem>)ViewBag.CourseList, "Seçiniz", new { @class = "form-control" })
-            </div>
 
             <div class="mb-3">
                 @Html.Label("Kurs İçeriği")

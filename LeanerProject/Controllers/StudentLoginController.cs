@@ -1,4 +1,6 @@
-﻿using LeanerProject.Models;
+﻿using FluentValidation.Results;
+using LeanerProject.Models;
+using LeanerProject.ValidationRules.StudentRules;
 using LearnerProject.Models.Entities;
 using System;
 using System.Collections.Generic;
@@ -25,13 +27,38 @@ namespace LeanerProject.Controllers
             
                 FormsAuthentication.SetAuthCookie(values.NameSurname, false);
                 Session["StudentName"] = values.NameSurname;
-                return RedirectToAction("Index", "Default");
+                return RedirectToAction("Index", "StudentCourse");
             }
             else
             {
                 ModelState.AddModelError("","Kullanıcı Adı Veya Şifre Hatalı");
             }
             return View();
+        }
+        [HttpGet]
+        public ActionResult Register()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult Register(Student student)
+        {
+            StudentValidator validationRules = new StudentValidator();
+            ValidationResult validationResult = validationRules.Validate(student);
+            if (validationResult.IsValid)
+            {
+                _context.Students.Add(student);
+                _context.SaveChanges();
+                TempData["Result"] = "kaydınız oluşturuldu";
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                string err = string.Join("<br>", validationResult.Errors.Select(x => x.ErrorMessage));
+                TempData["Result"] = err;
+                return View();
+            }
+     
         }
 
         public ActionResult LogOut()

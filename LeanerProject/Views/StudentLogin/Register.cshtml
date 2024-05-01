@@ -4,6 +4,11 @@
 }
 
 
+@{
+    Layout = null;
+}
+
+
 <!doctype html>
 <html lang="tr">
 <head>
@@ -43,7 +48,7 @@
                 <div class="col-12">
                     <div class="row justify-content-center ">
                         <div class="col-lg-6 text-center ">
-                            <h1 class="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">Öğrenci Girişi</h1>
+                            <h1 class="mb-4 heading text-white" data-aos="fade-up" data-aos-delay="100">Yeni Öğrenci Kaydı</h1>
 
                         </div>
                     </div>
@@ -60,8 +65,11 @@
                 <div class="col-lg-5 " data-aos="fade-up" data-aos-delay="200">
                     <form method="post" class="form-box">
                         <div class="row">
-                            <small>Giriş yapmak için bilgileri doldurunuz</small>
-                            <div class="col-12 mb-3 mt-5">
+                            <small>Aşağıdaki Bilgileri Eksiksiz Doldurunuz</small>
+                            <div class="col-12 mb-3 mt-3">
+                                <input type="text" name="NameSurname" class="form-control" placeholder="Adınız Soyad">
+                            </div>
+                            <div class="col-12 mb-3 mt">
 
                                 <input type="text" name="UserName" class="form-control" placeholder="Kullanıcı Adı">
                             </div>
@@ -69,16 +77,8 @@
                                 <input type="password" name="Password" class="form-control" placeholder="Şifre">
                             </div>
 
-                            <div class="col-12 mb-3">
-                              
-                                    <span class="caption">Hesabınız Yok mu ?</span>
-                                    <span class="caption"><a href="/StudentLogin/Register">Hesap Oluşturun</a></span>
-                             
-                                
-                            </div>
-
                             <div class="col-12">
-                                <input type="submit" value="Giriş Yap" class="btn btn-primary">
+                                <input type="submit" value="Kaydol" class="btn btn-primary">
                                 <p style="color:red;">@Html.ValidationSummary()</p>
                             </div>
                         </div>
@@ -86,7 +86,7 @@
                     <br />
                     @if (TempData["Result"] != null)
                     {
-                        <div class="alert alert-success">
+                        <div class="alert alert-primary">
                             @Html.Raw(TempData["Result"])
                         </div>
                     }
@@ -96,6 +96,9 @@
 
         </div>
     </div> <!-- /.untree_co-section -->
+
+  
+
 
     <div id="overlayer"></div>
     <div class="loader">

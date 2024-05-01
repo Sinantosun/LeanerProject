@@ -12,7 +12,7 @@
     }
     else
     {
-        var value = Model.Reviews.Where(x => x.CourseId == Model.CourseId).Average(y => y.ReviewValue);
+        var value = Model.Reviews.Where(x=> x.CourseId == Model.CourseId).Average(y=> y.ReviewValue);
         text = value.ToString() + " / 5";
         _value = value;
         islem = islem - value;
@@ -112,32 +112,6 @@
                                 <span class="text-dark">
                                     @ViewBag.VideoCount
                                 </span>
-                            </div>
-                        </div>
-                        <div class="d-flex justify-content-between pb-3">
-                            <div class="text-primary"><span class="bx bx-star"></span> <span>Değerlendirilme :  </span></div>
-                            <div class="review">
-                                <span class="text-dark">@_value.ToString("0.0")</span>
-                                @for (int i = 1; i <= _value; i++)
-                                {
-                                    <i class="icon-star text-dark"></i>
-                                }
-                                @if (_value % 1 != 0)
-                                {
-                                    <span class="icon-star-half-empty text-dark"></span>
-                                    for (int i = 1; i <= islem; i++)
-                                    {
-                                        <i class="icon-star-o text-dark"></i>
-                                    }
-
-                                }
-                                @if (islem % 1 == 0)
-                                {
-                                    for (int i = 1; i <= islem; i++)
-                                    {
-                                        <i class="icon-star-o text-dark"></i>
-                                    }
-                                }
                             </div>
                         </div>
                         <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">

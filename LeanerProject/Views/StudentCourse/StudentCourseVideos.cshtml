@@ -1,0 +1,22 @@
+﻿@model List<LeanerProject.Models.Entities.CourseVideo>
+@{
+    ViewBag.Title = "StudentCourseVideos";
+    Layout = "~/Views/StudentLayout/Index.cshtml";
+}
+@if (Model.Count > 0)
+{
+
+    <div class="w-50 mx-auto text-center ">
+        <div class="embed-responsive embed-responsive-16by9">
+            @foreach (var item in Model)
+            {
+                <iframe width="560"  height="315" src="@item.VideoURL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+            }
+        </div>
+    </div>
+
+}
+else
+{
+    <div class="alert alert-secondary" style="color:black;">Eğitmen bu kursa henüz hiç içerik eklememiş.</div>
+}

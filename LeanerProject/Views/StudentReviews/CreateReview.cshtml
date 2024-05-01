@@ -1,0 +1,36 @@
+﻿@model LearnerProject.Models.Entities.Review
+@{
+    ViewBag.Title = "CreateReview";
+    Layout = "~/Views/StudentLayout/Index.cshtml";
+}
+
+<h2>Kurs Değerlendirme / Yorum Yapma Ekranı</h2>
+
+
+<div class="container ">
+    <form method="post">
+        <div class="form-group">
+            @Html.Label("Kurs Seçiniz")
+            @Html.DropDownListFor(x => x.CourseId, (List<SelectListItem>)ViewBag.CourseList, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.Label("Puanınız")
+            <select class="form-control" name="ReviewValue">
+                <option value="Seçiniz">Seçiniz</option>
+                <option value="5">5</option>
+                <option value="4">4</option>
+                <option value="3">3</option>
+                <option value="2">2</option>
+                <option value="1">1</option>
+            </select>
+        </div>
+        <div class="form-group">
+            @Html.Label("Yorumunuz")
+            <textarea class="form-control" name="Comment" rows="5"></textarea>
+        </div>
+        <br />
+        <div class="form-group">
+            <input type="submit" value="Yorum Yap" class="btn btn-outline-primary" style="border-radius:5px" />
+        </div>
+    </form>
+</div>

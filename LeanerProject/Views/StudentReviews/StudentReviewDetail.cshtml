@@ -1,0 +1,47 @@
+﻿@model LearnerProject.Models.Entities.Review
+@{
+    ViewBag.Title = "StudentReviewDetail";
+    Layout = "~/Views/StudentLayout/Index.cshtml";
+}
+
+<div class="card">
+
+    <span class="card-header">
+        <span style="font-weight:bold; text-transform:capitalize">Yorum Görüntüleme/Güncelleme Ekranı</span>
+    </span>
+
+    <div class="card-body">
+        <form method="post" action="~/StudentReviews/StudentReviewDetail/@Model.ReviewId">
+            <div class="mb-3">
+                <input type="hidden" value="@Model.ReviewId" name="ReviewId" />
+                <label for="exampleFormControlInput1" class="form-label">Kurs Adı</label>
+                <input readonly name="CourseName" value="@Model.Course.CourseName" type="text"
+                       class="form-control"
+                       id="exampleFormControlInput1" />
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Kategorisi</label>  <br />
+                @Html.Label("Puanınız")
+                <select class="form-control" name="ReviewValue">
+                    <option value="Choose">Seçiniz..</option>
+                    <option value="5">5</option>
+                    <option value="4">4</option>
+                    <option value="3">3</option>
+                    <option value="2">2</option>
+                    <option value="1">1</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                @Html.Label("Yorumunuz")
+                <textarea rows="5" name="Comment" class="form-control">@Model.Comment</textarea>
+            </div>
+            <div class="mb-3">
+                <a href="/StudentReviews/DeleteReview/@Model.ReviewId" class="btn btn-outline-danger">Sil</a>
+                <input type="submit" class="btn btn-outline-success" value="Güncelle"/>
+            </div>
+        </form>
+
+
+    </div>
+</div>
+

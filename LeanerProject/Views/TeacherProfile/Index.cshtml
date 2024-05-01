@@ -1,0 +1,44 @@
+﻿@model LeanerProject.Models.Entities.Teacher
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/TeacherLayout/Index.cshtml";
+}
+
+<div class="col-md-12">
+    <small class="text-light fw-semibold">Banner Alanı</small>
+    <div class="card mb-4">
+        <h5 class="card-header">
+            Profilim
+            <br />
+        </h5>
+        <div class="card-body">
+            <form method="post">
+                <div class="mb-3">
+                    <input name="TeacherID" value="@Model.TeacherID" type="hidden"
+                           class="form-control"
+                           id="exampleFormControlInput1" />
+                    <label for="exampleFormControlInput1" class="form-label">Ad Soyad</label>
+                    <input name="NameSurname" value="@Model.NameSurname" type="text"
+                           class="form-control"
+                           id="exampleFormControlInput1" />
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Kullanıcı Adı</label>
+                    <input name="UserName" value="@Model.UserName" type="text"
+                           class="form-control"
+                           id="exampleFormControlInput1" />
+                </div>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label">Şifre</label>
+                    <input name="Password" type="text"
+                           class="form-control"
+                           id="exampleFormControlInput1" />
+                </div>
+                <div class="mb-3">
+                    <input type="submit" value="Güncelle" class="btn btn-outline-success" />
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>

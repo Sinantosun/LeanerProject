@@ -35,5 +35,11 @@ namespace LeanerProject.Controllers
                 return View();
             }
         }
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("Index");
+        }
     }
 }

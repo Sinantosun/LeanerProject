@@ -32,10 +32,16 @@ namespace LeanerProject.Controllers
             else
             {
                 FormsAuthentication.SetAuthCookie(values.UserName, false);
-                Session["teacherName"] = values.NameSurname;
+                Session["teacherId"] = values.NameSurname;
                 return RedirectToAction("Index", "TeacherCourse");
             }
 
+        }
+        public ActionResult Logout()
+        {
+            FormsAuthentication.SignOut();
+            Session.Abandon();
+            return RedirectToAction("Index");
         }
 
         

@@ -17,13 +17,45 @@ namespace LeanerProject.Controllers
         {
 
 
-            var values = _context.Courses.Where(x => x.Teacher.NameSurname == "Mert Yıldız").Include(x => x.CoursesDetails).ToList();
+            var values = _context.Courses.Where(x => x.Teacher.NameSurname == "Murat Yücedağ").Include(x => x.CoursesDetails).ToList();
             return View(values);
+        }
+
+        void listitem()
+        {
+            var value = _context.Courses.Where(x => x.TeacherID == 2).ToList();
+            List<SelectListItem> list = (from x in value
+                                         select new SelectListItem
+                                         {
+                                             Text = x.CourseName,
+                                             Value = x.CourseId.ToString(),
+                                         }).ToList();
+            ViewBag.CourseList = list;
+        }
+        public ActionResult CourseVideosDetails(int id)
+        {
+            var values = _context.courseVideos.Where(x => x.CourseId == id).ToList();
+            return View(values);
+        }
+        public ActionResult AddCourseVideo()
+        {
+
+            listitem();
+            return View();
+        }
+        [HttpPost]
+        public ActionResult AddCourseVideo(CourseVideo courseVideo)
+        {
+
+            _context.courseVideos.Add(courseVideo);
+            _context.SaveChanges();
+            listitem();
+            return View();
         }
         [HttpGet]
         public ActionResult AddCourseDetail()
         {
-            var CategoriesList = _context.Courses.Where(x => x.Teacher.TeacherID == 1).ToList();
+            var CategoriesList = _context.Courses.Where(x => x.Teacher.TeacherID == 2).ToList();
 
             List<SelectListItem> dropDownList = (from x in CategoriesList
                                                  select new SelectListItem
@@ -39,22 +71,16 @@ namespace LeanerProject.Controllers
         {
             _context.CoursesDetails.Add(coursesDetails);
             _context.SaveChanges();
-       
+
             return RedirectToAction("Index");
         }
 
         [HttpGet]
         public ActionResult UpdateCourseDetail(int id)
         {
-            var CategoriesList = _context.Courses.Where(x => x.Teacher.TeacherID == 1).ToList();
+
             var value = _context.CoursesDetails.FirstOrDefault(x => x.CourseId == id);
-            List<SelectListItem> dropDownList = (from x in CategoriesList
-                                                 select new SelectListItem
-                                                 {
-                                                     Text = x.CourseName,
-                                                     Value = x.CourseId.ToString()
-                                                 }).ToList();
-            ViewBag.CourseList = dropDownList;
+           
             return View(value);
         }
         [HttpPost]
@@ -115,9 +141,9 @@ namespace LeanerProject.Controllers
         [HttpPost]
         public ActionResult UpdateCourse(Course course)
         {
-            string name = Session["teacherName"].ToString();
+            int Id = Convert.ToInt32(Session["teacherId"].ToString());
             var values = _context.Courses.Find(course.CourseId);
-            values.TeacherID = _context.teachers.Where(x => x.NameSurname == name).Select(y => y.TeacherID).FirstOrDefault();
+            values.TeacherID = _context.teachers.Where(x => x.TeacherID == Id).Select(y => y.TeacherID).FirstOrDefault();
             values.CourseName = course.CourseName;
             values.CategoryId = course.CategoryId;
             values.Price = course.Price;

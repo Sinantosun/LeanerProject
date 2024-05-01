@@ -163,11 +163,13 @@
     <Compile Include="Controllers\StudentCourseController.cs" />
     <Compile Include="Controllers\StudentLayoutController.cs" />
     <Compile Include="Controllers\StudentLoginController.cs" />
+    <Compile Include="Controllers\StudentReviewsController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Controllers\TeacherCourseController.cs" />
     <Compile Include="Controllers\TeacherLayoutController.cs" />
     <Compile Include="Controllers\TeacherLoginController.cs" />
+    <Compile Include="Controllers\TeacherProfileController.cs" />
     <Compile Include="Controllers\TeacherReviewsController.cs" />
     <Compile Include="Controllers\TeacherUIController.cs" />
     <Compile Include="Controllers\UIContactController.cs" />
@@ -289,6 +291,8 @@
     <Compile Include="ValidationRules\ContactRules\ContactValidator.cs" />
     <Compile Include="ValidationRules\MessageRules\MessageValidator.cs" />
     <Compile Include="ValidationRules\QuestionsRules\QuestionValidator.cs" />
+    <Compile Include="ValidationRules\ReviewRules\ReviewValidator.cs" />
+    <Compile Include="ValidationRules\StudentRules\StudentValidator.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -2917,6 +2921,14 @@
     <Content Include="Views\StudentLayout\_StudentNavbarPartial.cshtml" />
     <Content Include="Views\StudentLayout\_StudentScriptsPartial.cshtml" />
     <Content Include="Views\StudentLayout\_StudentFooterPartial.cshtml" />
+    <Content Include="Views\StudentLogin\Register.cshtml" />
+    <Content Include="Views\StudentReviews\Index.cshtml" />
+    <Content Include="Views\StudentReviews\StudentReviewDetail.cshtml" />
+    <Content Include="Views\StudentCourse\StudentCourseVideos.cshtml" />
+    <Content Include="Views\StudentReviews\CreateReview.cshtml" />
+    <Content Include="Views\TeacherCourse\AddCourseVideo.cshtml" />
+    <Content Include="Views\TeacherCourse\CourseVideosDetails.cshtml" />
+    <Content Include="Views\TeacherProfile\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

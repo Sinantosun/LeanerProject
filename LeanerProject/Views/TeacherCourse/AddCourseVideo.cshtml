@@ -1,0 +1,38 @@
+﻿@model LeanerProject.Models.Entities.CourseVideo
+@{
+    ViewBag.Title = "AddCourseVideo";
+    Layout = "~/Views/TeacherLayout/Index.cshtml";
+}
+
+<div class="card">
+
+    <span class="card-header">
+        <i>Kurs Video Ekleme Sayfası</i><br />
+    </span>
+
+    <div class="card-body">
+        <form method="post">
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Detay Eklemek İstediğiniz Kursu Seçiniz.</label>
+                <br />
+                @Html.DropDownListFor(x => x.CourseId, (List<SelectListItem>)ViewBag.CourseList, "Seçiniz", new { @class = "form-control" })
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Video Sıra No : </label>
+                <br />
+                <input type="text" class="form-control" name="VideoNumber" />
+            </div>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Video İFRAME URL: </label>
+                <br />
+                <input type="text" class="form-control" name="VideoURL" />
+            </div>
+            <div class="mb-3">
+                <input type="submit" value="Kaydet" class="btn btn-outline-success" />
+            </div>
+        </form>
+
+
+    </div>
+</div>
+
