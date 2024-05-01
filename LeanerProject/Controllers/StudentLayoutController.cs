@@ -13,5 +13,29 @@ namespace LeanerProject.Controllers
         {
             return View();
         }
+        public PartialViewResult _StudentHeadPartial()
+        {
+            return PartialView();
+        }
+
+        public PartialViewResult _StudentSideBarPartial()
+        {
+            return PartialView();
+        }
+
+        public PartialViewResult _StudentNavbarPartial()
+        {
+            return PartialView();
+        }
+
+        public PartialViewResult _StudentFooterPartial()
+        {
+            return PartialView();
+        }
+
+        public PartialViewResult _StudentScriptsPartial()
+        {
+            return PartialView();
+        }
     }
 }

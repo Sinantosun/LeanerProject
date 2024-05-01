@@ -5,13 +5,31 @@
 
 <!DOCTYPE html>
 
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
+<html lang="tr"
+      class="light-style layout-menu-fixed"
+      dir="ltr"
+      data-theme="theme-default"
+      data-assets-path="~/Templates/sneat-1.0.0/assets/"
+      data-template="vertical-menu-template-free">
+@Html.Partial("~/Views/StudentLayout/_StudentHeadPartial.cshtml")
+
 <body>
-    <div> 
+    <div class="layout-wrapper layout-content-navbar">
+        <div class="layout-container">
+            @Html.Partial("~/Views/StudentLayout/_StudentSideBarPartial.cshtml")
+            <div class="layout-page">
+                @Html.Partial("~/Views/StudentLayout/_StudentNavbarPartial.cshtml")
+                <div class="content-wrapper">
+                    <div class="container-xxl flex-grow-1 container-p-y">
+                        @RenderBody()
+                    </div>
+                    @Html.Partial("~/Views/StudentLayout/_StudentFooterPartial.cshtml")
+                    <div class="content-backdrop fade"></div>
+                </div>
+            </div>
+        </div>
+        <div class="layout-overlay layout-menu-toggle"></div>
     </div>
+    @Html.Partial("~/Views/StudentLayout/_StudentScriptsPartial.cshtml")
 </body>
 </html>

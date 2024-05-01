@@ -3,6 +3,53 @@
     ViewBag.Title = "TeacherRewievDetail";
     Layout = "~/Views/TeacherLayout/Index.cshtml";
 }
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+<script>
+    $(function () {
+        var _btnId = 0;
+        $(".deleteReviewButton").click(function () {
+            var modal = new bootstrap.Modal(document.getElementById("largeModal"));
+            modal.show();
+            var btnId = $(this).data("id");
+            _btnId = btnId;
+        });
+
+        $(".deleteReviewConfirmButton").click(function () {
+            window.location.href = "/TeacherReviews/DeleteRewiev/" + _btnId;
+        });
+    })
+</script>
+
+<div class="modal fade" id="largeModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel3">Uyarı</h5>
+                <button type="button"
+                        class="btn-close"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col mb-3">
+                        <h4 class="modal-title">Seçilen Yorumu Silmek İstediğinize Emin Misiniz?</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+                    Vazgeç
+                </button>
+                <button type="button" class="btn btn-danger deleteReviewConfirmButton">Sil</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
 <div class="card">
     <div class="card-header text-center mt-3">
         <h4 class="card-title">@ViewBag.TeacherCourseName kurs değerlendirmeleri</h4>
@@ -12,9 +59,9 @@
 
 @if (Model.Count > 0)
 {
-    <div class="row mb-5">
-        @foreach (var item in Model)
-        {
+
+    foreach (var item in Model)
+    {<div class="row">
             <div class="col-md">
                 <div class="card mb-3">
                     <div class="row g-0">
@@ -43,14 +90,16 @@
                                     </small>
                                 </p>
                                 <p></p>
+                                <button class="btn btn-outline-danger deleteReviewButton" data-id="@item.ReviewId"> <i class="bx bx-trash"></i> Sil</button>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        }
+        </div>
+    }
 
-    </div>
+
 }
 else
 {

@@ -160,7 +160,9 @@
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\MessagesController.cs" />
     <Compile Include="Controllers\QuestionsController.cs" />
+    <Compile Include="Controllers\StudentCourseController.cs" />
     <Compile Include="Controllers\StudentLayoutController.cs" />
+    <Compile Include="Controllers\StudentLoginController.cs" />
     <Compile Include="Controllers\StudentsController.cs" />
     <Compile Include="Controllers\TeacherController.cs" />
     <Compile Include="Controllers\TeacherCourseController.cs" />
@@ -2908,6 +2910,13 @@
     <Content Include="Views\TeacherCourse\UpdateCourseDetail.cshtml" />
     <Content Include="Views\TeacherReviews\Index.cshtml" />
     <Content Include="Views\TeacherReviews\TeacherRewievDetail.cshtml" />
+    <Content Include="Views\StudentLogin\Index.cshtml" />
+    <Content Include="Views\StudentCourse\Index.cshtml" />
+    <Content Include="Views\StudentLayout\_StudentSideBarPartial.cshtml" />
+    <Content Include="Views\StudentLayout\_StudentHeadPartial.cshtml" />
+    <Content Include="Views\StudentLayout\_StudentNavbarPartial.cshtml" />
+    <Content Include="Views\StudentLayout\_StudentScriptsPartial.cshtml" />
+    <Content Include="Views\StudentLayout\_StudentFooterPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

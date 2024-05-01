@@ -25,23 +25,22 @@
 <script src="~/Scripts/jquery-3.4.1.min.js"></script>
 <script src="~/Scripts/sweetalert2.min.js"></script>
 <link href="~/Content/sweetalert2.min.css" rel="stylesheet" />
-<script>
-    $(function () {
-        $(".registerCourseBtn").click(function () {
-            Swal.fire(
-                'Uyarı',
-                'Kursa Kayıt Olmak İçin Önce Giriş Yapmanız Gereklidir.',
-                'error'
-            );
-        });
-    });
-</script>
-
 
 @if (Session["session"] != null)
 {
     <script>
         alert("devam edebilmek için giriş yapın.");
+    </script>
+}
+
+@if (TempData["userResult"] != null)
+{
+    <script>
+        Swal.fire(
+            "@TempData["userResultTitle"]",
+            "@TempData["userResult"]",
+            "@TempData["userResultIcon"]",
+        );
     </script>
 }
 
@@ -143,7 +142,13 @@
                         </div>
                         <div class="border-top d-flex justify-content-between pt-3 mt-3 align-items-center">
                             <div><span class="price">@Model.Price.ToString("C2")</span></div>
-                            <input class="registerCourseBtn btn btn-sm btn-outline-primary" value="Kayıt Ol" style="border-radius:5px" />
+                            <form method="post" action="~/CourseDetails/RegisterCourse/@Model.CourseId">
+
+
+                                <input type="submit" class="registerCourseBtn btn btn-sm btn-outline-primary" value="Kayıt Ol" style="border-radius:5px" />
+
+
+                            </form>
                         </div>
                     </div>
 
@@ -175,7 +180,7 @@
         </div>
 
         <br />
-        @if (Session["userStudentName"] == null)
+        @if (Session["StudentName"] == null)
         {
 
             <div class="container alert alert-warning text-center">
@@ -184,6 +189,12 @@
         }
         else
         {
+            if (TempData["result"] != null)
+            {
+                <div class="container alert alert-warning text-center">
+                    <i class="bx bx-info-circle"></i>  @TempData["result"].ToString()
+                </div>
+            }
             <div class="container ">
                 <form method="post">
                     <div class="form-group">

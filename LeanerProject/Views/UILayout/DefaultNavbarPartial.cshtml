@@ -1,4 +1,21 @@
-﻿
+﻿@{
+    string text = "";
+    string url = "";
+    string UserNameSurname = "";
+
+    if (Session["StudentName"] == null)
+    {
+        url = "/StudentLogin/Index";
+        text = "Giriş Yap";
+
+    }
+    else
+    {
+        UserNameSurname = Session["StudentName"].ToString();
+        url = "/StudentLogin/LogOut";
+        text = "Çıkış Yap";
+    }
+}
 <nav class="site-nav mb-5">
     <div class="pb-2 top-bar mb-3">
         <div class="container">
@@ -11,13 +28,23 @@
                 </div>
 
                 <div class="col-6 col-lg-3 text-right">
-                    <a href="login.html" class="small mr-3">
-                        <span class="icon-lock"></span>
-                        Giriş Yap
-                    </a>
-                    <a href="register.html" class="small">
-                        <span class="icon-person"></span>
-                        Kaydol
+
+                    @if (Session["StudentName"] != null)
+                    {
+                        <a href="/StudentProfile/Index" class="small mr-3">
+                            <span class="icon-person"> @UserNameSurname</span>
+                        </a>
+                    }
+                    else
+                    {
+                        <a href="register.html" class="small mr-3">
+                            <span class="icon-person"> Kaydol</span>
+                        </a>
+                    }
+
+                    <a href="@url" class="small mr-3">
+                        <span class="icon-lock"></span> @text
+
                     </a>
                 </div>
 
