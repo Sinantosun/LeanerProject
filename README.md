@@ -15,7 +15,9 @@ Bu alanda, en pahalı kursdan en ucuz kursa en popüler kursdan kursların genel
 Ayrica bütün istatistikler dinamik olarak kategoriye göre çekiliyor yeni bir kategori eklendiğinde otomatik olarak hesaplanıyor.
 
 <h1>Kurs Listesi</h1>
-![Image06](https://github.com/Sinantosun/LeanerProject/assets/145317724/1ccbe867-fe71-4035-81bd-2ed0427fe347)
+
+![Image06](https://github.com/Sinantosun/LeanerProject/assets/145317724/26068d9e-7ed8-443f-8028-7e4eb1e62b82)
+
 
 Burada kurs adları, eğitmen adı kursa yapılan yapılan değerlendirmelerin 5 üzerinde ortalaması kursun video sayısı gibi bir çok özellik bulunuyor. Bu veriler ilişkili tablolar aracılığı ile taşınıyor.
 Burada pagedList ile sayfalama kullanılmıştır. 
