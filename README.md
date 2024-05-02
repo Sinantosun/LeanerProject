@@ -32,7 +32,8 @@ Yapılan projede her 6 kayıtta bir yeni bir sayfa oluşturuluyor.
 
 
 <h1>Öğretmenlerin listesi</h1>
-![Image02](https://github.com/Sinantosun/LeanerProject/assets/145317724/3d5b49ef-5d48-4f3e-ac4f-bb2e264be032)
+
+![Image02](https://github.com/Sinantosun/LeanerProject/assets/145317724/ff69eb61-0197-4d91-8684-50872e47cf49)
 
 Bu alan sitenin Öğretmenlermiz sekmesi altında bulunuyor.
 burada öğretmen adı ve öğretmenin yayınladığı kurs sayıları görünüyor ayrıca buton yardımıyla seçilen öğretmene ait kursların listesi de ayrı bir sayfada görüntülenebiliyor.
