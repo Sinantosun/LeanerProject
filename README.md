@@ -51,7 +51,7 @@ Bu alanda, giriş yapan öğrenciye ait kayıt olduğu kurslar listeleniyor.
 Eğitime başla butonu ile kayıt oldukları kursaların videolarını izleyebilirler.
 
 
-<h1>Eğitmenlerin Panelinde kendi yayınladıkları kurslarını görüntüledikleri alan</h1>
+<h3>Eğitmenlerin Panelinde kendi yayınladıkları kurslarını görüntüledikleri alan</h3>
 
 ![Image04](https://github.com/Sinantosun/LeanerProject/assets/145317724/33ddf936-adc3-4e84-b3b2-64a24824bc03)
 
