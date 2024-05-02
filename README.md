@@ -4,6 +4,14 @@ Learner Project eğitim platformu gibi düşünebiliceğimiz bir uygulamadır. a
 
 Projede MVC 5 yaklaşımı kullanıldı ve proje code first ile geliştirildi.
 
+Projede kullanılanlar : 
+<ul>
+  <li>PagedList ile sayfalama</li>
+  <li>Session</li>
+  <li>Fluent Validation</li>
+  <li>Linq Sorgulamaları</li>
+</ul>
+
 
 Projeye ait görseller
 
