@@ -6,6 +6,8 @@ Projede MVC 5 yaklaşımı kullanıldı ve proje code first ile geliştirildi.
 
 Projede kullanılanlar : 
 <ul>
+  <li>ASP NET MVC 5</li>
+  <li>Code First</li>
   <li>PagedList ile sayfalama</li>
   <li>Session</li>
   <li>Fluent Validation</li>
