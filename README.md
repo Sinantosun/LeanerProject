@@ -42,7 +42,9 @@ burada öğretmen adı ve öğretmenin yayınladığı kurs sayıları görünü
 
 
 <h1>Öğrencilerin Panelinde kendi kurslarını görüntüledikleri alan</h1>
-![Image03](https://github.com/Sinantosun/LeanerProject/assets/145317724/b8f59bb6-8240-4db7-adae-16521e80f3c5)
+
+![Image03](https://github.com/Sinantosun/LeanerProject/assets/145317724/f2f82de1-ef20-401e-90cf-a252aebf5b9a)
+
 
 Bu alanda, giriş yapan öğrenciye ait kayıt olduğu kurslar listeleniyor. 
 Öğrenciler, kayıt oldukları kurslara yaptığı yorumları silip düzenleyebilir.
